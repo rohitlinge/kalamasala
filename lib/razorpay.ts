@@ -1,22 +1,25 @@
 import Razorpay from "razorpay";
 import crypto from "crypto";
+import { workerEnv } from "./env";
 
 export function hasRazorpayKeys() {
-  return Boolean(process.env.RAZORPAY_KEY_SECRET && process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID);
+  return Boolean(workerEnv("RAZORPAY_KEY_SECRET") && (workerEnv("NEXT_PUBLIC_RAZORPAY_KEY_ID") ?? workerEnv("NEXT_PUBLIC_RAZORPAY_KEY")));
 }
 
 export function getRazorpay() {
-  if (!process.env.RAZORPAY_KEY_SECRET || !process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID) {
+  const keyId = workerEnv("NEXT_PUBLIC_RAZORPAY_KEY_ID") ?? workerEnv("NEXT_PUBLIC_RAZORPAY_KEY");
+  const secret = workerEnv("RAZORPAY_KEY_SECRET");
+  if (!keyId || !secret) {
     return null;
   }
   return new Razorpay({
-    key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET,
+    key_id: keyId,
+    key_secret: secret,
   });
 }
 
 export function verifySignature(orderId: string, paymentId: string, signature: string) {
-  const secret = process.env.RAZORPAY_KEY_SECRET;
+  const secret = workerEnv("RAZORPAY_KEY_SECRET");
   if (!secret) return false;
   const body = `${orderId}|${paymentId}`;
   const expected = crypto.createHmac("sha256", secret).update(body).digest("hex");

@@ -3,6 +3,7 @@ import { quoteDelivery } from "@/lib/delivery";
 import { validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
 import { getPack, isTrialPack, orderRef, rupeesToPaise } from "@/lib/product";
 import { getRazorpay } from "@/lib/razorpay";
+import { workerEnv } from "@/lib/env";
 
 export async function POST(request: Request) {
   let body: Record<string, string>;
@@ -75,7 +76,7 @@ export async function POST(request: Request) {
     total: totalRupees,
     masala: pack.price,
     delivery: deliveryFee,
-    key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+    key: workerEnv("NEXT_PUBLIC_RAZORPAY_KEY_ID") ?? workerEnv("NEXT_PUBLIC_RAZORPAY_KEY"),
     ref,
   });
 }

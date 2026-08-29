@@ -8,9 +8,11 @@ import HowToUse from "@/components/HowToUse";
 import Storage from "@/components/Storage";
 import OrderSection from "@/components/OrderSection";
 import Footer from "@/components/Footer";
+import { workerEnv } from "@/lib/env";
 
 export default function HomePage() {
-  const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? "";
+  const razorpayKey =
+    workerEnv("NEXT_PUBLIC_RAZORPAY_KEY_ID") ?? workerEnv("NEXT_PUBLIC_RAZORPAY_KEY") ?? "";
 
   const jsonLd = {
     "@context": "https://schema.org",
