@@ -3,6 +3,7 @@ import { quoteDelivery } from "@/lib/delivery";
 import { validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
 import { getPack, orderRef, rupeesToPaise } from "@/lib/product";
 import { getRazorpay } from "@/lib/razorpay";
+import { razorpayKeyId } from "@/lib/env";
 
 export async function POST(request: Request) {
   let body: Record<string, string>;
@@ -74,7 +75,7 @@ export async function POST(request: Request) {
     total: totalRupees,
     masala: pack.price,
     delivery: quote.fee,
-    key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+    key: razorpayKeyId(),
     ref,
   });
 }

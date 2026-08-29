@@ -8,9 +8,10 @@ import HowToUse from "@/components/HowToUse";
 import Storage from "@/components/Storage";
 import OrderSection from "@/components/OrderSection";
 import Footer from "@/components/Footer";
+import { razorpayKeyId } from "@/lib/env";
 
 export default function HomePage() {
-  const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? "";
+  const razorpayKey = razorpayKeyId() ?? "";
 
   const jsonLd = {
     "@context": "https://schema.org",
