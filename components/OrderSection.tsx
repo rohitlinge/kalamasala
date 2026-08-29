@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { packs } from "@/lib/content";
 import { type DeliveryQuote, zoneFromPincode } from "@/lib/zones";
 import { deliveryMessage, LOCKED_CITY, LOCKED_STATE, validateOrder, withLockedRegion } from "@/lib/nagpur";
-import { formatInr, isTrialPack, transportCharge } from "@/lib/product";
+import { formatInr } from "@/lib/product";
 
 type Status =
   | { kind: "idle" }
@@ -33,7 +33,7 @@ function loadRazorpay(): Promise<boolean> {
 }
 
 export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
-  const [packId, setPackId] = useState("10");
+  const [packId, setPackId] = useState("500");
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -55,7 +55,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
   );
 
   const quoteBlocked = quote != null && !quote.ok;
-  const transport = quoteBlocked ? undefined : transportCharge(packId, quote?.fee ?? pinZone?.fee);
+  const transport = quoteBlocked ? undefined : (quote?.fee ?? pinZone?.fee);
   const total = pack.price + (transport ?? 0);
 
   useEffect(() => {
@@ -206,9 +206,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
                   </span>
                   <span className="text-right">
                     <span className="font-display block text-3xl text-gold">{formatInr(p.price)}</span>
-                    <span className="text-[0.65rem] tracking-[0.08em] text-cream/40 uppercase">
-                      {isTrialPack(p.id) ? "pay ₹10 · no transport" : "without transport"}
-                    </span>
+                    <span className="text-[0.65rem] tracking-[0.08em] text-cream/40 uppercase">without transport</span>
                   </span>
                 </button>
               ))}

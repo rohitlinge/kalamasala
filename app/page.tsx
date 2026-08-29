@@ -8,11 +8,9 @@ import HowToUse from "@/components/HowToUse";
 import Storage from "@/components/Storage";
 import OrderSection from "@/components/OrderSection";
 import Footer from "@/components/Footer";
-import { workerEnv } from "@/lib/env";
 
 export default function HomePage() {
-  const razorpayKey =
-    workerEnv("NEXT_PUBLIC_RAZORPAY_KEY_ID") ?? workerEnv("NEXT_PUBLIC_RAZORPAY_KEY") ?? "";
+  const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? "";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -25,7 +23,7 @@ export default function HomePage() {
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "INR",
-      lowPrice: "10",
+      lowPrice: "500",
       highPrice: "2000",
       availability: "https://schema.org/InStock",
     },

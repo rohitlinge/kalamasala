@@ -7,7 +7,6 @@ import {
   zoneFromDistanceKm,
   zoneFromPincode,
 } from "./zones";
-import { workerEnv } from "./env";
 
 export type { DeliveryQuote, Zone, ZoneId } from "./zones";
 export { KITCHEN_ORIGIN, ZONES, isServiceablePincode, zoneFromPincode, zoneFromDistanceKm } from "./zones";
@@ -28,7 +27,8 @@ const geocodeCache = new Map<string, { at: number; coord: LngLat | null }>();
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
 function orsKey(): string | undefined {
-  return workerEnv("ORS_API_KEY");
+  const key = process.env.ORS_API_KEY?.trim();
+  return key || undefined;
 }
 
 function formatDuration(seconds: number): string {

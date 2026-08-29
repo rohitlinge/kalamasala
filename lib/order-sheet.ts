@@ -1,5 +1,3 @@
-import { workerEnv } from "./env";
-
 export type PaidOrderRow = {
   paidAt: string;
   ref: string;
@@ -22,7 +20,8 @@ export type PaidOrderRow = {
 };
 
 function sheetsUrl(): string | undefined {
-  return workerEnv("GOOGLE_SHEETS_WEBHOOK_URL");
+  const url = process.env.GOOGLE_SHEETS_WEBHOOK_URL?.trim();
+  return url || undefined;
 }
 
 /** Writes a paid order to Google Sheets via Apps Script. Never throws — payment must still succeed. */
@@ -30,7 +29,7 @@ export async function recordPaidOrder(row: PaidOrderRow): Promise<void> {
   const url = sheetsUrl();
   if (!url) return;
 
-  const secret = workerEnv("GOOGLE_SHEETS_WEBHOOK_SECRET") ?? "";
+  const secret = process.env.GOOGLE_SHEETS_WEBHOOK_SECRET?.trim() ?? "";
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 8000);
 

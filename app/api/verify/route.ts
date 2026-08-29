@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { quoteDelivery } from "@/lib/delivery";
 import { recordPaidOrder, paidAtIst } from "@/lib/order-sheet";
 import { validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
-import { getPack, isTrialPack, orderRef } from "@/lib/product";
+import { getPack, orderRef } from "@/lib/product";
 import { verifySignature } from "@/lib/razorpay";
 
 export async function POST(request: Request) {
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     pincode: order.pincode,
     address: order.address,
   });
-  const delivery = isTrialPack(order.packId) ? 0 : quote.ok && quote.fee != null ? quote.fee : 0;
+  const delivery = quote.ok && quote.fee != null ? quote.fee : 0;
   const total = pack.price + delivery;
   const ref = /^LS-\d{4}$/.test(body.ref ?? "") ? body.ref! : orderRef();
 
