@@ -146,7 +146,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
           const verify = await fetch("/api/verify", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...response, ...payload }),
+            body: JSON.stringify({ ...response, ...payload, ref: data.ref }),
           });
           const out = await verify.json();
           if (!verify.ok) {
