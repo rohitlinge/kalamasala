@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     });
   } catch {
     return NextResponse.json(
-      { error: "Payment gateway could not start. Please use Cash on Delivery." },
+      { error: "Payment could not start. Please try again." },
       { status: 502 },
     );
   }

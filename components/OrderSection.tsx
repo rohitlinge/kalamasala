@@ -5,13 +5,11 @@ import { packs } from "@/lib/content";
 import { deliveryMessage, LOCKED_CITY, LOCKED_STATE, validateOrder, withLockedRegion } from "@/lib/nagpur";
 import { formatInr } from "@/lib/product";
 
-type PayMethod = "online" | "cod";
-
 type Status =
   | { kind: "idle" }
   | { kind: "busy" }
   | { kind: "error"; text: string }
-  | { kind: "ok"; ref: string; method: PayMethod; amount: number; pack: string; preview?: boolean };
+  | { kind: "ok"; ref: string; amount: number; pack: string; preview?: boolean };
 
 declare global {
   interface Window {
@@ -35,7 +33,6 @@ function loadRazorpay(): Promise<boolean> {
 
 export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
   const [packId, setPackId] = useState("250");
-  const [method, setMethod] = useState<PayMethod>(razorpayKey ? "online" : "cod");
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -67,18 +64,6 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
     setStatus({ kind: "busy" });
 
     try {
-      if (method === "cod") {
-        const res = await fetch("/api/order-cod", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Could not place order");
-        setStatus({ kind: "ok", ref: data.ref, method: "cod", amount: pack.price, pack: pack.weight });
-        return;
-      }
-
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -91,7 +76,6 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
         setStatus({
           kind: "ok",
           ref: data.ref,
-          method: "online",
           amount: pack.price,
           pack: pack.weight,
           preview: true,
@@ -100,7 +84,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
       }
 
       const ready = await loadRazorpay();
-      if (!ready || !window.Razorpay) throw new Error("Payment window could not open. Try Cash on Delivery.");
+      if (!ready || !window.Razorpay) throw new Error("Payment window could not open. Please try again.");
 
       const rzp = new window.Razorpay({
         key: data.key,
@@ -127,7 +111,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             setStatus({ kind: "error", text: out.error || "Payment could not be verified." });
             return;
           }
-          setStatus({ kind: "ok", ref: out.ref, method: "online", amount: pack.price, pack: pack.weight });
+          setStatus({ kind: "ok", ref: out.ref, amount: pack.price, pack: pack.weight });
         },
         modal: {
           ondismiss: () => setStatus({ kind: "idle" }),
@@ -178,8 +162,8 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             </div>
 
             <div className="mt-8 border border-[rgba(196,163,90,0.22)] p-5 text-sm font-light leading-6 text-cream/60">
-              Pay securely with Razorpay (UPI, cards, net banking) or choose Cash on Delivery. We do not take orders
-              outside Nagpur — the 6-day route is local, on purpose.
+              Pay securely with Razorpay — UPI, cards, or net banking. We do not take orders outside Nagpur — the
+              6-day route is local, on purpose.
             </div>
           </div>
 
@@ -260,29 +244,11 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
 
             <p className={`mt-4 text-sm ${delivery.ok ? "text-gold-soft" : "text-cream/50"}`}>{delivery.text}</p>
 
-            <div className="mt-8 grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => setMethod("online")}
-                className={`border px-4 py-4 text-left ${
-                  method === "online" ? "border-gold bg-[rgba(196,163,90,0.1)]" : "border-[rgba(196,163,90,0.2)]"
-                }`}
-              >
-                <span className="font-mark block text-[0.58rem] tracking-[0.2em] text-gold uppercase">Razorpay</span>
-                <span className="mt-1 block text-sm text-cream">
-                  {razorpayKey ? "Pay online" : "Pay online · preview"}
-                </span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setMethod("cod")}
-                className={`border px-4 py-4 text-left ${
-                  method === "cod" ? "border-gold bg-[rgba(196,163,90,0.1)]" : "border-[rgba(196,163,90,0.2)]"
-                }`}
-              >
-                <span className="font-mark block text-[0.58rem] tracking-[0.2em] text-gold uppercase">Nagpur route</span>
-                <span className="mt-1 block text-sm text-cream">Cash on delivery</span>
-              </button>
+            <div className="mt-8 border border-gold bg-[rgba(196,163,90,0.1)] px-4 py-4">
+              <span className="font-mark block text-[0.58rem] tracking-[0.2em] text-gold uppercase">Razorpay</span>
+              <span className="mt-1 block text-sm text-cream">
+                {razorpayKey ? "Pay online · UPI, cards, net banking" : "Pay online · preview"}
+              </span>
             </div>
 
             {status.kind === "error" && (
@@ -290,11 +256,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             )}
 
             <button type="submit" className="btn-gold mt-8 w-full" disabled={status.kind === "busy"}>
-              {status.kind === "busy"
-                ? "Placing order…"
-                : method === "online"
-                  ? `Pay ${formatInr(pack.price)} · ${pack.weight}`
-                  : `Place COD order · ${formatInr(pack.price)}`}
+              {status.kind === "busy" ? "Opening Razorpay…" : `Pay ${formatInr(pack.price)} · ${pack.weight}`}
             </button>
             <p className="mt-4 text-center text-[0.7rem] tracking-[0.12em] text-cream/40 uppercase">
               Arrives within 6 days · Nagpur, Maharashtra
@@ -311,9 +273,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             <p className="mt-4 font-light leading-7 text-cream/70">
               {status.preview
                 ? "This is a preview checkout — Razorpay keys are not connected, so no money was taken. Add keys in .env.local to accept UPI and cards."
-                : status.method === "cod"
-                  ? "Your Cash on Delivery order is confirmed. Please keep the exact amount ready."
-                  : "Payment is complete. Your jar is next in the kitchen queue."}
+                : "Payment is complete. Your masala is next in the kitchen queue."}
             </p>
             <p className="mt-6 font-mark text-[0.7rem] tracking-[0.22em] text-gold">
               {status.ref} · {status.pack} · {formatInr(status.amount)}
