@@ -1,7 +1,18 @@
 import { packs, type PackId } from "./content";
 
+export const TRIAL_PACK_ID = "10";
+
+export function isTrialPack(id: string) {
+  return id === TRIAL_PACK_ID;
+}
+
 export function getPack(id: string) {
-  return packs.find((p) => p.id === id) ?? packs[0];
+  return packs.find((p) => p.id === id) ?? packs.find((p) => p.id === "500") ?? packs[0];
+}
+
+export function transportCharge(packId: string, zoneFee: number | undefined) {
+  if (isTrialPack(packId)) return 0;
+  return zoneFee;
 }
 
 export function rupeesToPaise(rupees: number) {
