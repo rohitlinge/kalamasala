@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { validateOrder, type OrderInput } from "@/lib/nagpur";
+import { validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
 import { getPack, orderRef, rupeesToPaise } from "@/lib/product";
 import { getRazorpay } from "@/lib/razorpay";
 
@@ -10,12 +10,13 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
-  const error = validateOrder(body as OrderInput);
+  const checkout = withLockedRegion(body as OrderInput);
+  const error = validateOrder(checkout);
   if (error) {
     return NextResponse.json({ error }, { status: 400 });
   }
 
-  const pack = getPack(body.packId);
+  const pack = getPack(checkout.packId);
   const amount = rupeesToPaise(pack.price);
   const ref = orderRef();
   const razorpay = getRazorpay();
@@ -29,16 +30,16 @@ export async function POST(request: Request) {
     });
   }
 
-  let order;
+  let razorpayOrder;
   try {
-    order = await razorpay.orders.create({
+    razorpayOrder = await razorpay.orders.create({
       amount,
       currency: "INR",
       receipt: ref,
       notes: {
-        name: body.name,
-        phone: body.phone,
-        pincode: body.pincode,
+        name: checkout.name,
+        phone: checkout.phone,
+        pincode: checkout.pincode,
         pack: pack.weight,
         city: "Nagpur",
       },
@@ -52,8 +53,8 @@ export async function POST(request: Request) {
 
   return NextResponse.json({
     mode: "live",
-    orderId: order.id,
-    amount: order.amount,
+    orderId: razorpayOrder.id,
+    amount: razorpayOrder.amount,
     key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
     ref,
   });

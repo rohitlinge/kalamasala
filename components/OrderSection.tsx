@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { packs } from "@/lib/content";
-import { deliveryMessage, validateOrder } from "@/lib/nagpur";
+import { deliveryMessage, LOCKED_CITY, LOCKED_STATE, validateOrder, withLockedRegion } from "@/lib/nagpur";
 import { formatInr } from "@/lib/product";
 
 type PayMethod = "online" | "cod";
@@ -42,8 +42,8 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
     email: "",
     address: "",
     pincode: "",
-    city: "Nagpur",
-    state: "Maharashtra",
+    city: LOCKED_CITY,
+    state: LOCKED_STATE,
   });
   const [status, setStatus] = useState<Status>({ kind: "idle" });
 
@@ -58,7 +58,8 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
 
   async function placeOrder(e: React.FormEvent) {
     e.preventDefault();
-    const err = validateOrder({ ...form, packId });
+    const payload = withLockedRegion({ ...form, packId });
+    const err = validateOrder(payload);
     if (err) {
       setStatus({ kind: "error", text: err });
       return;
@@ -70,7 +71,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
         const res = await fetch("/api/order-cod", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...form, packId }),
+          body: JSON.stringify(payload),
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Could not place order");
@@ -81,7 +82,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, packId }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Checkout failed");
@@ -119,7 +120,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
           const verify = await fetch("/api/verify", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...response, packId, ...form }),
+            body: JSON.stringify({ ...response, packId, ...payload }),
           });
           const out = await verify.json();
           if (!verify.ok) {
@@ -221,7 +222,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
                   required
                 />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label className="field">Pincode</label>
                 <input
                   className="input"
@@ -234,12 +235,26 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
                 />
               </div>
               <div>
-                <label className="field">City</label>
-                <input className="input" value={form.city} onChange={set("city")} required />
+                <label className="field">City · locked</label>
+                <input
+                  className="input input-locked"
+                  value={LOCKED_CITY}
+                  readOnly
+                  tabIndex={-1}
+                  aria-readonly="true"
+                  title="City is fixed. We deliver in Nagpur only."
+                />
               </div>
-              <div className="sm:col-span-2">
-                <label className="field">State</label>
-                <input className="input" value={form.state} onChange={set("state")} required />
+              <div>
+                <label className="field">State · locked</label>
+                <input
+                  className="input input-locked"
+                  value={LOCKED_STATE}
+                  readOnly
+                  tabIndex={-1}
+                  aria-readonly="true"
+                  title="State is fixed. We deliver in Nagpur only."
+                />
               </div>
             </div>
 

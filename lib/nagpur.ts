@@ -1,6 +1,16 @@
 /** Nagpur city / urban pincodes. 440xxx is the India Post series for Nagpur. */
 const NAGPUR_PREFIX = "440";
 
+export const LOCKED_CITY = "Nagpur";
+export const LOCKED_STATE = "Maharashtra";
+
+export function withLockedRegion<T extends { city?: string; state?: string }>(input: T): T & {
+  city: string;
+  state: string;
+} {
+  return { ...input, city: LOCKED_CITY, state: LOCKED_STATE };
+}
+
 export function isNagpurPincode(pin: string): boolean {
   const cleaned = pin.replace(/\s/g, "");
   if (!/^\d{6}$/.test(cleaned)) return false;

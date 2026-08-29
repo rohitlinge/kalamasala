@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { validateOrder, type OrderInput } from "@/lib/nagpur";
+import { validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
 import { getPack, orderRef } from "@/lib/product";
 import { verifySignature } from "@/lib/razorpay";
 
@@ -23,12 +23,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Payment signature mismatch." }, { status: 400 });
   }
 
-  const error = validateOrder(body);
+  const order = withLockedRegion(body);
+  const error = validateOrder(order);
   if (error) {
     return NextResponse.json({ error }, { status: 400 });
   }
 
-  const pack = getPack(body.packId);
+  const pack = getPack(order.packId);
   return NextResponse.json({
     ref: orderRef(),
     paymentId: body.razorpay_payment_id,

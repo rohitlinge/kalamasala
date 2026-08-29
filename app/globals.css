@@ -172,6 +172,19 @@ body {
   border-color: var(--color-gold);
 }
 
+.input-locked,
+.input[readonly] {
+  cursor: default;
+  background: rgba(16, 12, 10, 0.28);
+  color: rgba(243, 230, 208, 0.7);
+  border-color: rgba(196, 163, 90, 0.14);
+}
+
+.input-locked:focus,
+.input[readonly]:focus {
+  border-color: rgba(196, 163, 90, 0.18);
+}
+
 label.field {
   display: block;
   font-family: var(--font-mark);
