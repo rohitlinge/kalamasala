@@ -3,7 +3,7 @@ import { quoteDelivery } from "@/lib/delivery";
 import { validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
 import { getPack, orderRef, rupeesToPaise } from "@/lib/product";
 import { getRazorpay } from "@/lib/razorpay";
-import { razorpayKeyId } from "@/lib/env";
+import { agentLog, razorpayKeyId } from "@/lib/env";
 
 export async function POST(request: Request) {
   let body: Record<string, string>;
@@ -33,6 +33,12 @@ export async function POST(request: Request) {
   const razorpay = getRazorpay();
 
   if (!razorpay) {
+    agentLog(
+      "app/api/checkout/route.ts:preview",
+      "checkout using preview mode",
+      { mode: "test", hasReturnedKey: Boolean(razorpayKeyId()) },
+      "A",
+    );
     return NextResponse.json({
       mode: "test",
       ref,
@@ -62,11 +68,19 @@ export async function POST(request: Request) {
       },
     });
   } catch {
+    agentLog("app/api/checkout/route.ts:orders.create", "razorpay orders.create threw", { failed: true }, "D");
     return NextResponse.json(
       { error: "Payment could not start. Please try again." },
       { status: 502 },
     );
   }
+
+  agentLog(
+    "app/api/checkout/route.ts:live",
+    "checkout live razorpay order created",
+    { mode: "live", hasOrderId: Boolean(razorpayOrder.id) },
+    "E",
+  );
 
   return NextResponse.json({
     mode: "live",

@@ -16,5 +16,9 @@
   ],
   "observability": {
     "enabled": true
+  },
+  "vars": {
+    "NEXT_PUBLIC_RAZORPAY_KEY_ID": "rzp_live_TVY92oNS8ZJHHJ",
+    "RAZORPAY_KEY_ID": "rzp_live_TVY92oNS8ZJHHJ"
   }
 }
