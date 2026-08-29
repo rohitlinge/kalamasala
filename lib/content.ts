@@ -8,14 +8,6 @@ export const brand = {
 
 export const packs = [
   {
-    id: "10",
-    weight: "10 g",
-    price: 5,
-    label: "The tasting sample",
-    note: "₹5 inclusive · no transport",
-    featured: false,
-  },
-  {
     id: "500",
     weight: "500 g",
     price: 500,

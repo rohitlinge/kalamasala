@@ -1,18 +1,7 @@
 import { packs, type PackId } from "./content";
 
-export const SAMPLE_PACK_ID = "10";
-
-export function isSamplePack(id: string) {
-  return id === SAMPLE_PACK_ID;
-}
-
 export function getPack(id: string) {
-  return packs.find((p) => p.id === id) ?? packs.find((p) => p.id === "500") ?? packs[0];
-}
-
-export function transportCharge(packId: string, zoneFee: number | undefined) {
-  if (isSamplePack(packId)) return 0;
-  return zoneFee;
+  return packs.find((p) => p.id === id) ?? packs[0];
 }
 
 export function rupeesToPaise(rupees: number) {
