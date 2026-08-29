@@ -12,7 +12,7 @@ export default function Footer() {
         </div>
         <div className="text-sm font-light text-cream/45 md:text-right">
           <p>Nagpur, Maharashtra</p>
-          <p className="mt-1">Orders · 440xxx pincodes only</p>
+          <p className="mt-1">Orders · 440xxx and 441xxx</p>
           <p className="mt-6 text-[0.7rem] tracking-[0.16em] uppercase">© {new Date().getFullYear()} Lata Special</p>
         </div>
       </div>

@@ -1,5 +1,4 @@
-/** Nagpur city / urban pincodes. 440xxx is the India Post series for Nagpur. */
-const NAGPUR_PREFIX = "440";
+import { isServiceablePincode } from "./zones";
 
 export const LOCKED_CITY = "Nagpur";
 export const LOCKED_STATE = "Maharashtra";
@@ -12,9 +11,7 @@ export function withLockedRegion<T extends { city?: string; state?: string }>(in
 }
 
 export function isNagpurPincode(pin: string): boolean {
-  const cleaned = pin.replace(/\s/g, "");
-  if (!/^\d{6}$/.test(cleaned)) return false;
-  return cleaned.startsWith(NAGPUR_PREFIX);
+  return isServiceablePincode(pin);
 }
 
 export function isNagpurCity(city: string): boolean {
@@ -31,7 +28,7 @@ export function deliveryMessage(pin: string, city: string, state: string): {
   text: string;
 } {
   if (!pin && !city) {
-    return { ok: false, text: "Enter your Nagpur pincode to check delivery." };
+    return { ok: false, text: "Enter your Nagpur pincode to check delivery and transport." };
   }
   if (pin && !/^\d{6}$/.test(pin.replace(/\s/g, ""))) {
     return { ok: false, text: "Pincode must be 6 digits." };
@@ -39,7 +36,7 @@ export function deliveryMessage(pin: string, city: string, state: string): {
   if (pin && !isNagpurPincode(pin)) {
     return {
       ok: false,
-      text: "We deliver only within Nagpur, Maharashtra. This pin is outside our 6-day route.",
+      text: "We deliver only within Nagpur (440xxx and 441xxx). This pin is outside our 6-day route.",
     };
   }
   if (city && !isNagpurCity(city)) {
@@ -54,10 +51,10 @@ export function deliveryMessage(pin: string, city: string, state: string): {
   if (isNagpurPincode(pin) && (!city || isNagpurCity(city))) {
     return {
       ok: true,
-      text: "Yes — we deliver to this Nagpur pin. Your jar leaves our kitchen and reaches you within 6 days.",
+      text: "Yes — we deliver to this Nagpur pin. Transport is added below, kitchen to door within 6 days.",
     };
   }
-  return { ok: false, text: "Confirm city as Nagpur and a 440xxx pincode." };
+  return { ok: false, text: "Confirm city as Nagpur and a 440xxx or 441xxx pincode." };
 }
 
 export type OrderInput = {
@@ -85,7 +82,7 @@ export function validateOrder(input: OrderInput): string | null {
     return "Please enter a complete Nagpur delivery address.";
   }
   if (!isNagpurPincode(input.pincode)) {
-    return "We accept orders only for Nagpur pincodes (440xxx).";
+    return "We accept orders only for Nagpur pincodes (440xxx and 441xxx).";
   }
   if (!isNagpurCity(input.city)) {
     return "City must be Nagpur.";

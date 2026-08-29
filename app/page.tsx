@@ -23,8 +23,8 @@ export default function HomePage() {
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "INR",
-      lowPrice: "179",
-      highPrice: "629",
+      lowPrice: "500",
+      highPrice: "2000",
       availability: "https://schema.org/InStock",
     },
   };

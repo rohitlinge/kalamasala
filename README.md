@@ -9,7 +9,12 @@ npm install
 cp .env.example .env.local
 ```
 
-Fill in Razorpay keys and WhatsApp number in `.env.local`, then:
+Fill in Razorpay keys, WhatsApp number, and an [openrouteservice](https://openrouteservice.org/) key (`ORS_API_KEY`) in `.env.local`.
+Without the ORS key, transport still uses the three pincode zones.
+
+Kitchen origin for distance: 16 A Great Nag Road, Nagpur (440009).
+
+Then:
 
 ```bash
 npm run dev

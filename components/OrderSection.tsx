@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { packs } from "@/lib/content";
+import { type DeliveryQuote, zoneFromPincode } from "@/lib/zones";
 import { deliveryMessage, LOCKED_CITY, LOCKED_STATE, validateOrder, withLockedRegion } from "@/lib/nagpur";
 import { formatInr } from "@/lib/product";
 
@@ -32,7 +33,7 @@ function loadRazorpay(): Promise<boolean> {
 }
 
 export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
-  const [packId, setPackId] = useState("250");
+  const [packId, setPackId] = useState("500");
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -43,12 +44,47 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
     state: LOCKED_STATE,
   });
   const [status, setStatus] = useState<Status>({ kind: "idle" });
+  const [quote, setQuote] = useState<DeliveryQuote | null>(null);
+  const [quoteBusy, setQuoteBusy] = useState(false);
 
-  const pack = packs.find((p) => p.id === packId) ?? packs[1];
+  const pack = packs.find((p) => p.id === packId) ?? packs[0];
+  const pinZone = useMemo(() => zoneFromPincode(form.pincode), [form.pincode]);
   const delivery = useMemo(
     () => deliveryMessage(form.pincode, form.city, form.state),
     [form.pincode, form.city, form.state],
   );
+
+  const quoteBlocked = quote != null && !quote.ok;
+  const transport = quoteBlocked ? undefined : (quote?.fee ?? pinZone?.fee);
+  const total = pack.price + (transport ?? 0);
+
+  useEffect(() => {
+    const pin = form.pincode.replace(/\s/g, "");
+    if (!/^\d{6}$/.test(pin)) {
+      setQuote(null);
+      setQuoteBusy(false);
+      return;
+    }
+
+    const handle = window.setTimeout(async () => {
+      setQuoteBusy(true);
+      try {
+        const res = await fetch("/api/delivery-quote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ pincode: pin, address: form.address }),
+        });
+        const data = (await res.json()) as DeliveryQuote;
+        setQuote(data);
+      } catch {
+        setQuote(null);
+      } finally {
+        setQuoteBusy(false);
+      }
+    }, 450);
+
+    return () => window.clearTimeout(handle);
+  }, [form.pincode, form.address]);
 
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
@@ -59,6 +95,10 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
     const err = validateOrder(payload);
     if (err) {
       setStatus({ kind: "error", text: err });
+      return;
+    }
+    if (quote && !quote.ok) {
+      setStatus({ kind: "error", text: quote.text });
       return;
     }
     setStatus({ kind: "busy" });
@@ -72,11 +112,13 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Checkout failed");
 
+      const paid = typeof data.total === "number" ? data.total : total;
+
       if (data.mode === "test") {
         setStatus({
           kind: "ok",
           ref: data.ref,
-          amount: pack.price,
+          amount: paid,
           pack: pack.weight,
           preview: true,
         });
@@ -104,14 +146,14 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
           const verify = await fetch("/api/verify", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...response, packId, ...payload }),
+            body: JSON.stringify({ ...response, ...payload }),
           });
           const out = await verify.json();
           if (!verify.ok) {
             setStatus({ kind: "error", text: out.error || "Payment could not be verified." });
             return;
           }
-          setStatus({ kind: "ok", ref: out.ref, amount: pack.price, pack: pack.weight });
+          setStatus({ kind: "ok", ref: out.ref, amount: paid, pack: pack.weight });
         },
         modal: {
           ondismiss: () => setStatus({ kind: "idle" }),
@@ -126,6 +168,11 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
     }
   }
 
+  const payLabel =
+    transport == null
+      ? `Masala ${formatInr(pack.price)} · add pincode`
+      : `Pay ${formatInr(total)} · ${pack.weight}`;
+
   return (
     <section id="order" className="section-pad">
       <div className="mx-auto max-w-6xl">
@@ -136,7 +183,8 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             <p className="mt-5 font-light leading-7 text-cream/65">
               We accept orders only if you live in <strong className="font-medium text-gold-soft">Nagpur, Maharashtra</strong>.
               After confirmation, delivery is{" "}
-              <strong className="font-medium text-gold-soft">6 days</strong> — kitchen to door, no courier lottery.
+              <strong className="font-medium text-gold-soft">6 days</strong> — kitchen on Great Nag Road to your door.
+              Jar price is masala only; transport is added from your pincode.
             </p>
 
             <div className="mt-10 space-y-4">
@@ -156,14 +204,17 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
                     <span className="font-display mt-1 block text-2xl text-cream">{p.weight}</span>
                     <span className="text-xs text-cream/45">{p.note}</span>
                   </span>
-                  <span className="font-display text-3xl text-gold">{formatInr(p.price)}</span>
+                  <span className="text-right">
+                    <span className="font-display block text-3xl text-gold">{formatInr(p.price)}</span>
+                    <span className="text-[0.65rem] tracking-[0.08em] text-cream/40 uppercase">without transport</span>
+                  </span>
                 </button>
               ))}
             </div>
 
             <div className="mt-8 border border-[rgba(196,163,90,0.22)] p-5 text-sm font-light leading-6 text-cream/60">
-              Pay securely with Razorpay — UPI, cards, or net banking. We do not take orders outside Nagpur — the
-              6-day route is local, on purpose.
+              Transport from Great Nag Road: inner city (440001–440012) ₹99 · other 440xxx ₹179 · 441xxx ₹210.
+              Road distance is checked with openrouteservice when your pin is entered.
             </div>
           </div>
 
@@ -212,7 +263,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
                   className="input"
                   value={form.pincode}
                   onChange={set("pincode")}
-                  placeholder="440001"
+                  placeholder="440009"
                   inputMode="numeric"
                   maxLength={6}
                   required
@@ -242,7 +293,27 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
               </div>
             </div>
 
-            <p className={`mt-4 text-sm ${delivery.ok ? "text-gold-soft" : "text-cream/50"}`}>{delivery.text}</p>
+            <p className={`mt-4 text-sm ${delivery.ok ? "text-gold-soft" : "text-cream/50"}`}>
+              {quoteBusy ? "Checking road distance from Great Nag Road…" : quote?.text ?? delivery.text}
+            </p>
+
+            <div className="mt-6 border border-[rgba(196,163,90,0.22)] px-4 py-4 text-sm">
+              <div className="flex justify-between text-cream/70">
+                <span>{pack.weight} masala</span>
+                <span>{formatInr(pack.price)}</span>
+              </div>
+              <div className="mt-2 flex justify-between text-cream/70">
+                <span>
+                  Transport
+                  {quote?.distanceKm != null ? ` · ${quote.distanceKm} km` : pinZone ? ` · ${pinZone.label}` : ""}
+                </span>
+                <span>{transport != null ? formatInr(transport) : "—"}</span>
+              </div>
+              <div className="mt-3 flex justify-between border-t border-[rgba(196,163,90,0.2)] pt-3 text-cream">
+                <span className="font-mark text-[0.62rem] tracking-[0.2em] text-gold uppercase">To pay</span>
+                <span className="font-display text-2xl text-gold">{formatInr(total)}</span>
+              </div>
+            </div>
 
             <div className="mt-8 border border-gold bg-[rgba(196,163,90,0.1)] px-4 py-4">
               <span className="font-mark block text-[0.58rem] tracking-[0.2em] text-gold uppercase">Razorpay</span>
@@ -255,8 +326,12 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
               <p className="mt-5 text-sm text-[#e8b4a4]">{status.text}</p>
             )}
 
-            <button type="submit" className="btn-gold mt-8 w-full" disabled={status.kind === "busy"}>
-              {status.kind === "busy" ? "Opening Razorpay…" : `Pay ${formatInr(pack.price)} · ${pack.weight}`}
+            <button
+              type="submit"
+              className="btn-gold mt-8 w-full"
+              disabled={status.kind === "busy" || quoteBlocked}
+            >
+              {status.kind === "busy" ? "Opening Razorpay…" : payLabel}
             </button>
             <p className="mt-4 text-center text-[0.7rem] tracking-[0.12em] text-cream/40 uppercase">
               Arrives within 6 days · Nagpur, Maharashtra

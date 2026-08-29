@@ -1,7 +1,7 @@
 import { packs, type PackId } from "./content";
 
 export function getPack(id: string) {
-  return packs.find((p) => p.id === id) ?? packs[1];
+  return packs.find((p) => p.id === id) ?? packs[0];
 }
 
 export function rupeesToPaise(rupees: number) {

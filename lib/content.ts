@@ -8,27 +8,27 @@ export const brand = {
 
 export const packs = [
   {
-    id: "100",
-    weight: "100 g",
-    price: 179,
-    label: "The tasting jar",
-    note: "For first kitchens",
-    featured: false,
-  },
-  {
-    id: "250",
-    weight: "250 g",
-    price: 349,
+    id: "500",
+    weight: "500 g",
+    price: 500,
     label: "The family jar",
-    note: "Most loved",
+    note: "Masala only · transport extra",
     featured: true,
   },
   {
-    id: "500",
-    weight: "500 g",
-    price: 629,
+    id: "1000",
+    weight: "1 kg",
+    price: 1000,
     label: "The pantry tin",
-    note: "Sunday cooking, all month",
+    note: "Masala only · transport extra",
+    featured: false,
+  },
+  {
+    id: "2000",
+    weight: "2 kg",
+    price: 2000,
+    label: "The stock tin",
+    note: "Masala only · transport extra",
     featured: false,
   },
 ] as const;
