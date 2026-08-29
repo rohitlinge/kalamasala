@@ -3,7 +3,7 @@ export default function Hero() {
     <section id="top" className="relative min-h-[100svh] overflow-hidden">
       <img
         src="/images/hero-kala-masala.png"
-        alt="Lata Special Kala Massala in a dark glass jar"
+        alt="Lata Special homemade Kala Massala"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/25" />
@@ -11,7 +11,7 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 md:justify-center md:px-8 md:pb-20">
         <div className="max-w-xl rise">
-          <p className="kicker">Nagpur · Maharashtra · Kitchen batch</p>
+          <p className="kicker">Nagpur &gt; Home made masala</p>
           <h1 className="display mt-6 text-5xl text-cream sm:text-6xl md:text-8xl">
             Kala
             <br />
@@ -19,13 +19,13 @@ export default function Hero() {
           </h1>
           <p className="font-mark mt-4 text-sm tracking-[0.28em] text-gold uppercase">Lata Special</p>
           <p className="mt-6 max-w-md text-[1.05rem] font-light leading-relaxed text-cream/78">
-            Slow-roasted, stone-quiet, packed the morning after the grind. The dark masala of a Nagpur home — not a
-            factory floor.
+            You order. We go to the market, take every important ingredient, roast, grind, and parcel it within one
+            week — using a third-party transport service.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a href="#order" className="btn-gold">
-              Order the jar
+              Order masala
             </a>
             <a href="#craft" className="btn-ghost">
               How we make it
