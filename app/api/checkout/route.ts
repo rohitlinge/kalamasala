@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { quoteDelivery } from "@/lib/delivery";
 import { validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
-import { getPack, orderRef, rupeesToPaise } from "@/lib/product";
+import { getPack, isSamplePack, orderRef, rupeesToPaise } from "@/lib/product";
 import { getRazorpay } from "@/lib/razorpay";
-import { agentLog, razorpayKeyId } from "@/lib/env";
+import { razorpayKeyId } from "@/lib/env";
 
 export async function POST(request: Request) {
   let body: Record<string, string>;
@@ -27,25 +27,20 @@ export async function POST(request: Request) {
   }
 
   const pack = getPack(checkout.packId);
-  const totalRupees = pack.price + quote.fee;
+  const deliveryFee = isSamplePack(checkout.packId) ? 0 : quote.fee;
+  const totalRupees = pack.price + deliveryFee;
   const amount = rupeesToPaise(totalRupees);
   const ref = orderRef();
   const razorpay = getRazorpay();
 
   if (!razorpay) {
-    agentLog(
-      "app/api/checkout/route.ts:preview",
-      "checkout using preview mode",
-      { mode: "test", hasReturnedKey: Boolean(razorpayKeyId()) },
-      "A",
-    );
     return NextResponse.json({
       mode: "test",
       ref,
       amount,
       total: totalRupees,
       masala: pack.price,
-      delivery: quote.fee,
+      delivery: deliveryFee,
       pack: pack.weight,
     });
   }
@@ -62,25 +57,17 @@ export async function POST(request: Request) {
         pincode: checkout.pincode,
         pack: pack.weight,
         city: "Nagpur",
-        delivery: String(quote.fee),
+        delivery: String(deliveryFee),
         zone: quote.zoneId ?? "",
         distanceKm: quote.distanceKm != null ? String(quote.distanceKm) : "",
       },
     });
   } catch {
-    agentLog("app/api/checkout/route.ts:orders.create", "razorpay orders.create threw", { failed: true }, "D");
     return NextResponse.json(
       { error: "Payment could not start. Please try again." },
       { status: 502 },
     );
   }
-
-  agentLog(
-    "app/api/checkout/route.ts:live",
-    "checkout live razorpay order created",
-    { mode: "live", hasOrderId: Boolean(razorpayOrder.id) },
-    "E",
-  );
 
   return NextResponse.json({
     mode: "live",
@@ -88,7 +75,7 @@ export async function POST(request: Request) {
     amount: razorpayOrder.amount,
     total: totalRupees,
     masala: pack.price,
-    delivery: quote.fee,
+    delivery: deliveryFee,
     key: razorpayKeyId(),
     ref,
   });

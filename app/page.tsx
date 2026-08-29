@@ -24,7 +24,7 @@ export default function HomePage() {
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "INR",
-      lowPrice: "500",
+      lowPrice: "5",
       highPrice: "2000",
       availability: "https://schema.org/InStock",
     },

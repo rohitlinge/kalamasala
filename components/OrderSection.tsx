@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { packs } from "@/lib/content";
 import { type DeliveryQuote, zoneFromPincode } from "@/lib/zones";
 import { deliveryMessage, LOCKED_CITY, LOCKED_STATE, validateOrder, withLockedRegion } from "@/lib/nagpur";
-import { formatInr } from "@/lib/product";
+import { formatInr, isSamplePack, transportCharge } from "@/lib/product";
 
 type Status =
   | { kind: "idle" }
@@ -55,7 +55,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
   );
 
   const quoteBlocked = quote != null && !quote.ok;
-  const transport = quoteBlocked ? undefined : (quote?.fee ?? pinZone?.fee);
+  const transport = quoteBlocked ? undefined : transportCharge(packId, quote?.fee ?? pinZone?.fee);
   const total = pack.price + (transport ?? 0);
 
   useEffect(() => {
@@ -206,7 +206,9 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
                   </span>
                   <span className="text-right">
                     <span className="font-display block text-3xl text-gold">{formatInr(p.price)}</span>
-                    <span className="text-[0.65rem] tracking-[0.08em] text-cream/40 uppercase">without transport</span>
+                    <span className="text-[0.65rem] tracking-[0.08em] text-cream/40 uppercase">
+                      {isSamplePack(p.id) ? "pay ₹5 · no transport" : "without transport"}
+                    </span>
                   </span>
                 </button>
               ))}
@@ -214,7 +216,8 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
 
             <div className="mt-8 border border-[rgba(196,163,90,0.22)] p-5 text-sm font-light leading-6 text-cream/60">
               Transport from Great Nag Road: inner city (440001–440012) ₹99 · other 440xxx ₹179 · 441xxx ₹210.
-              Road distance is checked with openrouteservice when your pin is entered.
+              10 g sample is ₹5 with no transport. Road distance is checked with openrouteservice when your pin is
+              entered.
             </div>
           </div>
 
@@ -305,7 +308,13 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
               <div className="mt-2 flex justify-between text-cream/70">
                 <span>
                   Transport
-                  {quote?.distanceKm != null ? ` · ${quote.distanceKm} km` : pinZone ? ` · ${pinZone.label}` : ""}
+                  {isSamplePack(packId)
+                    ? " · waived"
+                    : quote?.distanceKm != null
+                      ? ` · ${quote.distanceKm} km`
+                      : pinZone
+                        ? ` · ${pinZone.label}`
+                        : ""}
                 </span>
                 <span>{transport != null ? formatInr(transport) : "—"}</span>
               </div>
