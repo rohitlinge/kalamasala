@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Cormorant_Garamond, Noto_Sans_Devanagari, Noto_Serif_Devanagari, Outfit } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -62,6 +63,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-2MPBST4NRX" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-2MPBST4NRX');
+          `}
+        </Script>
+      </head>
       <body
         className={`${cormorant.variable} ${outfit.variable} ${cinzel.variable} ${hindiDisplay.variable} ${hindiBody.variable} antialiased`}
       >
