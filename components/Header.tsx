@@ -86,7 +86,7 @@ export default function Header() {
             <a href="/" className="shrink-0 rounded-sm px-2 py-1 hover:outline hover:outline-1 hover:outline-white">
               <span className="block text-[11px] leading-none text-[#cccccc]">Lata Special</span>
               <span className="block text-[19px] font-bold leading-tight tracking-tight">
-                kalamassala<span className="text-[#febd69]">.in</span>
+                kalamassala<span className="text-[#febd69]">.online</span>
               </span>
             </a>
 

@@ -72,7 +72,7 @@ export default function Footer() {
       </div>
       <div className="border-t border-[#3a4553] bg-nav px-5 py-8 text-center">
         <a href="/" className="text-[18px] font-bold">
-          kalamassala<span className="text-[#febd69]">.in</span>
+          kalamassala<span className="text-[#febd69]">.online</span>
         </a>
         <p className="mt-2 text-[12px] text-[#999]">
           © {new Date().getFullYear()} Lata Special · Kala Massala · Nagpur, Maharashtra
