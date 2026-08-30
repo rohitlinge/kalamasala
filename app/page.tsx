@@ -1,18 +1,15 @@
-import Header from "@/components/Header";
+import StoreShell from "@/components/StoreShell";
 import Hero from "@/components/Hero";
+import ProductShelf from "@/components/ProductShelf";
+import ProductDetail from "@/components/ProductDetail";
 import Story from "@/components/Story";
 import Ingredients from "@/components/Ingredients";
 import Process from "@/components/Process";
 import Comparison from "@/components/Comparison";
 import HowToUse from "@/components/HowToUse";
 import Storage from "@/components/Storage";
-import OrderSection from "@/components/OrderSection";
-import Footer from "@/components/Footer";
-import { razorpayKeyId } from "@/lib/env";
 
 export default function HomePage() {
-  const razorpayKey = razorpayKeyId() ?? "";
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -31,22 +28,17 @@ export default function HomePage() {
   };
 
   return (
-    <>
+    <StoreShell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Header />
-      <main>
-        <Hero />
-        <div className="hairline" />
-        <Story />
-        <Ingredients />
-        <Process />
-        <Comparison />
-        <HowToUse />
-        <Storage />
-        <div className="hairline" />
-        <OrderSection razorpayKey={razorpayKey} />
-      </main>
-      <Footer />
-    </>
+      <Hero />
+      <ProductShelf />
+      <ProductDetail />
+      <Story />
+      <Ingredients />
+      <Process />
+      <Comparison />
+      <HowToUse />
+      <Storage />
+    </StoreShell>
   );
 }

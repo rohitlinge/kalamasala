@@ -5,6 +5,7 @@ import { packs } from "@/lib/content";
 import { type DeliveryQuote, zoneFromPincode } from "@/lib/zones";
 import { deliveryMessage, LOCKED_CITY, LOCKED_STATE, validateOrder, withLockedRegion } from "@/lib/nagpur";
 import { formatInr } from "@/lib/product";
+import { useCart } from "@/lib/cart";
 
 type Status =
   | { kind: "idle" }
@@ -33,19 +34,30 @@ function loadRazorpay(): Promise<boolean> {
 }
 
 export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
-  const [packId, setPackId] = useState("500");
+  const { checkoutPackId, setCheckoutPackId, items, removeItem, deliverPin } = useCart();
+  const [packId, setPackId] = useState(checkoutPackId);
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
     address: "",
-    pincode: "",
+    pincode: deliverPin,
     city: LOCKED_CITY,
     state: LOCKED_STATE,
   });
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [quote, setQuote] = useState<DeliveryQuote | null>(null);
   const [quoteBusy, setQuoteBusy] = useState(false);
+
+  useEffect(() => {
+    setPackId(checkoutPackId);
+  }, [checkoutPackId]);
+
+  useEffect(() => {
+    if (deliverPin && !form.pincode) {
+      setForm((f) => ({ ...f, pincode: deliverPin }));
+    }
+  }, [deliverPin, form.pincode]);
 
   const pack = packs.find((p) => p.id === packId) ?? packs[0];
   const pinZone = useMemo(() => zoneFromPincode(form.pincode), [form.pincode]);
@@ -89,6 +101,11 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
+  function pickPack(id: typeof pack.id) {
+    setPackId(id);
+    setCheckoutPackId(id);
+  }
+
   async function placeOrder(e: React.FormEvent) {
     e.preventDefault();
     const payload = withLockedRegion({ ...form, packId });
@@ -115,6 +132,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
       const paid = typeof data.total === "number" ? data.total : total;
 
       if (data.mode === "test") {
+        removeItem(pack.id);
         setStatus({
           kind: "ok",
           ref: data.ref,
@@ -136,7 +154,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
         description: `Kala Massala · ${pack.weight}`,
         order_id: data.orderId,
         prefill: { name: form.name, contact: form.phone, email: form.email || undefined },
-        theme: { color: "#1a1410" },
+        theme: { color: "#ff9900" },
         notes: { pack: pack.weight, city: "Nagpur" },
         handler: async (response: {
           razorpay_order_id: string;
@@ -153,6 +171,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             setStatus({ kind: "error", text: out.error || "Payment could not be verified." });
             return;
           }
+          removeItem(pack.id);
           setStatus({ kind: "ok", ref: out.ref, amount: paid, pack: pack.weight });
         },
         modal: {
@@ -171,62 +190,25 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
   const payLabel =
     transport == null
       ? `Masala ${formatInr(pack.price)} · add pincode`
-      : `Pay ${formatInr(total)} · ${pack.weight}`;
+      : `Place your order · ${formatInr(total)}`;
 
   return (
-    <section id="order" className="section-pad">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <p className="kicker">The packet</p>
-            <h2 className="display mt-5 text-4xl text-cream md:text-6xl">Order Kala Massala.</h2>
-            <p className="mt-5 font-light leading-7 text-cream/65">
-              We accept orders only if you live in <strong className="font-medium text-gold-soft">Nagpur, Maharashtra</strong>.
-              After confirmation, delivery is{" "}
-              <strong className="font-medium text-gold-soft">6 days</strong> — kitchen on Great Nag Road to your door.
-              Packet price is masala only; transport is added from your pincode.
+    <section id="order" className="px-3 py-4 md:px-4">
+      <form onSubmit={placeOrder} className="mx-auto grid max-w-[1100px] gap-5 lg:grid-cols-[1fr_340px]">
+        <div className="space-y-4">
+          <div className="amz-card p-5">
+            <h2 className="text-[18px] font-bold">1 · Delivery address</h2>
+            <p className="mt-1 text-[13px] text-[#565959]">
+              We deliver only in <strong className="text-[#0f1111]">Nagpur, Maharashtra</strong> · 6 days from the
+              kitchen on Great Nag Road.
             </p>
-
-            <div className="mt-10 space-y-4">
-              {packs.map((p) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  data-on={packId === p.id}
-                  onClick={() => setPackId(p.id)}
-                  className="pack-card flex w-full items-center justify-between border border-[rgba(196,163,90,0.2)] px-5 py-5 text-left transition-colors"
-                >
-                  <span>
-                    <span className="font-mark block text-[0.62rem] tracking-[0.22em] text-gold uppercase">
-                      {p.label}
-                      {p.featured ? " · preferred" : ""}
-                    </span>
-                    <span className="font-display mt-1 block text-2xl text-cream">{p.weight}</span>
-                    <span className="text-xs text-cream/45">{p.note}</span>
-                  </span>
-                  <span className="text-right">
-                    <span className="font-display block text-3xl text-gold">{formatInr(p.price)}</span>
-                    <span className="text-[0.65rem] tracking-[0.08em] text-cream/40 uppercase">without transport</span>
-                  </span>
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-8 border border-[rgba(196,163,90,0.22)] p-5 text-sm font-light leading-6 text-cream/60">
-              Transport to our destiny: inner city (440001–440012) ₹99 · other 440xxx ₹179 · 441xxx ₹210.
-            </div>
-          </div>
-
-          <form onSubmit={placeOrder} className="border border-[rgba(196,163,90,0.22)] bg-ink-2 p-6 md:p-9 lg:col-span-7">
-            <p className="font-mark text-[0.68rem] tracking-[0.28em] text-gold uppercase">Delivery · Nagpur only</p>
-
-            <div className="mt-8 grid gap-5 sm:grid-cols-2">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <label className="field">Full name</label>
                 <input className="input" value={form.name} onChange={set("name")} placeholder="Your name" required />
               </div>
               <div>
-                <label className="field">Mobile</label>
+                <label className="field">Mobile number</label>
                 <input
                   className="input"
                   value={form.phone}
@@ -237,26 +219,26 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
                 />
               </div>
               <div>
-                <label className="field">Email · optional</label>
+                <label className="field">Email (optional)</label>
                 <input
                   className="input"
                   type="email"
                   value={form.email}
                   onChange={set("email")}
-                  placeholder="for the receipt"
+                  placeholder="For the receipt"
                 />
               </div>
               <div className="sm:col-span-2">
                 <label className="field">Address in Nagpur</label>
                 <textarea
-                  className="input min-h-[96px] resize-y"
+                  className="input min-h-[88px] resize-y"
                   value={form.address}
                   onChange={set("address")}
                   placeholder="House, street, landmark"
                   required
                 />
               </div>
-              <div className="sm:col-span-2">
+              <div>
                 <label className="field">Pincode</label>
                 <input
                   className="input"
@@ -269,93 +251,107 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
                 />
               </div>
               <div>
-                <label className="field">City · locked</label>
-                <input
-                  className="input input-locked"
-                  value={LOCKED_CITY}
-                  readOnly
-                  tabIndex={-1}
-                  aria-readonly="true"
-                  title="City is fixed. We deliver in Nagpur only."
-                />
+                <label className="field">City</label>
+                <input className="input input-locked" value={LOCKED_CITY} readOnly tabIndex={-1} />
               </div>
               <div>
-                <label className="field">State · locked</label>
-                <input
-                  className="input input-locked"
-                  value={LOCKED_STATE}
-                  readOnly
-                  tabIndex={-1}
-                  aria-readonly="true"
-                  title="State is fixed. We deliver in Nagpur only."
-                />
+                <label className="field">State</label>
+                <input className="input input-locked" value={LOCKED_STATE} readOnly tabIndex={-1} />
               </div>
             </div>
-
-            <p className={`mt-4 text-sm ${delivery.ok ? "text-gold-soft" : "text-cream/50"}`}>
+            <p className={`mt-3 text-[13px] ${delivery.ok ? "text-[#007600]" : "text-[#565959]"}`}>
               {quoteBusy ? "Checking road distance from Great Nag Road…" : quote?.text ?? delivery.text}
             </p>
+          </div>
 
-            <div className="mt-6 border border-[rgba(196,163,90,0.22)] px-4 py-4 text-sm">
-              <div className="flex justify-between text-cream/70">
-                <span>{pack.weight} masala</span>
-                <span>{formatInr(pack.price)}</span>
-              </div>
-              <div className="mt-2 flex justify-between text-cream/70">
-                <span>
-                  Transport
-                  {quote?.distanceKm != null ? ` · ${quote.distanceKm} km` : pinZone ? ` · ${pinZone.label}` : ""}
-                </span>
-                <span>{transport != null ? formatInr(transport) : "—"}</span>
-              </div>
-              <div className="mt-3 flex justify-between border-t border-[rgba(196,163,90,0.2)] pt-3 text-cream">
-                <span className="font-mark text-[0.62rem] tracking-[0.2em] text-gold uppercase">To pay</span>
-                <span className="font-display text-2xl text-gold">{formatInr(total)}</span>
-              </div>
+          <div className="amz-card p-5">
+            <h2 className="text-[18px] font-bold">2 · Pack</h2>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {packs.map((p) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  data-on={packId === p.id}
+                  onClick={() => pickPack(p.id)}
+                  className="pack-chip min-w-[8rem]"
+                >
+                  <span className="block text-[13px] font-bold">{p.weight}</span>
+                  <span className="block text-[12px] text-[#565959]">{formatInr(p.price)}</span>
+                </button>
+              ))}
             </div>
-
-            <div className="mt-8 border border-gold bg-[rgba(196,163,90,0.1)] px-4 py-4">
-              <span className="font-mark block text-[0.58rem] tracking-[0.2em] text-gold uppercase">Razorpay</span>
-              <span className="mt-1 block text-sm text-cream">
-                {razorpayKey ? "Pay online · UPI, cards, net banking" : "Pay online · preview"}
-              </span>
-            </div>
-
-            {status.kind === "error" && (
-              <p className="mt-5 text-sm text-[#e8b4a4]">{status.text}</p>
+            {items.length > 1 && (
+              <p className="mt-3 text-[12px] text-[#565959]">
+                Your cart has more than one pack. This order charges the selected size only.
+              </p>
             )}
+          </div>
 
-            <button
-              type="submit"
-              className="btn-gold mt-8 w-full"
-              disabled={status.kind === "busy" || quoteBlocked}
-            >
-              {status.kind === "busy" ? "Opening Razorpay…" : payLabel}
-            </button>
-            <p className="mt-4 text-center text-[0.7rem] tracking-[0.12em] text-cream/40 uppercase">
-              Arrives within 6 days · Nagpur, Maharashtra
+          <div className="amz-card p-5">
+            <h2 className="text-[18px] font-bold">3 · Payment</h2>
+            <p className="mt-2 text-[14px]">
+              {razorpayKey ? "Pay online with UPI, cards, or net banking (Razorpay)." : "Pay online · preview mode."}
             </p>
-          </form>
+          </div>
         </div>
-      </div>
+
+        <aside className="amz-card h-fit p-5">
+          <button type="submit" className="btn-buy" disabled={status.kind === "busy" || quoteBlocked}>
+            {status.kind === "busy" ? "Opening Razorpay…" : payLabel}
+          </button>
+          <p className="mt-2 text-center text-[11px] text-[#565959]">
+            By placing your order you agree to a 6-day Nagpur delivery.
+          </p>
+          {status.kind === "error" && <p className="mt-3 text-[13px] text-warn">{status.text}</p>}
+
+          <h3 className="mt-5 border-t border-[#d5d9d9] pt-4 text-[18px] font-bold">Order summary</h3>
+          <div className="mt-3 flex gap-3">
+            <img src="/images/hero-kala-masala2.png" alt="" className="h-16 w-16 object-cover" />
+            <div>
+              <p className="text-[13px] font-medium">Kala Massala · {pack.weight}</p>
+              <p className="text-[12px] text-[#565959]">{pack.note}</p>
+            </div>
+          </div>
+          <div className="mt-4 space-y-1 text-[13px]">
+            <div className="flex justify-between">
+              <span>Items</span>
+              <span>{formatInr(pack.price)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>
+                Delivery
+                {quote?.distanceKm != null ? ` · ${quote.distanceKm} km` : pinZone ? ` · ${pinZone.label}` : ""}
+              </span>
+              <span>{transport != null ? formatInr(transport) : "—"}</span>
+            </div>
+            <div className="flex justify-between border-t border-[#d5d9d9] pt-2 text-[18px] font-bold text-price">
+              <span>Order total</span>
+              <span>{formatInr(total)}</span>
+            </div>
+          </div>
+          <p className="mt-3 text-[12px] text-[#565959]">
+            Inner city ₹99 · other 440xxx ₹179 · 441xxx ₹210.
+          </p>
+        </aside>
+      </form>
 
       {status.kind === "ok" && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-ink/85 p-4 backdrop-blur-sm">
-          <div className="frame max-w-md bg-ink-2 p-10 text-center">
-            <p className="kicker">Order received</p>
-            <h3 className="display mt-4 text-4xl text-cream">Thank you.</h3>
-            <p className="mt-4 font-light leading-7 text-cream/70">
+        <div className="fixed inset-0 z-50 grid place-items-center bg-black/45 p-4">
+          <div className="amz-card max-w-md p-8 text-center">
+            <p className="text-[13px] font-bold text-[#067d62]">Order placed</p>
+            <h3 className="mt-2 text-[28px] font-medium">Thank you.</h3>
+            <p className="mt-3 text-[14px] leading-6 text-[#565959]">
               {status.preview
-                ? "This is a preview checkout — Razorpay keys are not connected, so no money was taken. Add keys in .env.local to accept UPI and cards."
+                ? "This is a preview checkout — Razorpay keys are not connected, so no money was taken."
                 : "Payment is complete. Your masala is next in the kitchen queue."}
             </p>
-            <p className="mt-6 font-mark text-[0.7rem] tracking-[0.22em] text-gold">
+            <p className="mt-4 text-[13px] font-bold">
               {status.ref} · {status.pack} · {formatInr(status.amount)}
             </p>
-            <p className="mt-3 text-sm text-cream/50">Expected at your Nagpur address within 6 days.</p>
-            <button type="button" className="btn-gold mt-8" onClick={() => setStatus({ kind: "idle" })}>
-              Close
-            </button>
+            <p className="mt-2 text-[13px] text-[#565959]">Expected at your Nagpur address within 6 days.</p>
+            <a href="/" className="btn-cart mt-6" onClick={() => setStatus({ kind: "idle" })}>
+              Continue shopping
+            </a>
           </div>
         </div>
       )}
