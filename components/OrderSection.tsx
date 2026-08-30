@@ -213,8 +213,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             </div>
 
             <div className="mt-8 border border-[rgba(196,163,90,0.22)] p-5 text-sm font-light leading-6 text-cream/60">
-              Transport from Great Nag Road: inner city (440001–440012) ₹99 · other 440xxx ₹179 · 441xxx ₹210.
-              Road distance is checked with openrouteservice when your pin is entered.
+              Transport to our destiny: inner city (440001–440012) ₹99 · other 440xxx ₹179 · 441xxx ₹210.
             </div>
           </div>
 
