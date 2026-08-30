@@ -178,13 +178,13 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="kicker">The jar</p>
+            <p className="kicker">The packet</p>
             <h2 className="display mt-5 text-4xl text-cream md:text-6xl">Order Kala Massala.</h2>
             <p className="mt-5 font-light leading-7 text-cream/65">
               We accept orders only if you live in <strong className="font-medium text-gold-soft">Nagpur, Maharashtra</strong>.
               After confirmation, delivery is{" "}
               <strong className="font-medium text-gold-soft">6 days</strong> — kitchen on Great Nag Road to your door.
-              Jar price is masala only; transport is added from your pincode.
+              Packet price is masala only; transport is added from your pincode.
             </p>
 
             <div className="mt-10 space-y-4">

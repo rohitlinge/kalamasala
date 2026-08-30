@@ -16,7 +16,7 @@ export default function Process() {
         </div>
 
         <div className="mt-14 overflow-hidden border border-[rgba(196,163,90,0.22)]">
-          <img src="/images/process-roast.png" alt="Spices slow-roasting in a kadai" className="h-[360px] w-full object-cover md:h-[480px]" />
+          <img src="/images/process-roast2.png" alt="Spices slow-roasting in a kadai" className="h-[360px] w-full object-cover md:h-[480px]" />
         </div>
 
         <ol className="mt-14 grid gap-px bg-[rgba(196,163,90,0.18)] sm:grid-cols-2 lg:grid-cols-3">

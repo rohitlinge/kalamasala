@@ -9,7 +9,7 @@ export default function Story() {
             <br />
             gravy. Honest
             <br />
-            as a home jar.
+            as a home packet.
           </h2>
         </div>
         <div className="md:col-span-7 md:pt-10">

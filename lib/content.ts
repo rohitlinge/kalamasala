@@ -11,7 +11,7 @@ export const packs = [
     id: "500",
     weight: "500 g",
     price: 500,
-    label: "The family jar",
+    label: "The family packet",
     note: "Masala only · transport extra",
     featured: true,
   },
@@ -36,20 +36,72 @@ export const packs = [
 export type PackId = (typeof packs)[number]["id"];
 
 export const ingredients = [
-  { name: "Coriander seeds", note: "The warm, citrus body of the blend" },
-  { name: "Cumin seeds", note: "Earth and depth" },
-  { name: "Dried coconut", note: "Slow-toasted until nutty and dark" },
-  { name: "White sesame", note: "A quiet richness" },
-  { name: "Black pepper", note: "Heat that lingers, never shouts" },
-  { name: "Cloves & cinnamon", note: "The festive spine" },
-  { name: "Stone flower", note: "Dagad phool — the forest note" },
-  { name: "Bay leaf", note: "A green, tea-like lift" },
-  { name: "Dried red chilli", note: "Colour and a clean bite" },
-  { name: "Star anise", note: "A single, careful pinch" },
-  { name: "Nutmeg & mace", note: "Warmth at the finish" },
-  { name: "Poppy seeds", note: "Body and silk" },
-  { name: "Turmeric", note: "Only enough to gold the edges" },
-  { name: "Asafoetida", note: "The savoury whisper of hing" },
+  {
+    name: "धनिया",
+    note: "मिश्रण की गर्म, नींबू जैसी देह",
+    image: "/images/ingredients/dhaniya.jpg",
+    alt: "धनिया",
+  },
+  {
+    name: "सूखा नारियल (खोबरा)",
+    note: "धीरे भूनकर, जब तक गूदा और गहरा न हो",
+    image: "/images/ingredients/sukha-nariyal.jpg",
+    alt: "सूखा नारियल खोबरा",
+  },
+  {
+    name: "काली मिर्च",
+    note: "गर्मी जो ठहरती है, चिल्लाई नहीं",
+    image: "/images/ingredients/kali-mirch.jpg",
+    alt: "काली मिर्च",
+  },
+  {
+    name: "लौंग",
+    note: "त्योहार की रीढ़",
+    image: "/images/ingredients/laung.jpg",
+    alt: "लौंग",
+  },
+  {
+    name: "दगड़ फूल",
+    note: "जंगल का सुर",
+    image: "/images/ingredients/dagad-phool.jpg",
+    alt: "दगड़ फूल",
+  },
+  {
+    name: "तेज पत्ता",
+    note: "हरी, चाय जैसी उठान",
+    image: "/images/ingredients/tej-patta.jpg",
+    alt: "तेज पत्ता",
+  },
+  {
+    name: "करन फूल",
+    note: "एक सावधानी भरी चुटकी",
+    image: "/images/ingredients/karan-phool.jpg",
+    alt: "करन फूल",
+  },
+  {
+    name: "जायफल",
+    note: "अंत में गर्माहट",
+    image: "/images/ingredients/jaiphal.jpg",
+    alt: "जायफल",
+  },
+  {
+    name: "जावित्री",
+    note: "महीन, मीठी खुशबू",
+    image: "/images/ingredients/javitri.jpg",
+    alt: "जावित्री",
+  },
+  {
+    name: "बड़ी इलायची",
+    note: "गहरा, धुआँ-सा स्वाद",
+    image: "/images/ingredients/badi-elaichi.jpg",
+    alt: "बड़ी इलायची",
+  },
+  {
+    name: "इलायची",
+    note: "मीठी सुगंध का अंतिम स्पर्श",
+    image: "/images/ingredients/elaichi.jpg",
+    alt: "इलायची",
+  },
 ];
 
 export const processSteps = [
@@ -80,8 +132,8 @@ export const processSteps = [
   },
   {
     n: "06",
-    title: "Rest, blend, jar",
-    body: "The family proportion — Lata’s measure — is folded in, rested overnight, and packed in airtight jars the next morning. No warehouse wait.",
+    title: "Rest, blend, pack",
+    body: "The family proportion — Lata’s measure — is folded in, rested overnight, and packed in airtight packets the next morning. No warehouse wait.",
   },
 ];
 
@@ -127,14 +179,14 @@ export const uses = [
   },
   {
     title: "Marinade",
-    body: "With curd, ginger-garlic, and salt. Rest the meat an hour. The coconut and sesame give body that packet masala never does.",
+    body: "With curd, ginger-garlic, and salt. Rest the meat an hour. The coconut and sesame give body that factory masala never does.",
   },
 ];
 
 export const storageRules = [
   {
     title: "Airtight, always",
-    body: "Glass or steel with a firm lid. Air is how aroma leaves and how moisture — and mould — arrives.",
+    body: "Keep the packet sealed after every use. Air is how aroma leaves and how moisture — and mould — arrives.",
   },
   {
     title: "Cool, dry, dark",
@@ -142,15 +194,15 @@ export const storageRules = [
   },
   {
     title: "A dry spoon only",
-    body: "Never dip a wet ladle. One drop of water is enough to cake the jar and spoil the batch.",
+    body: "Never dip a wet ladle. One drop of water is enough to cake the packet and spoil the batch.",
   },
   {
     title: "Do not refrigerate",
-    body: "Cold jars sweat when opened. That condensation is spoilage in slow motion. Room temperature is kinder.",
+    body: "Cold packets sweat when opened. That condensation is spoilage in slow motion. Room temperature is kinder.",
   },
   {
     title: "Finish in 90 days",
-    body: "Once opened, use within three months. The unopened jar keeps its character longer if the seal stays true.",
+    body: "Once opened, use within three months. The unopened packet keeps its character longer if the seal stays true.",
   },
   {
     title: "Trust your nose",

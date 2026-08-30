@@ -6,7 +6,7 @@ export default function Footer() {
           <p className="font-mark text-[0.68rem] tracking-[0.32em] text-gold uppercase">Lata Special</p>
           <p className="display mt-2 text-4xl text-cream">Kala Massala</p>
           <p className="mt-3 max-w-sm text-sm font-light leading-6 text-cream/50">
-            A Nagpur kitchen batch. We roast, grind, and jar — then we deliver within the city in six days. Nothing
+            A Nagpur kitchen batch. We roast, grind, and pack — then we deliver within the city in six days. Nothing
             leaves Maharashtra’s orange city.
           </p>
         </div>

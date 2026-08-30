@@ -25,7 +25,7 @@ export default function HowToUse() {
         </div>
         <div className="relative order-1 min-h-[380px] lg:order-2 lg:min-h-full">
           <img
-            src="/images/how-to-use.png"
+            src="/images/how-to-use2.png"
             alt="Kala Massala served with a Maharashtrian gravy"
             className="absolute inset-0 h-full w-full object-cover"
           />

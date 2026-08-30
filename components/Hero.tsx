@@ -2,7 +2,7 @@ export default function Hero() {
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden">
       <img
-        src="/images/hero-kala-masala.png"
+        src="/images/hero-kala-masala2.png"
         alt="Lata Special homemade Kala Massala"
         className="absolute inset-0 h-full w-full object-cover"
       />
@@ -12,10 +12,10 @@ export default function Hero() {
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 md:justify-center md:px-8 md:pb-20">
         <div className="max-w-xl rise">
           <p className="kicker">Nagpur &gt; Home made masala</p>
-          <h1 className="display mt-6 text-5xl text-cream sm:text-6xl md:text-8xl">
-            Kala
+          <h1 className="font-hindi-display mt-6 text-5xl leading-[1.05] text-cream sm:text-6xl md:text-8xl">
+            काला
             <br />
-            Massala
+            मसाला
           </h1>
           <p className="font-mark mt-4 text-sm tracking-[0.28em] text-gold uppercase">Lata Special</p>
           <p className="mt-6 max-w-md text-[1.05rem] font-light leading-relaxed text-cream/78">

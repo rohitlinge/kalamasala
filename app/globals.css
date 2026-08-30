@@ -50,6 +50,15 @@ body {
   font-family: var(--font-mark);
 }
 
+.font-hindi-display {
+  font-family: var(--font-hindi-display), "Noto Serif Devanagari", "Mangal", serif;
+  line-height: 1.25;
+}
+
+.font-hindi {
+  font-family: var(--font-hindi-body), "Noto Sans Devanagari", "Nirmala UI", sans-serif;
+}
+
 .hairline {
   height: 1px;
   background: linear-gradient(
@@ -86,6 +95,34 @@ body {
 
 .frame {
   box-shadow: inset 0 0 0 1px rgba(196, 163, 90, 0.35);
+}
+
+.spice-seal {
+  width: 7.25rem;
+  height: 7.25rem;
+  border-radius: 50%;
+  padding: 5px;
+  background:
+    linear-gradient(#1a1410, #1a1410) padding-box,
+    linear-gradient(155deg, #e6d3a3 0%, #c4a35a 46%, #8a7040 100%) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 0 0 6px rgba(16, 12, 10, 0.35);
+}
+
+.spice-seal img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #f3eee4;
+}
+
+@media (min-width: 640px) {
+  .spice-seal {
+    width: 8rem;
+    height: 8rem;
+  }
 }
 
 .btn-gold {
