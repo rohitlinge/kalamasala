@@ -5,13 +5,13 @@ export default function Process() {
     <section id="craft" className="px-3 py-3 md:px-4">
       <div className="amz-card mx-auto max-w-[1500px] overflow-hidden">
         <img
-          src="/images/process-roast2.png"
-          alt="Spices slow-roasting in a kadai"
-          className="h-[240px] w-full object-cover md:h-[380px]"
+          src="/images/product/tin.jpg"
+          alt="Kala Massala packed from the kitchen tin"
+          className="h-[180px] w-full object-cover md:h-[380px]"
         />
-        <div className="p-5 md:p-8">
+        <div className="p-3 md:p-8">
           <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">From the manufacturer</p>
-          <h2 className="mt-1 text-[26px] font-medium">A small process. No shortcuts in it.</h2>
+          <h2 className="mt-1 text-[20px] font-medium md:text-[26px]">A small process. No shortcuts in it.</h2>
           <p className="mt-2 max-w-3xl text-[14px] text-[#565959]">
             Kala Massala is not mixed from ready powders. It is built — spice by spice — so the coconut is dark, the
             coriander is sweet, and the chilli never scorches the rest.

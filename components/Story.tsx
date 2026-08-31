@@ -1,11 +1,11 @@
 export default function Story() {
   return (
     <section id="masala" className="px-3 py-3 md:px-4">
-      <div className="amz-card mx-auto max-w-[1500px] p-5 md:p-8">
+      <div className="amz-card mx-auto max-w-[1500px] p-3 md:p-8">
         <div className="grid gap-8 md:grid-cols-12">
           <div className="md:col-span-5">
             <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">From the brand</p>
-            <h2 className="mt-2 text-[26px] font-medium leading-tight md:text-[32px]">
+            <h2 className="mt-2 text-[22px] font-medium leading-tight md:text-[32px]">
               Dark as Sunday gravy. Honest as a home packet.
             </h2>
           </div>
@@ -27,8 +27,8 @@ export default function Story() {
                 ["90 days", "Best after opening"],
               ].map(([n, l]) => (
                 <div key={l}>
-                  <p className="text-[22px] font-bold text-[#0f1111]">{n}</p>
-                  <p className="text-[12px] text-[#565959]">{l}</p>
+                  <p className="text-[18px] font-bold text-[#0f1111] md:text-[22px]">{n}</p>
+                  <p className="text-[11px] text-[#565959] md:text-[12px]">{l}</p>
                 </div>
               ))}
             </div>

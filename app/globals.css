@@ -30,12 +30,41 @@ html,
 body {
   background: var(--color-page);
   color: var(--color-ink);
+  max-width: 100%;
 }
 
 body {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+  .input {
+    font-size: 16px;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .btn-cart,
+  .btn-buy {
+    min-height: 44px;
+    font-size: 15px;
+  }
+
+  .btn-primary {
+    min-height: 44px;
+    font-size: 15px;
+  }
+
+  .pack-chip {
+    flex: 1 1 30%;
+    min-width: 0;
+    padding: 0.65rem 0.5rem;
+  }
+
+  [data-buy-bar] button {
+    white-space: nowrap;
+  }
 }
 
 ::selection {
@@ -70,6 +99,8 @@ a.link:hover {
 .amz-card {
   background: #fff;
   border-radius: 8px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .btn-cart,
@@ -77,7 +108,10 @@ a.link:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 29px;
   padding: 0.55rem 0.9rem;
   border-radius: 20px;
@@ -212,9 +246,26 @@ label.field {
   color: #fff;
   font-size: 13px;
   white-space: nowrap;
-  padding: 0.2rem 0.45rem;
+  padding: 0.45rem 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .nav-link-amz {
+    font-size: 12px;
+    padding: 0.4rem 0.45rem;
+  }
 }
 
 .nav-link-amz:hover {
   outline: 1px solid #fff;
+}
+
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.scroll-x::-webkit-scrollbar {
+  display: none;
 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_Devanagari, Noto_Serif_Devanagari } from "next/font/google";
 import Script from "next/script";
 import { CartProvider } from "@/lib/cart";
@@ -25,6 +25,12 @@ const hindiBody = Noto_Sans_Devanagari({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
   title: "Lata Special Kala Massala : Homemade Nagpur Masala",
@@ -43,7 +49,7 @@ export const metadata: Metadata = {
     description:
       "The dark, slow-roasted masala of a Nagpur kitchen. Orders accepted only in Nagpur, Maharashtra. Delivery in 6 days.",
     type: "website",
-    images: ["/images/hero-kala-masala2.png"],
+    images: ["/images/product/hero.jpg"],
   },
 };
 

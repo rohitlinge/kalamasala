@@ -9,7 +9,7 @@ export default function StoreShell({ children }: { children: React.ReactNode }) 
       <Header />
       <SubNav />
       <AddedToCart />
-      <main>{children}</main>
+      <main className="min-w-0 max-w-full overflow-x-hidden">{children}</main>
       <Footer />
     </>
   );

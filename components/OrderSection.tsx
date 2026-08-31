@@ -189,14 +189,14 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
 
   const payLabel =
     transport == null
-      ? `Masala ${formatInr(pack.price)} · add pincode`
-      : `Place your order · ${formatInr(total)}`;
+      ? `Pay ${formatInr(pack.price)} · add pin`
+      : `Place order · ${formatInr(total)}`;
 
   return (
     <section id="order" className="px-3 py-4 md:px-4">
-      <form onSubmit={placeOrder} className="mx-auto grid max-w-[1100px] gap-5 lg:grid-cols-[1fr_340px]">
-        <div className="space-y-4">
-          <div className="amz-card p-5">
+      <form onSubmit={placeOrder} className="mx-auto grid max-w-[1100px] gap-3 md:gap-5 lg:grid-cols-[1fr_340px]">
+        <div className="order-2 space-y-3 md:space-y-4 lg:order-1">
+          <div className="amz-card p-4 md:p-5">
             <h2 className="text-[18px] font-bold">1 · Delivery address</h2>
             <p className="mt-1 text-[13px] text-[#565959]">
               We deliver only in <strong className="text-[#0f1111]">Nagpur, Maharashtra</strong> · 6 days from the
@@ -264,7 +264,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             </p>
           </div>
 
-          <div className="amz-card p-5">
+          <div className="amz-card p-4 md:p-5">
             <h2 className="text-[18px] font-bold">2 · Pack</h2>
             <div className="mt-3 flex flex-wrap gap-2">
               {packs.map((p) => (
@@ -273,7 +273,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
                   type="button"
                   data-on={packId === p.id}
                   onClick={() => pickPack(p.id)}
-                  className="pack-chip min-w-[8rem]"
+                  className="pack-chip"
                 >
                   <span className="block text-[13px] font-bold">{p.weight}</span>
                   <span className="block text-[12px] text-[#565959]">{formatInr(p.price)}</span>
@@ -287,7 +287,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             )}
           </div>
 
-          <div className="amz-card p-5">
+          <div className="amz-card p-4 md:p-5">
             <h2 className="text-[18px] font-bold">3 · Payment</h2>
             <p className="mt-2 text-[14px]">
               {razorpayKey ? "Pay online with UPI, cards, or net banking (Razorpay)." : "Pay online · preview mode."}
@@ -295,8 +295,8 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
           </div>
         </div>
 
-        <aside className="amz-card h-fit p-5">
-          <button type="submit" className="btn-buy" disabled={status.kind === "busy" || quoteBlocked}>
+        <aside className="amz-card order-1 h-fit p-4 md:p-5 lg:order-2">
+          <button type="submit" className="btn-buy min-w-0 whitespace-normal" disabled={status.kind === "busy" || quoteBlocked}>
             {status.kind === "busy" ? "Opening Razorpay…" : payLabel}
           </button>
           <p className="mt-2 text-center text-[11px] text-[#565959]">
@@ -306,7 +306,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
 
           <h3 className="mt-5 border-t border-[#d5d9d9] pt-4 text-[18px] font-bold">Order summary</h3>
           <div className="mt-3 flex gap-3">
-            <img src="/images/hero-kala-masala2.png" alt="" className="h-16 w-16 object-cover" />
+            <img src="/images/product/packs.jpg" alt="" className="h-16 w-16 object-cover" />
             <div>
               <p className="text-[13px] font-medium">Kala Massala · {pack.weight}</p>
               <p className="text-[12px] text-[#565959]">{pack.note}</p>
@@ -337,7 +337,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
 
       {status.kind === "ok" && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/45 p-4">
-          <div className="amz-card max-w-md p-8 text-center">
+          <div className="amz-card max-w-md p-6 md:p-8 text-center">
             <p className="text-[13px] font-bold text-[#067d62]">Order placed</p>
             <h3 className="mt-2 text-[28px] font-medium">Thank you.</h3>
             <p className="mt-3 text-[14px] leading-6 text-[#565959]">

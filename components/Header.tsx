@@ -57,7 +57,7 @@ export default function Header() {
   }
 
   const locPopover = locOpen && (
-    <div className="absolute left-0 top-full z-50 mt-1 w-72 rounded-sm bg-white p-4 text-[#0f1111] shadow-xl">
+    <div className="absolute left-2 right-2 top-full z-50 mt-1 rounded-sm bg-white p-4 text-[#0f1111] shadow-xl sm:left-0 sm:right-auto sm:w-72">
       <p className="text-[13px] font-bold">Choose your location</p>
       <p className="mt-1 text-[12px] text-[#565959]">
         Delivery is Nagpur only (440xxx and 441xxx). Transport is added at checkout.
@@ -83,9 +83,9 @@ export default function Header() {
         {locPopover}
         <div className="mx-auto max-w-[1500px] px-2 py-2 md:px-3">
           <div className="flex items-center gap-2 md:gap-3">
-            <a href="/" className="shrink-0 rounded-sm px-2 py-1 hover:outline hover:outline-1 hover:outline-white">
-              <span className="block text-[11px] leading-none text-[#cccccc]">Lata Special</span>
-              <span className="block text-[19px] font-bold leading-tight tracking-tight">
+            <a href="/" className="min-w-0 shrink rounded-sm px-1 py-1 hover:outline hover:outline-1 hover:outline-white sm:px-2">
+              <span className="block text-[10px] leading-none text-[#cccccc] sm:text-[11px]">Lata Special</span>
+              <span className="block truncate text-[16px] font-bold leading-tight tracking-tight sm:text-[19px]">
                 kalamassala<span className="text-[#febd69]">.online</span>
               </span>
             </a>
@@ -163,7 +163,7 @@ function SearchField({
         }}
         onFocus={() => setSuggest(true)}
         onBlur={() => window.setTimeout(() => setSuggest(false), 180)}
-        placeholder="Search Lata Special Kala Massala"
+        placeholder="Search Kala Massala"
         className="h-10 min-w-0 flex-1 rounded-l-md border-0 bg-white px-3 text-[15px] text-[#0f1111] outline-none md:rounded-none"
       />
       <button

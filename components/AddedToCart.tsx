@@ -27,7 +27,7 @@ export default function AddedToCart() {
 
   return (
     <div data-added-banner className="fixed inset-x-0 z-50 px-3 md:px-6" style={{ top }}>
-      <div className="amz-card mx-auto flex max-w-[900px] flex-col gap-3 border border-[#067d62] p-4 shadow-lg sm:flex-row sm:items-center sm:justify-between">
+      <div className="amz-card mx-auto flex max-w-[900px] flex-col gap-3 border border-[#067d62] p-3 shadow-lg sm:flex-row sm:items-center sm:justify-between sm:p-4">
         <div className="flex items-center gap-3">
           <span className="grid h-7 w-7 place-items-center rounded-full bg-[#067d62] text-white">✓</span>
           <div>
@@ -40,11 +40,11 @@ export default function AddedToCart() {
             </p>
           </div>
         </div>
-        <div className="flex gap-2">
-          <button type="button" className="btn-primary !rounded-full px-5" onClick={dismissAdded}>
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <button type="button" className="btn-primary !rounded-full sm:!w-auto sm:px-5" onClick={dismissAdded}>
             Continue shopping
           </button>
-          <a href="/cart" className="btn-buy !w-auto px-5" onClick={dismissAdded}>
+          <a href="/cart" className="btn-buy sm:!w-auto sm:px-5" onClick={dismissAdded}>
             Go to Cart
           </a>
         </div>

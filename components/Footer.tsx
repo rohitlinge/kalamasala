@@ -1,10 +1,10 @@
 export default function Footer() {
   return (
-    <footer className="mt-6 text-white">
+    <footer className="mt-4 text-white md:mt-6">
       <a href="#top" className="block bg-nav-3 py-4 text-center text-[13px] hover:bg-[#485769]">
         Back to top
       </a>
-      <div className="bg-nav-2 px-5 py-10 md:px-10">
+      <div className="bg-nav-2 px-4 py-8 md:px-10 md:py-10">
         <div className="mx-auto grid max-w-[1100px] gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="text-[16px] font-bold">Get to Know Us</p>

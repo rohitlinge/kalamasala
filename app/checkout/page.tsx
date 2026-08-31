@@ -12,7 +12,7 @@ export default function CheckoutPage() {
   return (
     <StoreShell>
       <div className="mx-auto max-w-[1100px] px-3 pt-5 md:px-4">
-        <h1 className="text-[28px] font-medium">Checkout</h1>
+        <h1 className="text-[22px] font-medium md:text-[28px]">Checkout</h1>
         <p className="text-[13px] text-[#565959]">Select a pack, add your Nagpur address, and pay.</p>
       </div>
       <OrderSection razorpayKey={razorpayKey} />
