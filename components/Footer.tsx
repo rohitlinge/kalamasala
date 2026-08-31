@@ -31,6 +31,11 @@ export default function Footer() {
             <ul className="mt-3 space-y-2 text-[13px] text-[#ddd]">
               <li>Nagpur, Maharashtra</li>
               <li>Orders · 440xxx and 441xxx</li>
+              <li>
+                <a href="tel:+918484911196" className="hover:underline">
+                  +91 8484911196
+                </a>
+              </li>
             </ul>
           </div>
           <div>
@@ -76,6 +81,11 @@ export default function Footer() {
         </a>
         <p className="mt-2 text-[12px] text-[#999]">
           © {new Date().getFullYear()} Lata Special · Kala Massala · Nagpur, Maharashtra
+        </p>
+        <p className="mt-1 text-[12px] text-[#999]">
+          <a href="tel:+918484911196" className="hover:underline">
+            +91 8484911196
+          </a>
         </p>
       </div>
     </footer>
