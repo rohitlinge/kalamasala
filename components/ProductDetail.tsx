@@ -110,7 +110,10 @@ export default function ProductDetail() {
                     key={p.id}
                     type="button"
                     data-on={packId === p.id}
-                    onClick={() => setPackId(p.id)}
+                    onClick={() => {
+                      setPackId(p.id);
+                      setPhoto(packs.findIndex((x) => x.id === p.id));
+                    }}
                     className="pack-chip"
                   >
                     <span className="block text-[13px] font-bold">{p.weight}</span>

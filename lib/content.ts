@@ -14,7 +14,7 @@ export const packs = [
     label: "The family packet",
     note: "Masala only · transport extra",
     featured: true,
-    image: "/images/product/scale-500g.jpg",
+    image: "/images/product/500g product image.png",
   },
   {
     id: "1000",
@@ -23,7 +23,7 @@ export const packs = [
     label: "The pantry tin",
     note: "Masala only · transport extra",
     featured: false,
-    image: "/images/product/tin.jpg",
+    image: "/images/product/1kg product image.png",
   },
   {
     id: "2000",
@@ -32,7 +32,7 @@ export const packs = [
     label: "The stock tin",
     note: "Masala only · transport extra",
     featured: false,
-    image: "/images/product/packs.jpg",
+    image: "/images/product/2kg msala.png",
   },
 ] as const;
 
@@ -40,6 +40,9 @@ export type PackId = (typeof packs)[number]["id"];
 
 export const productPhotos = {
   hero: "/images/product/hero.jpg",
+  pack500: "/images/product/500g product image.png",
+  pack1kg: "/images/product/1kg product image.png",
+  pack2kg: "/images/product/2kg msala.png",
   packs: "/images/product/packs.jpg",
   pack: "/images/product/pack.jpg",
   openBag: "/images/product/open-bag.jpg",
@@ -51,6 +54,9 @@ export const productPhotos = {
 } as const;
 
 export const gallery = [
+  { src: productPhotos.pack500, alt: "Lata Special Kala Massala 500 g packet" },
+  { src: productPhotos.pack1kg, alt: "Lata Special Kala Massala 1 kg packet" },
+  { src: productPhotos.pack2kg, alt: "Lata Special Kala Massala 2 kg packet" },
   { src: productPhotos.packs, alt: "Lata Special Kala Massala packets" },
   { src: productPhotos.pack, alt: "A packet of homemade Kala Massala" },
   { src: productPhotos.openBag, alt: "Freshly packed Kala Massala in an open bag" },
