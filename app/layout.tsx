@@ -79,6 +79,9 @@ export const metadata: Metadata = {
     images: [OG_IMAGE],
   },
   category: "food",
+  verification: {
+    google: "FMJZZ4wXEFPBVzIPfgy5wPw7W0wRYP7iH6q-kVQEjag",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
