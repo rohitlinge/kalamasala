@@ -1,6 +1,7 @@
 const links = [
   { href: "/#product", label: "Shop" },
   { href: "/#deals", label: "Deals" },
+  { href: "/owner", label: "About owner", short: "Owner" },
   { href: "/#ingredients", label: "Ingredients", short: "Spices" },
   { href: "/#craft", label: "How it's made", hideOnMobile: true },
   { href: "/#use", label: "How to use", short: "Use" },

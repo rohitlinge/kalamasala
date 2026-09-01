@@ -10,6 +10,11 @@ export default function Footer() {
             <p className="text-[16px] font-bold">Get to Know Us</p>
             <ul className="mt-3 space-y-2 text-[13px] text-[#ddd]">
               <li>
+                <a href="/owner" className="hover:underline">
+                  About owner
+                </a>
+              </li>
+              <li>
                 <a href="/#masala" className="hover:underline">
                   About Lata Special
                 </a>

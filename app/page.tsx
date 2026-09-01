@@ -2,6 +2,7 @@ import StoreShell from "@/components/StoreShell";
 import Hero from "@/components/Hero";
 import ProductShelf from "@/components/ProductShelf";
 import ProductDetail from "@/components/ProductDetail";
+import Reviews from "@/components/Reviews";
 import Story from "@/components/Story";
 import Ingredients from "@/components/Ingredients";
 import Process from "@/components/Process";
@@ -33,6 +34,7 @@ export default function HomePage() {
       <Hero />
       <ProductShelf />
       <ProductDetail />
+      <Reviews showFirstProduct />
       <Story />
       <Ingredients />
       <Process />

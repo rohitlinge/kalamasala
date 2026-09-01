@@ -1,4 +1,4 @@
-const links = [
+export const socialLinks = [
   {
     href: "https://www.instagram.com/kalamasala_nagpur/",
     label: "Instagram",
@@ -19,6 +19,28 @@ const links = [
   },
 ];
 
+export function SocialIcons({ className = "" }: { className?: string }) {
+  return (
+    <ul className={`flex items-center gap-2 ${className}`}>
+      {socialLinks.map((item) => (
+        <li key={item.label}>
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={item.label}
+            title={item.label}
+            className="grid h-10 w-10 place-items-center rounded-full text-white transition-opacity hover:opacity-90"
+            style={{ background: item.color }}
+          >
+            <item.icon />
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function SocialDock() {
   return (
     <nav
@@ -26,7 +48,7 @@ export default function SocialDock() {
       className="fixed top-1/2 left-0 z-30 -translate-y-1/2 rounded-r-md bg-white/95 shadow-[2px_2px_8px_rgba(15,17,17,0.18)]"
     >
       <ul className="flex flex-col">
-        {links.map((item) => (
+        {socialLinks.map((item) => (
           <li key={item.label}>
             <a
               href={item.href}

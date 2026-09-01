@@ -235,3 +235,35 @@ export const storageRules = [
     body: "If it smells flat, sour, or of damp wood — stop. Homemade masala has no preservative to hide a fault. We would rather you discard than cook with it.",
   },
 ];
+
+export const owner = {
+  name: "Lata Linge",
+  photo: "/images/owner/Lata Linge.jpeg",
+  city: "Nagpur",
+  bio: "Lata Linge has been roasting and grinding homemade Kala Massala in her Nagpur kitchen for 15 years. More than 100 families already cook with her packets. She is now selling the same kitchen masala online so neighbours across Nagpur can order from home.",
+  bioHi:
+    "लता लिंगे पिछले 15 साल से अपने नागपुर के रसोईघर में काला मसाला भूनती और पीसती हैं। 100 से ज़्यादा घर पहले से इनका मसाला लेते हैं। अब वही घरेलू मसाला ऑनलाइन मिल रहा है।",
+} as const;
+
+export const reviews = [
+  {
+    name: "सुनीता देशमुख",
+    area: "धरोमपेठ, नागपुर",
+    text: "उसाळ में एक चम्मच डालती हूँ — घर जैसा स्वाद आता है। बाज़ार के मसाले में यह खुशबू कभी नहीं मिली।",
+  },
+  {
+    name: "प्रिया कावड़े",
+    area: "साधकर नगर",
+    text: "नारियल और तिल की महक साफ लगती है। रंग भी सच्चा काला है, कोई रसायन नहीं। बच्चों को दाल भी पसंद आने लगी।",
+  },
+  {
+    name: "वर्षा पाटील",
+    area: "महाल",
+    text: "पंद्रह साल से लता ताई का मसाला ले रही हूँ। अब घर बैठे पैकेट आ जाता है। भरोसा पूरा है।",
+  },
+  {
+    name: "अंजली जोशी",
+    area: "रामदासपेठ",
+    text: "भाजी और मटन दोनों में बढ़िया लगता है। एक बार पकाया तो पड़ोस की बहनों ने भी पूछा — कहाँ से लिया?",
+  },
+];
