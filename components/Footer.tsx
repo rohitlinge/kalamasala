@@ -25,6 +25,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="/#faq" className="hover:underline">
+                  Nagpur masala online FAQ
+                </a>
+              </li>
+              <li>
                 <a href="/#ingredients" className="hover:underline">
                   Ingredients
                 </a>

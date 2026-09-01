@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_Devanagari, Noto_Serif_Devanagari } from "next/font/google";
 import Script from "next/script";
 import { CartProvider } from "@/lib/cart";
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, OG_IMAGE, SEO_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -32,30 +33,57 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
-  title: "Lata Special Kala Massala : Homemade Nagpur Masala",
-  description:
-    "Buy Lata Special Kala Massala — slow-roasted, small-batch homemade Maharashtrian black masala from a Nagpur kitchen. Delivered in 6 days, Nagpur only.",
-  keywords: [
-    "Kala Massala",
-    "Kala Masala",
-    "Lata Special",
-    "Nagpur masala",
-    "homemade masala",
-    "Maharashtrian spices",
-  ],
-  openGraph: {
-    title: "Lata Special Kala Massala",
-    description:
-      "The dark, slow-roasted masala of a Nagpur kitchen. Orders accepted only in Nagpur, Maharashtra. Delivery in 6 days.",
-    type: "website",
-    images: ["/images/product/hero.jpg"],
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_TITLE,
+    template: `%s | ${SITE_NAME}`,
   },
+  description: DEFAULT_DESCRIPTION,
+  keywords: SEO_KEYWORDS,
+  applicationName: SITE_NAME,
+  authors: [{ name: "Lata Linge", url: `${SITE_URL}/owner` }],
+  creator: "Lata Linge",
+  publisher: SITE_NAME,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [
+      {
+        url: OG_IMAGE,
+        alt: "Buy Nagpur masala online — Lata Special homemade Kala Massala",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
+  category: "food",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-2MPBST4NRX" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">

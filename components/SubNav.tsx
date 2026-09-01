@@ -6,6 +6,7 @@ const links = [
   { href: "/#craft", label: "How it's made", hideOnMobile: true },
   { href: "/#use", label: "How to use", short: "Use" },
   { href: "/#store", label: "Storage", hideOnMobile: true },
+  { href: "/#faq", label: "FAQ" },
   { href: "/cart", label: "Cart" },
 ];
 

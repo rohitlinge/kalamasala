@@ -82,7 +82,7 @@ export default function ProductDetail() {
 
           <div className="order-2 lg:col-start-2 lg:row-start-1">
             <h2 className="text-[18px] font-medium leading-snug md:text-[24px]">
-              Lata Special Kala Massala, homemade Maharashtrian black masala, Nagpur ({pack.weight})
+              Lata Special Kala Massala — buy Nagpur homemade masala online ({pack.weight})
             </h2>
             <a href="#masala" className="link mt-1 inline-block text-[13px] md:text-[14px]">
               Visit the Lata Special Store

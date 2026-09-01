@@ -1,8 +1,11 @@
+import type { Metadata } from "next";
 import StoreShell from "@/components/StoreShell";
 import CartView from "@/components/CartView";
 
-export const metadata = {
-  title: "Shopping Cart · Lata Special Kala Massala",
+export const metadata: Metadata = {
+  title: "Shopping Cart",
+  description: "Your Lata Special Kala Massala cart. Nagpur delivery only.",
+  robots: { index: false, follow: true },
 };
 
 export default function CartPage() {

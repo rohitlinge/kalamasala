@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
 import StoreShell from "@/components/StoreShell";
 import OrderSection from "@/components/OrderSection";
 import { razorpayKeyId } from "@/lib/env";
 
-export const metadata = {
-  title: "Checkout · Lata Special Kala Massala",
+export const metadata: Metadata = {
+  title: "Checkout — Buy Nagpur Masala Online",
+  description: "Pay for homemade Nagpur Kala Massala. Delivery in 6 days, Nagpur pincodes only.",
+  robots: { index: false, follow: true },
 };
 
 export default function CheckoutPage() {
