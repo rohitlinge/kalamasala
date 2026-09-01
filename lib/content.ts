@@ -246,9 +246,9 @@ export const owner = {
   name: "Lata Linge",
   photo: "/images/owner/Lata Linge.jpeg",
   city: "Nagpur",
-  bio: "Lata Linge has been roasting and grinding homemade Kala Massala in her Nagpur kitchen for 15 years. More than 100 families already cook with her packets. She is now selling the same kitchen masala online so neighbours across Nagpur can order from home.",
+  bio: "Lata Linge has been roasting and grinding homemade Kala Massala in her Nagpur kitchen for about 9 years. More than 100 families already cook with her packets. She is now selling the same kitchen masala online so neighbours across Nagpur can order from home.",
   bioHi:
-    "लता लिंगे पिछले 15 साल से अपने नागपुर के रसोईघर में काला मसाला भूनती और पीसती हैं। 100 से ज़्यादा घर पहले से इनका मसाला लेते हैं। अब वही घरेलू मसाला ऑनलाइन मिल रहा है।",
+    "लता लिंगे करीब 9 साल से अपने नागपुर के रसोईघर में काला मसाला भूनती और पीसती हैं। 100 से ज़्यादा घर पहले से इनका मसाला लेते हैं। अब वही घरेलू मसाला ऑनलाइन मिल रहा है।",
 } as const;
 
 export const reviews = [
@@ -265,7 +265,7 @@ export const reviews = [
   {
     name: "वर्षा पाटील",
     area: "महाल",
-    text: "पंद्रह साल से लता ताई का मसाला ले रही हूँ। अब घर बैठे पैकेट आ जाता है। भरोसा पूरा है।",
+    text: "करीब नौ साल से लता ताई का मसाला ले रही हूँ। अब घर बैठे पैकेट आ जाता है। भरोसा पूरा है।",
   },
   {
     name: "अंजली जोशी",

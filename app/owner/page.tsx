@@ -6,7 +6,7 @@ import { owner } from "@/lib/content";
 export const metadata = {
   title: "About Lata Linge · Lata Special Kala Massala",
   description:
-    "Lata Linge has roasted homemade Kala Massala in Nagpur for 15 years. Now her kitchen packets are online.",
+    "Lata Linge has roasted homemade Kala Massala in Nagpur for about 9 years. Now her kitchen packets are online.",
 };
 
 export default function OwnerPage() {
