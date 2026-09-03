@@ -2,7 +2,7 @@ import { packs, reviews } from "@/lib/content";
 import { formatInr } from "@/lib/product";
 
 export default function Reviews({ showFirstProduct = false }: { showFirstProduct?: boolean }) {
-  const first = packs[0];
+  const first = packs.find((p) => p.featured) ?? packs[0];
 
   return (
     <section id="reviews" className="px-3 py-3 md:px-4">

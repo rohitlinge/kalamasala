@@ -112,7 +112,8 @@ export default function ProductDetail() {
                     data-on={packId === p.id}
                     onClick={() => {
                       setPackId(p.id);
-                      setPhoto(packs.findIndex((x) => x.id === p.id));
+                      const idx = gallery.findIndex((g) => g.src === p.image);
+                      setPhoto(idx >= 0 ? idx : 0);
                     }}
                     className="pack-chip"
                   >

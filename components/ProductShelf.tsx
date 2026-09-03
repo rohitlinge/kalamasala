@@ -4,7 +4,7 @@ import { formatInr } from "@/lib/product";
 export default function ProductShelf() {
   return (
     <section id="deals" className="px-3 pb-3 pt-3 md:px-4">
-      <div className="mx-auto grid max-w-[1500px] grid-cols-2 gap-2.5 md:grid-cols-2 md:gap-4 xl:grid-cols-4">
+      <div className="mx-auto grid max-w-[1500px] grid-cols-2 gap-2.5 md:grid-cols-3 md:gap-4 xl:grid-cols-5">
         {packs.map((p) => (
           <article key={p.id} className="amz-card p-2.5 shadow-sm md:p-4">
             <h2 className="line-clamp-2 text-[13px] font-bold leading-tight md:text-[21px]">
@@ -29,8 +29,8 @@ export default function ProductShelf() {
           <h2 className="line-clamp-2 text-[13px] font-bold leading-tight md:text-[21px]">Inside the packet</h2>
           <a href="#ingredients" className="mt-2 block">
             <img
-              src="/images/product/texture.jpg"
-              alt="Homemade Kala Massala"
+              src="/images/product/what inside masala..png"
+              alt="What is inside homemade Kala Massala"
               className="h-28 w-full rounded-sm object-cover md:h-44"
             />
           </a>

@@ -8,9 +8,18 @@ export const brand = {
 
 export const packs = [
   {
+    id: "250",
+    weight: "250 g",
+    price: 200,
+    label: "The starter packet",
+    note: "Masala only · transport extra",
+    featured: false,
+    image: "/images/product/500g product image.png",
+  },
+  {
     id: "500",
     weight: "500 g",
-    price: 500,
+    price: 400,
     label: "The family packet",
     note: "Masala only · transport extra",
     featured: true,
@@ -19,7 +28,7 @@ export const packs = [
   {
     id: "1000",
     weight: "1 kg",
-    price: 1000,
+    price: 800,
     label: "The pantry tin",
     note: "Masala only · transport extra",
     featured: false,
@@ -28,7 +37,7 @@ export const packs = [
   {
     id: "2000",
     weight: "2 kg",
-    price: 2000,
+    price: 1600,
     label: "The stock tin",
     note: "Masala only · transport extra",
     featured: false,
@@ -40,6 +49,7 @@ export type PackId = (typeof packs)[number]["id"];
 
 export const productPhotos = {
   hero: "/images/product/hero.jpg",
+  pack250: "/images/product/500g product image.png",
   pack500: "/images/product/500g product image.png",
   pack1kg: "/images/product/1kg product image.png",
   pack2kg: "/images/product/2kg msala.png",
@@ -51,12 +61,18 @@ export const productPhotos = {
   tin: "/images/product/tin.jpg",
   texture: "/images/product/texture.jpg",
   handPacks: "/images/product/hand-packs.jpg",
+  process: "/images/product/A small process.png",
+  inside: "/images/product/what inside masala..png",
+  oil: "/images/product/Masala is an oil.webp",
 } as const;
 
 export const gallery = [
   { src: productPhotos.pack500, alt: "Lata Special Kala Massala 500 g packet" },
   { src: productPhotos.pack1kg, alt: "Lata Special Kala Massala 1 kg packet" },
   { src: productPhotos.pack2kg, alt: "Lata Special Kala Massala 2 kg packet" },
+  { src: productPhotos.inside, alt: "What is inside Lata Special Kala Massala" },
+  { src: productPhotos.process, alt: "A small process of making homemade Kala Massala" },
+  { src: productPhotos.oil, alt: "Homemade Kala Massala with its natural oils" },
   { src: productPhotos.packs, alt: "Lata Special Kala Massala packets" },
   { src: productPhotos.pack, alt: "A packet of homemade Kala Massala" },
   { src: productPhotos.openBag, alt: "Freshly packed Kala Massala in an open bag" },

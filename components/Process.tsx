@@ -5,8 +5,8 @@ export default function Process() {
     <section id="craft" className="px-3 py-3 md:px-4">
       <div className="amz-card mx-auto max-w-[1500px] overflow-hidden">
         <img
-          src="/images/product/tin.jpg"
-          alt="Kala Massala packed from the kitchen tin"
+          src="/images/product/A small process.png"
+          alt="A small process of making homemade Kala Massala"
           className="h-[180px] w-full object-cover md:h-[380px]"
         />
         <div className="p-3 md:p-8">

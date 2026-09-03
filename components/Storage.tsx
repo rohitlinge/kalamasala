@@ -14,8 +14,8 @@ export default function Storage() {
             </p>
             <div className="mt-4 overflow-hidden rounded-sm">
               <img
-                src="/images/product/tin.jpg"
-                alt="Kala Massala stored in a kitchen tin"
+                src="/images/product/Masala is an oil.webp"
+                alt="Homemade Kala Massala with its natural oils"
                 className="h-40 w-full object-cover md:h-52"
               />
             </div>

@@ -17,8 +17,8 @@ export default function Ingredients() {
 
         <div className="mt-5 overflow-hidden rounded-sm">
           <img
-            src="/images/ingredients-spices.png"
-            alt="Whole spices for Kala Massala"
+            src="/images/product/what inside masala..png"
+            alt="What is inside homemade Kala Massala"
             className="h-[160px] w-full object-cover md:h-[340px]"
           />
         </div>

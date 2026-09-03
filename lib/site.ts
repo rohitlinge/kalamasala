@@ -6,7 +6,7 @@ export const DEFAULT_TITLE =
   "Buy Nagpur Masala Online | Nagpuri & Saoji Taste Kala Masala | Lata Special";
 
 export const DEFAULT_DESCRIPTION =
-  "Buy homemade Nagpur masala online from Lata Special. Slow-roasted Kala Massala with true Nagpuri and Saoji-style taste. 500 g, 1 kg and 2 kg packs. Delivery in 6 days, Nagpur only.";
+  "Buy homemade Nagpur masala online from Lata Special. Slow-roasted Kala Massala with true Nagpuri and Saoji-style taste. 250 g, 500 g, 1 kg and 2 kg packs. Delivery in 6 days, Nagpur only.";
 
 export const OG_IMAGE = "/images/hero baneres/Dekstop hero image.png";
 
