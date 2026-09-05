@@ -14,7 +14,7 @@ export const packs = [
     label: "The starter packet",
     note: "Masala only · transport ₹20",
     featured: false,
-    image: "/images/product/200g.png",
+    image: "/images/product/250g masala.png",
   },
   {
     id: "500",
@@ -49,7 +49,7 @@ export type PackId = (typeof packs)[number]["id"];
 
 export const productPhotos = {
   hero: "/images/product/hero.jpg",
-  pack250: "/images/product/200g.png",
+  pack250: "/images/product/250g masala.png",
   pack500: "/images/product/500g product image.png",
   pack1kg: "/images/product/1kg product image.png",
   pack2kg: "/images/product/2kg msala.png",

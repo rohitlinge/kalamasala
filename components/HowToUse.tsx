@@ -6,7 +6,7 @@ export default function HowToUse() {
       <div className="amz-card mx-auto grid max-w-[1500px] overflow-hidden lg:grid-cols-2">
         <div className="relative h-44 md:min-h-[280px] lg:min-h-full">
           <img
-            src="/images/product/plate.jpg"
+            src="/images/product/what inside masala..png"
             alt="Homemade Kala Massala ready to cook"
             className="absolute inset-0 h-full w-full object-cover"
           />
