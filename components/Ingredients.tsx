@@ -19,7 +19,7 @@ export default function Ingredients() {
           <img
             src="/images/product/what inside kala masala mobile.png"
             alt="What is inside homemade Kala Massala"
-            className="h-[160px] w-full object-cover md:hidden"
+            className="h-auto w-full object-contain md:hidden"
           />
           <img
             src="/images/product/what inside in kala masala.png"
