@@ -45,7 +45,7 @@ export default function SocialDock() {
   return (
     <nav
       aria-label="Social"
-      className="fixed top-1/2 left-0 z-30 -translate-y-1/2 rounded-r-md bg-white/95 shadow-[2px_2px_8px_rgba(15,17,17,0.18)]"
+      className="fixed top-1/2 left-0 z-30 hidden -translate-y-1/2 rounded-r-md bg-white/95 shadow-[2px_2px_8px_rgba(15,17,17,0.18)] md:block"
     >
       <ul className="flex flex-col">
         {socialLinks.map((item) => (

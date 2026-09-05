@@ -1,6 +1,8 @@
+import { SocialIcons } from "./SocialDock";
+
 export default function Footer() {
   return (
-    <footer className="mt-4 text-white md:mt-6">
+    <footer className="mt-4 overflow-x-hidden text-white md:mt-6">
       <a href="#top" className="block bg-nav-3 py-4 text-center text-[13px] hover:bg-[#485769]">
         Back to top
       </a>
@@ -86,6 +88,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-[#3a4553] bg-nav px-5 py-8 text-center">
+        <SocialIcons className="mb-4 justify-center md:hidden" />
         <a href="/" className="text-[18px] font-bold">
           kalamassala<span className="text-[#febd69]">.online</span>
         </a>

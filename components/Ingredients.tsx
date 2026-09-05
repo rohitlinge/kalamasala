@@ -7,7 +7,7 @@ export default function Ingredients() {
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">Product details</p>
-            <h2 className="mt-1 text-[20px] font-medium md:text-[26px]">Inside the packet</h2>
+            <h2 className="mt-1 text-[20px] font-medium md:text-[26px]">Inside the Masala</h2>
           </div>
           <p className="max-w-md text-[14px] text-[#565959]">
             Nothing proprietary is hidden behind a mystery powder. These are the spices. The secret is how long each one
@@ -17,9 +17,14 @@ export default function Ingredients() {
 
         <div className="mt-5 overflow-hidden rounded-sm">
           <img
-            src="/images/product/what inside masala..png"
+            src="/images/product/what inside kala masala mobile.png"
             alt="What is inside homemade Kala Massala"
-            className="h-[160px] w-full object-cover md:h-[340px]"
+            className="h-[160px] w-full object-cover md:hidden"
+          />
+          <img
+            src="/images/product/what inside in kala masala.png"
+            alt="What is inside homemade Kala Massala"
+            className="hidden h-[340px] w-full object-cover md:block"
           />
         </div>
 

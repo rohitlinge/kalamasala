@@ -52,7 +52,7 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-40">
+    <header className="sticky top-0 z-40 overflow-x-hidden">
       <div className="relative bg-nav text-white" ref={locRef}>
         {locPopover}
         <div className="mx-auto max-w-[1500px] px-2 py-2 md:px-3">

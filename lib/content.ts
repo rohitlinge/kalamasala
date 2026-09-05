@@ -62,7 +62,8 @@ export const productPhotos = {
   texture: "/images/product/texture.jpg",
   handPacks: "/images/product/hand-packs.jpg",
   process: "/images/product/A small process.png",
-  inside: "/images/product/what inside masala..png",
+  inside: "/images/product/what inside in kala masala.png",
+  insideMobile: "/images/product/what inside kala masala mobile.png",
   oil: "/images/product/Masala is an oil.webp",
 } as const;
 
@@ -88,7 +89,7 @@ export const ingredients = [
   {
     name: "धनिया",
     note: "The warm, citrus body of the blend.",
-    image: "/images/ingredients/dhaniya.jpg",
+    image: "/images/ingredients/Dhaniya 2.jpg",
     alt: "धनिया",
   },
   {

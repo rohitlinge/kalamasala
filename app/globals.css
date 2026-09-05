@@ -31,6 +31,8 @@ body {
   background: var(--color-page);
   color: var(--color-ink);
   max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 body {

@@ -12,7 +12,7 @@ const links = [
 
 export default function SubNav() {
   return (
-    <nav className="bg-nav-2 text-white">
+    <nav className="overflow-x-hidden bg-nav-2 text-white">
       <div className="mx-auto flex max-w-[1500px] flex-wrap items-center gap-0.5 px-1 py-1 md:flex-nowrap md:overflow-x-auto md:px-3">
         {links.map((l) => (
           <a
