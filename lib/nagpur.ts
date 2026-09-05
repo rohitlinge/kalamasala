@@ -66,7 +66,14 @@ export type OrderInput = {
   city: string;
   state: string;
   packId: string;
+  qty?: number | string;
 };
+
+export function parseOrderQty(qty: unknown): number {
+  const n = Number(qty);
+  if (!Number.isInteger(n)) return 1;
+  return Math.min(5, Math.max(1, n));
+}
 
 export function validateOrder(input: OrderInput): string | null {
   if (!input.name.trim() || input.name.trim().length < 2) {
@@ -89,6 +96,12 @@ export function validateOrder(input: OrderInput): string | null {
   }
   if (!isMaharashtra(input.state)) {
     return "State must be Maharashtra.";
+  }
+  if (input.qty != null && input.qty !== "") {
+    const n = Number(input.qty);
+    if (!Number.isInteger(n) || n < 1 || n > 5) {
+      return "Quantity must be between 1 and 5.";
+    }
   }
   return null;
 }

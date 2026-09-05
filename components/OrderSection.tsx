@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { packs } from "@/lib/content";
 import { TRANSPORT_FEE, isServiceablePincode } from "@/lib/zones";
-import { deliveryMessage, LOCKED_CITY, LOCKED_STATE, validateOrder, withLockedRegion } from "@/lib/nagpur";
+import { deliveryMessage, LOCKED_CITY, LOCKED_STATE, parseOrderQty, validateOrder, withLockedRegion } from "@/lib/nagpur";
 import { formatInr } from "@/lib/product";
 import { useCart } from "@/lib/cart";
 
@@ -66,7 +66,10 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
   const pinReady = isServiceablePincode(form.pincode);
   const pinBlocked = /^\d{6}$/.test(form.pincode.replace(/\s/g, "")) && !pinReady;
   const transport = pinReady ? TRANSPORT_FEE : undefined;
-  const total = pack.price + (transport ?? 0);
+  const cartQty = items.find((i) => i.packId === packId)?.qty ?? 0;
+  const orderQty = parseOrderQty(cartQty || 1);
+  const itemsTotal = pack.price * orderQty;
+  const total = itemsTotal + (transport ?? 0);
 
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
@@ -78,7 +81,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
 
   async function placeOrder(e: React.FormEvent) {
     e.preventDefault();
-    const payload = withLockedRegion({ ...form, packId });
+    const payload = withLockedRegion({ ...form, packId, qty: orderQty });
     const err = validateOrder(payload);
     if (err) {
       setStatus({ kind: "error", text: err });
@@ -121,7 +124,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
         amount: data.amount,
         currency: "INR",
         name: "Lata Special",
-        description: `Kala Massala · ${pack.weight}`,
+        description: `Kala Massala · ${pack.weight} × ${orderQty}`,
         order_id: data.orderId,
         prefill: { name: form.name, contact: form.phone, email: form.email || undefined },
         theme: { color: "#ff9900" },
@@ -159,7 +162,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
 
   const payLabel =
     transport == null
-      ? `Pay ${formatInr(pack.price)} · add pin`
+      ? `Pay ${formatInr(itemsTotal)} · add pin`
       : `Place order · ${formatInr(total)}`;
 
   return (
@@ -278,14 +281,17 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
           <div className="mt-3 flex gap-3">
             <img src={pack.image} alt="" className="h-16 w-16 object-cover" />
             <div>
-              <p className="text-[13px] font-medium">Kala Massala · {pack.weight}</p>
+              <p className="text-[13px] font-medium">
+                Kala Massala · {pack.weight}
+                {orderQty > 1 ? ` × ${orderQty}` : ""}
+              </p>
               <p className="text-[12px] text-[#565959]">{pack.note}</p>
             </div>
           </div>
           <div className="mt-4 space-y-1 text-[13px]">
             <div className="flex justify-between">
               <span>Items</span>
-              <span>{formatInr(pack.price)}</span>
+              <span>{formatInr(itemsTotal)}</span>
             </div>
             <div className="flex justify-between">
               <span>Transport</span>

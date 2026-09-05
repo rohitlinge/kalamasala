@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { quoteDelivery } from "@/lib/delivery";
-import { validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
+import { parseOrderQty, validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
 import { getPack, orderRef, rupeesToPaise } from "@/lib/product";
 import { getRazorpay } from "@/lib/razorpay";
 import { razorpayKeyId } from "@/lib/env";
@@ -27,7 +27,9 @@ export async function POST(request: Request) {
   }
 
   const pack = getPack(checkout.packId);
-  const totalRupees = pack.price + quote.fee;
+  const qty = parseOrderQty(checkout.qty);
+  const masala = pack.price * qty;
+  const totalRupees = masala + quote.fee;
   const amount = rupeesToPaise(totalRupees);
   const ref = orderRef();
   const razorpay = getRazorpay();
@@ -38,9 +40,10 @@ export async function POST(request: Request) {
       ref,
       amount,
       total: totalRupees,
-      masala: pack.price,
+      masala,
       delivery: quote.fee,
       pack: pack.weight,
+      qty,
     });
   }
 
@@ -54,7 +57,7 @@ export async function POST(request: Request) {
         name: checkout.name,
         phone: checkout.phone,
         pincode: checkout.pincode,
-        pack: pack.weight,
+        pack: qty > 1 ? `${pack.weight} x${qty}` : pack.weight,
         city: "Nagpur",
         delivery: String(quote.fee),
         zone: "Nagpur",
@@ -73,8 +76,9 @@ export async function POST(request: Request) {
     orderId: razorpayOrder.id,
     amount: razorpayOrder.amount,
     total: totalRupees,
-    masala: pack.price,
+    masala,
     delivery: quote.fee,
+    qty,
     key: razorpayKeyId(),
     ref,
   });

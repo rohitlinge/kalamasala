@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { quoteDelivery } from "@/lib/delivery";
 import { recordPaidOrder, paidAtIst } from "@/lib/order-sheet";
-import { validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
+import { parseOrderQty, validateOrder, withLockedRegion, type OrderInput } from "@/lib/nagpur";
 import { getPack, orderRef } from "@/lib/product";
 import { verifySignature } from "@/lib/razorpay";
 
@@ -33,12 +33,14 @@ export async function POST(request: Request) {
   }
 
   const pack = getPack(order.packId);
+  const qty = parseOrderQty(order.qty);
   const quote = await quoteDelivery({
     pincode: order.pincode,
     address: order.address,
   });
   const delivery = quote.ok && quote.fee != null ? quote.fee : 0;
-  const total = pack.price + delivery;
+  const masala = pack.price * qty;
+  const total = masala + delivery;
   const ref = /^LS-\d{4}$/.test(body.ref ?? "") ? body.ref! : orderRef();
 
   await recordPaidOrder({
@@ -53,8 +55,8 @@ export async function POST(request: Request) {
     pincode: order.pincode.trim(),
     city: order.city,
     state: order.state,
-    pack: pack.weight,
-    masala: pack.price,
+    pack: qty > 1 ? `${pack.weight} x${qty}` : pack.weight,
+    masala,
     delivery,
     total,
     zone: quote.zoneLabel ?? "",

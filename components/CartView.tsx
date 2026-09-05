@@ -59,7 +59,7 @@ export default function CartView() {
                   <a href="/#product" className="text-[15px] leading-snug hover:text-link-hover hover:underline sm:text-[18px]">
                     Lata Special Kala Massala · {pack.weight}
                   </a>
-                  <p className="mt-1 text-[16px] font-bold sm:hidden">{formatInr(pack.price)}</p>
+                  <p className="mt-1 text-[16px] font-bold sm:hidden">{formatInr(pack.price * line.qty)}</p>
                   <p className="mt-1 text-[12px] font-bold text-[#007600]">In stock</p>
                   <p className="text-[12px] text-[#565959]">{pack.note}</p>
                   <div className="mt-3 flex flex-wrap items-center gap-3 text-[12px]">
@@ -82,7 +82,7 @@ export default function CartView() {
                     </button>
                   </div>
                 </div>
-                <p className="hidden text-right text-[18px] font-bold sm:block">{formatInr(pack.price)}</p>
+                <p className="hidden text-right text-[18px] font-bold sm:block">{formatInr(pack.price * line.qty)}</p>
               </li>
             );
           })}
