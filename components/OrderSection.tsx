@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { packs } from "@/lib/content";
-import { type DeliveryQuote, zoneFromPincode } from "@/lib/zones";
+import { TRANSPORT_FEE, isServiceablePincode } from "@/lib/zones";
 import { deliveryMessage, LOCKED_CITY, LOCKED_STATE, validateOrder, withLockedRegion } from "@/lib/nagpur";
 import { formatInr } from "@/lib/product";
 import { useCart } from "@/lib/cart";
@@ -46,8 +46,6 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
     state: LOCKED_STATE,
   });
   const [status, setStatus] = useState<Status>({ kind: "idle" });
-  const [quote, setQuote] = useState<DeliveryQuote | null>(null);
-  const [quoteBusy, setQuoteBusy] = useState(false);
 
   useEffect(() => {
     setPackId(checkoutPackId);
@@ -60,43 +58,15 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
   }, [deliverPin, form.pincode]);
 
   const pack = packs.find((p) => p.id === packId) ?? packs[0];
-  const pinZone = useMemo(() => zoneFromPincode(form.pincode), [form.pincode]);
   const delivery = useMemo(
     () => deliveryMessage(form.pincode, form.city, form.state),
     [form.pincode, form.city, form.state],
   );
 
-  const quoteBlocked = quote != null && !quote.ok;
-  const transport = quoteBlocked ? undefined : (quote?.fee ?? pinZone?.fee);
+  const pinReady = isServiceablePincode(form.pincode);
+  const pinBlocked = /^\d{6}$/.test(form.pincode.replace(/\s/g, "")) && !pinReady;
+  const transport = pinReady ? TRANSPORT_FEE : undefined;
   const total = pack.price + (transport ?? 0);
-
-  useEffect(() => {
-    const pin = form.pincode.replace(/\s/g, "");
-    if (!/^\d{6}$/.test(pin)) {
-      setQuote(null);
-      setQuoteBusy(false);
-      return;
-    }
-
-    const handle = window.setTimeout(async () => {
-      setQuoteBusy(true);
-      try {
-        const res = await fetch("/api/delivery-quote", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ pincode: pin, address: form.address }),
-        });
-        const data = (await res.json()) as DeliveryQuote;
-        setQuote(data);
-      } catch {
-        setQuote(null);
-      } finally {
-        setQuoteBusy(false);
-      }
-    }, 450);
-
-    return () => window.clearTimeout(handle);
-  }, [form.pincode, form.address]);
 
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
@@ -114,8 +84,8 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
       setStatus({ kind: "error", text: err });
       return;
     }
-    if (quote && !quote.ok) {
-      setStatus({ kind: "error", text: quote.text });
+    if (pinBlocked) {
+      setStatus({ kind: "error", text: delivery.text });
       return;
     }
     setStatus({ kind: "busy" });
@@ -260,7 +230,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
               </div>
             </div>
             <p className={`mt-3 text-[13px] ${delivery.ok ? "text-[#007600]" : "text-[#565959]"}`}>
-              {quoteBusy ? "Checking road distance from Great Nag Road…" : quote?.text ?? delivery.text}
+              {delivery.text}
             </p>
           </div>
 
@@ -296,7 +266,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
         </div>
 
         <aside className="amz-card order-1 h-fit p-4 md:p-5 lg:order-2">
-          <button type="submit" className="btn-buy min-w-0 whitespace-normal" disabled={status.kind === "busy" || quoteBlocked}>
+          <button type="submit" className="btn-buy min-w-0 whitespace-normal" disabled={status.kind === "busy" || pinBlocked}>
             {status.kind === "busy" ? "Opening Razorpay…" : payLabel}
           </button>
           <p className="mt-2 text-center text-[11px] text-[#565959]">
@@ -318,10 +288,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
               <span>{formatInr(pack.price)}</span>
             </div>
             <div className="flex justify-between">
-              <span>
-                Delivery
-                {quote?.distanceKm != null ? ` · ${quote.distanceKm} km` : pinZone ? ` · ${pinZone.label}` : ""}
-              </span>
+              <span>Transport</span>
               <span>{transport != null ? formatInr(transport) : "—"}</span>
             </div>
             <div className="flex justify-between border-t border-[#d5d9d9] pt-2 text-[18px] font-bold text-price">
@@ -330,7 +297,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             </div>
           </div>
           <p className="mt-3 text-[12px] text-[#565959]">
-            Inner city ₹99 · other 440xxx ₹179 · 441xxx ₹210.
+            Flat ₹{TRANSPORT_FEE} transport on every Nagpur order.
           </p>
         </aside>
       </form>

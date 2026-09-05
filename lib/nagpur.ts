@@ -28,7 +28,7 @@ export function deliveryMessage(pin: string, city: string, state: string): {
   text: string;
 } {
   if (!pin && !city) {
-    return { ok: false, text: "Enter your Nagpur pincode to check delivery and transport." };
+    return { ok: false, text: "Enter your Nagpur pincode to check delivery." };
   }
   if (pin && !/^\d{6}$/.test(pin.replace(/\s/g, ""))) {
     return { ok: false, text: "Pincode must be 6 digits." };
@@ -51,7 +51,7 @@ export function deliveryMessage(pin: string, city: string, state: string): {
   if (isNagpurPincode(pin) && (!city || isNagpurCity(city))) {
     return {
       ok: true,
-      text: "Yes — we deliver to this Nagpur pin. Transport is added below, kitchen to door within 6 days.",
+      text: "Yes — we deliver to this Nagpur pin. Transport is ₹20, kitchen to door within 6 days.",
     };
   }
   return { ok: false, text: "Confirm city as Nagpur and a 440xxx or 441xxx pincode." };

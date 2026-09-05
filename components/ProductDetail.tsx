@@ -99,7 +99,7 @@ export default function ProductDetail() {
                 <span className="align-top text-[13px] text-price">₹</span>
                 <span className="price text-[28px] leading-none">{pack.price}</span>
               </p>
-              <p className="mt-1 text-[13px] text-[#565959]">Masala only · transport extra at checkout</p>
+              <p className="mt-1 text-[13px] text-[#565959]">Masala only · transport ₹20 at checkout</p>
             </div>
 
             <div className="mt-4">
@@ -181,7 +181,7 @@ export default function ProductDetail() {
               {deliverPin && (
                 <p className={`mt-2 text-[12px] ${pinOk ? "text-[#007600]" : "text-warn"}`}>
                   {pinOk
-                    ? "We deliver to this Nagpur pin. Transport added at checkout."
+                    ? "We deliver to this Nagpur pin. Transport is ₹20 at checkout."
                     : "We deliver only to 440xxx and 441xxx."}
                 </p>
               )}

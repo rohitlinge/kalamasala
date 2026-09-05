@@ -35,7 +35,7 @@ export default function CartView() {
         <p className="text-[16px] md:text-[18px]">
           Subtotal ({count} {count === 1 ? "item" : "items"}): <span className="font-bold">{formatInr(subtotal)}</span>
         </p>
-        <p className="mt-2 text-[12px] text-[#565959]">Transport is calculated at checkout from your Nagpur pincode.</p>
+        <p className="mt-2 text-[12px] text-[#565959]">Transport is a flat ₹20 at checkout. Nagpur pincodes only.</p>
         <button type="button" className="btn-cart mt-4" onClick={proceed}>
           Proceed to Buy
         </button>

@@ -10,7 +10,7 @@ export default function Faq() {
     },
     {
       q: "How do I buy Saoji or Sawji masala online from you?",
-      a: "Choose 250 g, 500 g, 1 kg, or 2 kg, add your Nagpur pincode, and pay. One pack is charged per order. Transport is added at checkout from your pin.",
+      a: "Choose 250 g, 500 g, 1 kg, or 2 kg, add your Nagpur pincode, and pay. One pack is charged per order. Transport is a flat ₹20 at checkout.",
     },
   ];
 

@@ -57,8 +57,8 @@ export async function POST(request: Request) {
         pack: pack.weight,
         city: "Nagpur",
         delivery: String(quote.fee),
-        zone: quote.zoneId ?? "",
-        distanceKm: quote.distanceKm != null ? String(quote.distanceKm) : "",
+        zone: "Nagpur",
+        distanceKm: "",
       },
     });
   } catch {

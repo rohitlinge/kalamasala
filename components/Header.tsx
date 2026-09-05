@@ -34,7 +34,7 @@ export default function Header() {
     <div className="absolute left-2 right-2 top-full z-50 mt-1 rounded-sm bg-white p-4 text-[#0f1111] shadow-xl sm:left-0 sm:right-auto sm:w-72">
       <p className="text-[13px] font-bold">Choose your location</p>
       <p className="mt-1 text-[12px] text-[#565959]">
-        Delivery is Nagpur only (440xxx and 441xxx). Transport is added at checkout.
+        Delivery is Nagpur only (440xxx and 441xxx). Transport is a flat ₹20.
       </p>
       <label className="field mt-3">Pincode</label>
       <input
