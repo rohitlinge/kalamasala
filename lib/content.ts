@@ -214,24 +214,33 @@ export const comparisons = [
   },
 ];
 
-export const uses = [
-  {
-    title: "Usal, misal & bhaji",
-    body: "One level teaspoon for two servings. Bloom in hot oil at the end, then fold through. Do not boil hard after it goes in — the perfume is the point.",
-  },
-  {
-    title: "Gravy & Sunday mutton",
-    body: "Toast a spoon in ghee with onion, then add tomato. The kala colour should stain the gravy, not sit as dust on top.",
-  },
-  {
-    title: "Vegetables & raita",
-    body: "A pinch on roasted bhindi, potato, or in thick dahi. It is a finishing spice as much as a cooking spice.",
-  },
-  {
-    title: "Marinade",
-    body: "With curd, ginger-garlic, and salt. Rest the meat an hour. The coconut and sesame give body that factory masala never does.",
-  },
-];
+export const howToUse = {
+  heading: "मसाले का उपयोग कैसे करें",
+  intro:
+    "हमारा काला मसाला आलू-बैंगन, आलू की सब्जी, वड़ी की सब्जी, रसेदार सब्जी और ग्रेवी वाली सब्जियों में आसानी से इस्तेमाल किया जा सकता है।",
+  methods: [
+    {
+      title: "सूखी सब्जी के लिए",
+      body: "आलू-बैंगन, आलू या वड़ी की सब्जी बनाते समय सब्जी तैयार होने के अनुसार ऊपर से काला मसाला डालें और अच्छी तरह मिलाएँ।",
+      steps: [] as string[],
+    },
+    {
+      title: "रसेदार / ग्रेवी वाली सब्जी के लिए",
+      body: "",
+      steps: [
+        "सबसे पहले अदरक, लहसुन और थोड़ा प्याज भून लें।",
+        "इसे पीसकर पेस्ट तैयार करें।",
+        "अब इस पेस्ट में आवश्यक मात्रा में काला मसाला डालें।",
+        "कड़ाही में तेल गर्म करके इस मसाले के पेस्ट को अच्छी तरह भूनें।",
+        "जब मसाले से तेल ऊपर आने लगे, तब समझें कि मसाला अच्छी तरह भुन गया है।",
+        "अब अपनी पसंद के अनुसार तीखापन बढ़ाने के लिए मिर्च डालें।",
+        "इसके बाद आवश्यक मात्रा में पानी और सब्जी डालकर अच्छी तरह पकाएँ।",
+      ],
+    },
+  ],
+  tipTitle: "तीखापन कैसे रखें?",
+  tip: "काला मसाला डालने के बाद अपनी पसंद के अनुसार हरी मिर्च या लाल मिर्च कम-ज्यादा कर सकते हैं।",
+} as const;
 
 export const storageRules = [
   {

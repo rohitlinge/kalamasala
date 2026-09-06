@@ -1,4 +1,4 @@
-import { uses } from "@/lib/content";
+import { howToUse } from "@/lib/content";
 
 export default function HowToUse() {
   return (
@@ -12,21 +12,31 @@ export default function HowToUse() {
           />
         </div>
         <div className="p-3 md:p-8">
-          <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">Product description</p>
-          <h2 className="mt-1 text-[20px] font-medium md:text-[26px]">A spoon, hot oil, and a little restraint.</h2>
-          <ul className="mt-5 space-y-4">
-            {uses.map((u, i) => (
-              <li key={u.title}>
-                <h3 className="text-[15px] font-bold">
-                  {i + 1}. {u.title}
+          <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">उपयोग</p>
+          <h2 className="font-hindi mt-1 text-[20px] font-medium md:text-[26px]">{howToUse.heading}</h2>
+          <p className="font-hindi mt-3 text-[14px] leading-7 text-[#0f1111]">{howToUse.intro}</p>
+          <ol className="mt-5 space-y-5">
+            {howToUse.methods.map((method, i) => (
+              <li key={method.title}>
+                <h3 className="font-hindi text-[15px] font-bold">
+                  {i + 1}. {method.title}
                 </h3>
-                <p className="mt-1 text-[13px] leading-5 text-[#565959]">{u.body}</p>
+                {method.body ? (
+                  <p className="font-hindi mt-1 text-[13px] leading-6 text-[#565959]">{method.body}</p>
+                ) : null}
+                {method.steps.length > 0 ? (
+                  <ul className="font-hindi mt-2 list-disc space-y-1.5 pl-5 text-[13px] leading-6 text-[#565959]">
+                    {method.steps.map((step) => (
+                      <li key={step}>{step}</li>
+                    ))}
+                  </ul>
+                ) : null}
               </li>
             ))}
-          </ul>
-          <p className="mt-6 border-l-4 border-[#ffa41c] pl-3 text-[13px] leading-5 text-[#565959]">
-            Start with less than you think. You can always add. Boiling the masala for long after it goes in steals the
-            top notes we roasted so carefully.
+          </ol>
+          <p className="font-hindi mt-6 border-l-4 border-[#ffa41c] pl-3 text-[13px] leading-6 text-[#565959]">
+            <span className="font-bold text-[#0f1111]">🌶️ {howToUse.tipTitle}</span>
+            <span className="mt-1 block">{howToUse.tip}</span>
           </p>
         </div>
       </div>
