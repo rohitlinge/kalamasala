@@ -7,8 +7,10 @@ import SocialDock from "@/components/SocialDock";
 export default function StoreShell({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Header />
-      <SubNav />
+      <div id="top" data-site-chrome className="sticky top-0 z-40">
+        <Header />
+        <SubNav />
+      </div>
       <AddedToCart />
       <SocialDock />
       <main className="min-w-0 max-w-full overflow-x-hidden">{children}</main>

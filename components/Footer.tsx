@@ -86,6 +86,22 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+        <div className="mx-auto mt-8 max-w-[1100px]">
+          <p className="text-[16px] font-bold">Visit the kitchen</p>
+          <p className="mt-1 text-[13px] text-[#ddd]">
+            16 A, Great Nag Road, near Ambience Interior Mall, Untkhana, Nagpur, Maharashtra 440024
+          </p>
+          <div className="mt-4 overflow-hidden rounded-sm">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7442.797094131783!2d79.09582031473985!3d21.136531901734333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0b0525c2f5b%3A0x4c1e02cdfa4d2020!2s16%20A%2C%20Great%20Nag%20Rd%2C%20near%20Ambience%20Interior%20Mall%20-%20Furniture%2C%20Decor%2C%20Spacewood%20Dealer%20in%20Nagpur%2C%20Untkhana%2C%20Nagpur%2C%20Maharashtra%20440024!5e0!3m2!1sen!2sin!4v1788682198686!5m2!1sen!2sin"
+              title="Lata Special kitchen on Great Nag Road, Nagpur"
+              className="h-[220px] w-full border-0 md:h-[320px]"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </div>
       </div>
       <div className="border-t border-[#3a4553] bg-nav px-5 py-8 text-center">
         <SocialIcons className="mb-4 justify-center md:hidden" />

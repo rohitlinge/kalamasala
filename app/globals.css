@@ -31,7 +31,7 @@ body {
   background: var(--color-page);
   color: var(--color-ink);
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   overscroll-behavior-x: none;
 }
 

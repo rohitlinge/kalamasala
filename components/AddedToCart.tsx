@@ -11,8 +11,8 @@ export default function AddedToCart() {
 
   useLayoutEffect(() => {
     function place() {
-      const header = document.querySelector("header");
-      const headerH = header ? header.getBoundingClientRect().height : 56;
+      const chrome = document.querySelector("[data-site-chrome]") ?? document.querySelector("header");
+      const headerH = chrome ? chrome.getBoundingClientRect().height : 56;
       const next = Math.round(headerH + 8);
       setTop(next);
     }

@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section id="top">
+    <section>
       <h1 className="sr-only">
         Buy Nagpur masala online — Lata Special homemade Kala Massala, Nagpuri and Saoji taste
       </h1>
