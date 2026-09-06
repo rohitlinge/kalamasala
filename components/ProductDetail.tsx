@@ -51,6 +51,8 @@ export default function ProductDetail() {
                 src={gallery[photo].src}
                 alt={gallery[photo].alt}
                 className="h-[240px] w-full object-contain sm:h-[320px] md:h-[460px]"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div
@@ -73,7 +75,7 @@ export default function ProductDetail() {
                     onClick={() => setPhoto(i)}
                     className={`h-14 w-14 shrink-0 overflow-hidden rounded-sm border ${photo === i ? "border-[#e77600]" : "border-[#888c8c]"}`}
                   >
-                    <img src={g.src} alt="" className="h-full w-full object-cover object-center" />
+                    <img src={g.src} alt="" className="h-full w-full object-cover object-center" loading="lazy" decoding="async" />
                   </button>
                 ))}
               </div>

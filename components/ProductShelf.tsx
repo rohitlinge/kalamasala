@@ -15,6 +15,8 @@ export default function ProductShelf() {
                 src={p.image}
                 alt={`Lata Special Kala Massala ${p.weight}`}
                 className="h-28 w-full rounded-sm object-cover md:h-44"
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <p className="mt-2 text-[13px] font-medium md:text-[16px]">Kala Massala · {p.weight}</p>
@@ -32,11 +34,15 @@ export default function ProductShelf() {
               src="/images/product/what inside kala masala mobile.png"
               alt="What is inside homemade Kala Massala"
               className="h-28 w-full rounded-sm object-cover md:hidden"
+              loading="lazy"
+              decoding="async"
             />
             <img
               src="/images/product/what inside in kala masala.png"
               alt="What is inside homemade Kala Massala"
               className="hidden h-44 w-full rounded-sm object-cover md:block"
+              loading="lazy"
+              decoding="async"
             />
           </a>
           <p className="mt-2 text-[12px] text-[#0f1111] md:text-[14px]">Eleven whole spices. No fillers, no dye.</p>

@@ -20,11 +20,15 @@ export default function Ingredients() {
             src="/images/product/what inside kala masala mobile.png"
             alt="What is inside homemade Kala Massala"
             className="h-auto w-full object-contain md:hidden"
+            loading="lazy"
+            decoding="async"
           />
           <img
             src="/images/product/what inside in kala masala.png"
             alt="What is inside homemade Kala Massala"
             className="hidden h-[340px] w-full object-cover md:block"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -32,7 +36,7 @@ export default function Ingredients() {
           {ingredients.map((item) => (
             <li key={item.name} className="overflow-hidden rounded-sm border border-[#d5d9d9] bg-white">
               <div className="aspect-square bg-[#f7f7f7]">
-                <img src={item.image} alt={item.alt} className="h-full w-full object-cover" />
+                <img src={item.image} alt={item.alt} className="h-full w-full object-cover" loading="lazy" decoding="async" />
               </div>
               <div className="p-2 md:p-3">
                 <h3 className="font-hindi-display text-[15px] leading-snug md:text-[17px]">{item.name}</h3>

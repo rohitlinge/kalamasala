@@ -17,6 +17,7 @@ const hindiDisplay = Noto_Serif_Devanagari({
   weight: ["400", "500", "600", "700"],
   variable: "--font-hindi-display",
   display: "swap",
+  preload: false,
 });
 
 const hindiBody = Noto_Sans_Devanagari({
@@ -24,6 +25,7 @@ const hindiBody = Noto_Sans_Devanagari({
   weight: ["400", "500", "600"],
   variable: "--font-hindi-body",
   display: "swap",
+  preload: false,
 });
 
 export const viewport: Viewport = {
@@ -88,6 +90,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN">
       <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero%20baneres/mobile-hero.webp"
+          type="image/webp"
+          media="(max-width: 767px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero%20baneres/desktop-hero.webp"
+          type="image/webp"
+          media="(min-width: 768px)"
+          fetchPriority="high"
+        />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-2MPBST4NRX" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`

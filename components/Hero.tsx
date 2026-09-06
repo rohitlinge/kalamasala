@@ -5,16 +5,20 @@ export default function Hero() {
         Buy Nagpur masala online — Lata Special homemade Kala Massala, Nagpuri and Saoji taste
       </h1>
       <div className="mx-auto max-w-[1500px]">
-        <img
-          src="/images/hero baneres/mobile hero image.png"
-          alt="Buy Nagpur masala online — Lata Special homemade Kala Massala, mobile banner"
-          className="block h-auto w-full md:hidden"
-        />
-        <img
-          src="/images/hero baneres/Dekstop hero image.png"
-          alt="Buy Nagpur masala online — Lata Special homemade Kala Massala, desktop banner"
-          className="hidden h-auto w-full md:block"
-        />
+        <picture>
+          <source media="(min-width: 768px)" type="image/webp" srcSet="/images/hero baneres/desktop-hero.webp" />
+          <source media="(min-width: 768px)" type="image/png" srcSet="/images/hero baneres/Dekstop hero image.png" />
+          <source type="image/webp" srcSet="/images/hero baneres/mobile-hero.webp" />
+          <img
+            src="/images/hero baneres/mobile hero image.png"
+            alt="Buy Nagpur masala online — Lata Special homemade Kala Massala, mobile banner"
+            width={400}
+            height={600}
+            fetchPriority="high"
+            decoding="async"
+            className="aspect-[2/3] h-auto w-full md:aspect-[5/2]"
+          />
+        </picture>
       </div>
     </section>
   );

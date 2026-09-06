@@ -17,6 +17,8 @@ export default function Storage() {
                 src="/images/product/Masala is an oil.webp"
                 alt="Homemade Kala Massala with its natural oils"
                 className="h-40 w-full object-cover md:h-52"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

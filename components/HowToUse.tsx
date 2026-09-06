@@ -9,6 +9,8 @@ export default function HowToUse() {
             src="/images/product/what inside masala..png"
             alt="Homemade Kala Massala ready to cook"
             className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div className="p-3 md:p-8">

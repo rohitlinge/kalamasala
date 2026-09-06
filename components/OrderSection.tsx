@@ -279,7 +279,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
 
           <h3 className="mt-5 border-t border-[#d5d9d9] pt-4 text-[18px] font-bold">Order summary</h3>
           <div className="mt-3 flex gap-3">
-            <img src={pack.image} alt="" className="h-16 w-16 object-cover" />
+            <img src={pack.image} alt="" className="h-16 w-16 object-cover" loading="lazy" decoding="async" />
             <div>
               <p className="text-[13px] font-medium">
                 Kala Massala · {pack.weight}

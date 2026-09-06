@@ -32,6 +32,8 @@ export default function Reviews({ showFirstProduct = false }: { showFirstProduct
                 src={first.image}
                 alt={`Lata Special Kala Massala ${first.weight}`}
                 className="h-40 w-full rounded-sm object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <p className="mt-2 text-[16px] font-medium">Kala Massala · {first.weight}</p>

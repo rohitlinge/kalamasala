@@ -52,6 +52,8 @@ export default function OwnerPage() {
               src={owner.photo}
               alt={`${owner.name}, homemade Nagpur Kala Massala`}
               className="h-52 w-52 rounded-full object-cover object-top shadow-md md:h-64 md:w-64"
+              loading="lazy"
+              decoding="async"
             />
             <h1 className="mt-4 text-[26px] font-medium md:text-[32px]">{owner.name}</h1>
             <p className="mt-1 text-[13px] text-[#565959]">Nagpur kitchen · Nagpuri &amp; Saoji-style Kala Massala</p>

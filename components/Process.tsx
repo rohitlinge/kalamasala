@@ -8,6 +8,8 @@ export default function Process() {
           src="/images/product/A small process.png"
           alt="A small process of making homemade Kala Massala"
           className="h-[180px] w-full object-cover md:h-[380px]"
+          loading="lazy"
+          decoding="async"
         />
         <div className="p-3 md:p-8">
           <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">From the manufacturer</p>

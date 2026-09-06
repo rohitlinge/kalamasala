@@ -53,7 +53,7 @@ export default function CartView() {
             return (
               <li key={line.packId} className="flex gap-3 border-b border-[#d5d9d9] py-4 sm:grid sm:grid-cols-[96px_1fr_auto] sm:gap-4">
                 <a href="/#product" className="shrink-0">
-                  <img src={pack.image} alt="" className="h-20 w-20 object-cover sm:h-24 sm:w-24" />
+                  <img src={pack.image} alt="" className="h-20 w-20 object-cover sm:h-24 sm:w-24" loading="lazy" decoding="async" />
                 </a>
                 <div className="min-w-0 flex-1">
                   <a href="/#product" className="text-[15px] leading-snug hover:text-link-hover hover:underline sm:text-[18px]">
