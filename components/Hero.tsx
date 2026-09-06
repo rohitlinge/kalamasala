@@ -11,12 +11,10 @@ export default function Hero() {
           <source type="image/webp" srcSet="/images/hero baneres/mobile-hero.webp" />
           <img
             src="/images/hero baneres/mobile hero image.png"
-            alt="Buy Nagpur masala online — Lata Special homemade Kala Massala, mobile banner"
-            width={400}
-            height={600}
+            alt="Buy Nagpur masala online — Lata Special homemade Kala Massala banner"
             fetchPriority="high"
             decoding="async"
-            className="aspect-[2/3] h-auto w-full md:aspect-[5/2]"
+            className="block h-auto w-full"
           />
         </picture>
       </div>
