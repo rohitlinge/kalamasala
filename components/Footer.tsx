@@ -111,6 +111,7 @@ export default function Footer() {
         <p className="mt-2 text-[12px] text-[#999]">
           © {new Date().getFullYear()} Lata Special · Kala Massala · Nagpur, Maharashtra
         </p>
+        <p className="mt-1 text-[12px] text-[#999]">GSTIN: 27BGEPL8932M1ZT</p>
         <p className="mt-1 text-[12px] text-[#999]">
           <a href="tel:+918484911196" className="hover:underline">
             +91 8484911196
