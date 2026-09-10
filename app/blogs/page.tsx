@@ -2,30 +2,51 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import StoreShell from "@/components/StoreShell";
 import { JsonLd } from "@/lib/jsonld";
-import { blogs } from "@/lib/blogs";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { absoluteAssetUrl, blogs } from "@/lib/blogs";
+import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 
-const title = "Blogs — Recipes & Kitchen Stories";
+const title = "Blogs — Recipes & Kitchen Stories from Lata Special";
 const description =
-  "Recipes and kitchen stories from Lata Special, Nagpur. Butter chicken, masala tips, and homemade Maharashtrian cooking — written the way we cook at home.";
+  "Homemade Indian recipes and kitchen stories from Lata Special, Nagpur. Start with our butter chicken recipe — soft chicken, makhani gravy, and cold-smoke flavour.";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: `${title} | ${SITE_NAME}` },
   description,
   keywords: [
     "Lata Special blog",
     "Indian chicken recipes",
     "butter chicken recipe",
+    "homemade Indian recipes",
     "Nagpur recipes",
-    "homemade masala recipes",
+    "makhani gravy recipe",
     "Kala Massala recipes",
   ],
   alternates: { canonical: `${SITE_URL}/blogs` },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: `${title} | ${SITE_NAME}`,
+    title,
     description,
     url: `${SITE_URL}/blogs`,
     type: "website",
+    siteName: SITE_NAME,
+    locale: "en_IN",
+    images: [{ url: absoluteAssetUrl(OG_IMAGE), alt: "Lata Special recipes blog" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [absoluteAssetUrl(OG_IMAGE)],
   },
 };
 
@@ -33,12 +54,15 @@ export default function BlogsPage() {
   const collectionLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
+    "@id": `${SITE_URL}/blogs`,
     name: title,
     description,
     url: `${SITE_URL}/blogs`,
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+    inLanguage: "en-IN",
     mainEntity: {
       "@type": "ItemList",
+      numberOfItems: blogs.length,
       itemListElement: blogs.map((b, i) => ({
         "@type": "ListItem",
         position: i + 1,
@@ -48,16 +72,29 @@ export default function BlogsPage() {
     },
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blogs", item: `${SITE_URL}/blogs` },
+    ],
+  };
+
   return (
     <StoreShell>
-      <JsonLd data={collectionLd} />
+      <JsonLd data={[collectionLd, breadcrumbLd]} />
       <div className="mx-auto max-w-[900px] px-3 py-5 md:px-4 md:py-8">
         <nav className="mb-3 text-[12px] text-[#565959]" aria-label="Breadcrumb">
-          <a href="/" className="text-link hover:text-link-hover hover:underline">
-            Home
-          </a>
-          <span className="mx-1.5">›</span>
-          <span className="text-[#0f1111]">Blogs</span>
+          <ol className="flex flex-wrap items-center gap-x-1.5">
+            <li>
+              <a href="/" className="text-link hover:text-link-hover hover:underline">
+                Home
+              </a>
+            </li>
+            <li aria-hidden="true">›</li>
+            <li className="text-[#0f1111]">Blogs</li>
+          </ol>
         </nav>
 
         <div className="amz-card p-4 md:p-8">

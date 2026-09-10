@@ -1,6 +1,8 @@
-export default function ButterChickenPost() {
+import type { BlogFaq } from "@/lib/blogs";
+
+export default function ButterChickenPost({ faqs = [] }: { faqs?: BlogFaq[] }) {
   return (
-    <article className="prose-blog space-y-5 text-[15px] leading-7 text-[#0f1111] md:text-[16px] md:leading-8">
+    <div className="prose-blog space-y-5 text-[15px] leading-7 text-[#0f1111] md:text-[16px] md:leading-8">
       <p>
         Friends, you must have seen hundreds of butter chicken recipes by now — instant butter
         chicken, restaurant-style butter chicken, the works. But this gravy recipe? Honestly, you
@@ -209,6 +211,24 @@ export default function ButterChickenPost() {
           .
         </p>
       </aside>
-    </article>
+
+      {faqs.length > 0 ? (
+        <section className="mt-10 border-t border-[#d5d9d9] pt-6" aria-labelledby="recipe-faq-heading">
+          <h2 id="recipe-faq-heading" className="text-[20px] font-bold text-[#0f1111] md:text-[22px]">
+            Frequently asked questions
+          </h2>
+          <dl className="mt-4 space-y-4">
+            {faqs.map((f) => (
+              <div key={f.question}>
+                <dt className="text-[15px] font-bold text-[#0f1111]">{f.question}</dt>
+                <dd className="mt-1 text-[14px] leading-6 text-[#565959] md:text-[15px] md:leading-7">
+                  {f.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ) : null}
+    </div>
   );
 }

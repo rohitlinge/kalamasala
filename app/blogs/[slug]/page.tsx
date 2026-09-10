@@ -5,7 +5,17 @@ import StoreShell from "@/components/StoreShell";
 import BlogFeaturedVideo from "@/components/blogs/BlogFeaturedVideo";
 import ButterChickenPost from "@/components/blogs/ButterChickenPost";
 import { JsonLd } from "@/lib/jsonld";
-import { getAllBlogSlugs, getBlog } from "@/lib/blogs";
+import {
+  absoluteAssetUrl,
+  blogBreadcrumbLd,
+  blogFaqLd,
+  blogPostingLd,
+  blogUrl,
+  blogWebPageLd,
+  butterChickenRecipeLd,
+  getAllBlogSlugs,
+  getBlog,
+} from "@/lib/blogs";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -17,30 +27,68 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlog(slug);
-  if (!post) return { title: "Blog not found" };
+  if (!post) {
+    return {
+      title: "Blog not found",
+      robots: { index: false, follow: false },
+    };
+  }
 
-  const url = `${SITE_URL}/blogs/${post.slug}`;
+  const url = blogUrl(post.slug);
+  const image = absoluteAssetUrl(post.ogImage);
+
   return {
-    title: post.title,
+    title: { absolute: post.seoTitle },
     description: post.description,
     keywords: post.keywords,
-    authors: [{ name: post.author }],
+    authors: [{ name: post.author, url: `${SITE_URL}/owner` }],
+    creator: post.author,
+    publisher: SITE_NAME,
+    category: "food",
     alternates: { canonical: url },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     openGraph: {
-      title: post.title,
+      title: post.seoTitle,
       description: post.description,
       url,
       type: "article",
-      publishedTime: post.publishedAt,
-      modifiedTime: post.updatedAt,
+      publishedTime: `${post.publishedAt}T09:00:00+05:30`,
+      modifiedTime: `${post.updatedAt}T09:00:00+05:30`,
       authors: [post.author],
+      section: post.category,
+      tags: post.keywords,
       siteName: SITE_NAME,
       locale: "en_IN",
+      images: [
+        {
+          url: image,
+          alt: post.ogImageAlt,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: post.seoTitle,
       description: post.description,
+      images: [{ url: image, alt: post.ogImageAlt }],
+    },
+    other: {
+      "article:published_time": `${post.publishedAt}T09:00:00+05:30`,
+      "article:modified_time": `${post.updatedAt}T09:00:00+05:30`,
+      "article:author": post.author,
+      "article:section": post.category,
     },
   };
 }
@@ -50,139 +98,67 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getBlog(slug);
   if (!post) notFound();
 
-  const url = `${SITE_URL}/blogs/${post.slug}`;
-
-  const articleLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt,
-    author: {
-      "@type": "Person",
-      name: post.author,
-      url: `${SITE_URL}/owner`,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    keywords: post.keywords.join(", "),
-    inLanguage: "en-IN",
-    articleSection: post.category,
-  };
-
-  const recipeLd =
-    slug === "butter-chicken-recipe"
-      ? {
-          "@context": "https://schema.org",
-          "@type": "Recipe",
-          name: "Butter Chicken Recipe | Lata Special",
-          description: post.description,
-          author: { "@type": "Person", name: post.author },
-          datePublished: post.publishedAt,
-          prepTime: "PT20M",
-          cookTime: "PT40M",
-          totalTime: "PT60M",
-          recipeYield: "4 servings",
-          recipeCategory: "Main course",
-          recipeCuisine: "Indian",
-          keywords: post.keywords.join(", "),
-          recipeIngredient: [
-            "Whole spices (khade masale)",
-            "Garlic",
-            "1 onion",
-            "About 5 hybrid / salad tomatoes",
-            "Salt",
-            "A little sugar",
-            "Kashmiri red chilli",
-            "Ginger",
-            "Coriander stems",
-            "2 green chillies",
-            "Dry red chillies",
-            "50 g cashews",
-            "Chicken leg pieces with cuts",
-            "Butter",
-            "Ginger-garlic paste",
-            "Turmeric (1/4 tsp)",
-            "Garam masala",
-            "Kasuri methi (roasted)",
-            "Cardamom powder (1/2 tsp)",
-            "Tomato ketchup or honey",
-            "Cream or milk malai",
-            "1 tbsp raw mustard oil",
-            "Cinnamon stick + desi ghee (for cold smoke)",
-          ],
-          recipeInstructions: [
-            {
-              "@type": "HowToStep",
-              text: "Lightly roast whole spices, garlic and onion in a kadhai — only to remove rawness.",
-            },
-            {
-              "@type": "HowToStep",
-              text: "Add hybrid tomatoes, salt, sugar, Kashmiri chilli, ginger, coriander stems, green and dry red chillies, and 50 g cashews. Roast until tomatoes are lightly soft.",
-            },
-            {
-              "@type": "HowToStep",
-              text: "Add cut chicken leg pieces with a little butter. Bhunao 3–4 minutes with the tomato mix.",
-            },
-            {
-              "@type": "HowToStep",
-              text: "Add one cup water, cover, and cook 10 minutes on medium-low flame.",
-            },
-            {
-              "@type": "HowToStep",
-              text: "Remove chicken. Discard badi elaichi and tejpatta; keep chhoti elaichi. Cool gravy and grind to a fine paste; strain.",
-            },
-            {
-              "@type": "HowToStep",
-              text: "In a lagan, heat oil and butter, roast ginger-garlic paste, add Kashmiri chilli and a pinch of turmeric. Add strained paste and cook covered 10 minutes on medium-low.",
-            },
-            {
-              "@type": "HowToStep",
-              text: "Return chicken; add garam masala, roasted kasuri methi, elaichi powder, and ketchup or honey. Loosen with hot water if needed.",
-            },
-            {
-              "@type": "HowToStep",
-              text: "Finish with cream or malai, raw mustard oil, and cold-smoke with cinnamon and desi ghee.",
-            },
-          ],
-        }
-      : null;
+  const faqLd = blogFaqLd(post);
+  const schemas = [
+    blogWebPageLd(post),
+    blogPostingLd(post),
+    blogBreadcrumbLd(post),
+    ...(slug === "butter-chicken-recipe" ? [butterChickenRecipeLd(post)] : []),
+    ...(faqLd ? [faqLd] : []),
+  ];
 
   return (
     <StoreShell>
-      <JsonLd data={articleLd} />
-      {recipeLd ? <JsonLd data={recipeLd} /> : null}
+      <JsonLd data={schemas} />
       <div className="mx-auto max-w-[900px] px-3 py-5 md:px-4 md:py-8">
         <nav className="mb-3 text-[12px] text-[#565959]" aria-label="Breadcrumb">
-          <a href="/" className="text-link hover:text-link-hover hover:underline">
-            Home
-          </a>
-          <span className="mx-1.5">›</span>
-          <Link href="/blogs" className="text-link hover:text-link-hover hover:underline">
-            Blogs
-          </Link>
-          <span className="mx-1.5">›</span>
-          <span className="text-[#0f1111]">{post.shortTitle}</span>
+          <ol className="flex flex-wrap items-center gap-x-1.5">
+            <li>
+              <a href="/" className="text-link hover:text-link-hover hover:underline">
+                Home
+              </a>
+            </li>
+            <li aria-hidden="true">›</li>
+            <li>
+              <Link href="/blogs" className="text-link hover:text-link-hover hover:underline">
+                Blogs
+              </Link>
+            </li>
+            <li aria-hidden="true">›</li>
+            <li className="text-[#0f1111]">{post.shortTitle}</li>
+          </ol>
         </nav>
 
-        <div className="amz-card p-4 md:p-8">
+        <article className="amz-card p-4 md:p-8" itemScope itemType="https://schema.org/BlogPosting">
+          <meta itemProp="headline" content={post.title} />
+          <meta itemProp="datePublished" content={post.publishedAt} />
+          <meta itemProp="dateModified" content={post.updatedAt} />
+          <link itemProp="mainEntityOfPage" href={blogUrl(post.slug)} />
+
           <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">
             {post.category}
           </p>
-          <h1 className="mt-1 text-[26px] font-medium leading-tight md:text-[32px]">{post.title}</h1>
+          <h1 className="mt-1 text-[26px] font-medium leading-tight md:text-[32px]" itemProp="name">
+            {post.title}
+          </h1>
           <p className="mt-2 text-[13px] text-[#565959]">
             By{" "}
-            <Link href="/owner" className="text-link hover:text-link-hover hover:underline">
+            <Link
+              href="/owner"
+              className="text-link hover:text-link-hover hover:underline"
+              itemProp="author"
+            >
               {post.author}
             </Link>{" "}
-            · {formatDate(post.publishedAt)} · {post.readingMinutes} min read
+            ·{" "}
+            <time dateTime={post.publishedAt} itemProp="datePublished">
+              {formatDate(post.publishedAt)}
+            </time>{" "}
+            · {post.readingMinutes} min read
           </p>
-          <p className="mt-3 max-w-2xl text-[14px] leading-6 text-[#565959]">{post.description}</p>
+          <p className="mt-3 max-w-2xl text-[14px] leading-6 text-[#565959]" itemProp="description">
+            {post.description}
+          </p>
 
           {post.featuredVideo ? (
             <div className="mt-6">
@@ -196,8 +172,8 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           ) : null}
 
-          <div className="mt-8 border-t border-[#d5d9d9] pt-6">
-            {slug === "butter-chicken-recipe" ? <ButterChickenPost /> : null}
+          <div className="mt-8 border-t border-[#d5d9d9] pt-6" itemProp="articleBody">
+            {slug === "butter-chicken-recipe" ? <ButterChickenPost faqs={post.faqs} /> : null}
           </div>
 
           <div className="mt-10 border-t border-[#d5d9d9] pt-4">
@@ -208,7 +184,7 @@ export default async function BlogPostPage({ params }: Props) {
               ← All blogs
             </Link>
           </div>
-        </div>
+        </article>
       </div>
     </StoreShell>
   );
