@@ -24,4 +24,6 @@ export const SEO_KEYWORDS = [
   "Maharashtrian black masala",
   "Lata Special",
   "buy kala masala online Nagpur",
+  "butter chicken recipe",
+  "Lata Special recipes",
 ];

@@ -17,6 +17,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="/blogs" className="hover:underline">
+                  Blogs
+                </a>
+              </li>
+              <li>
                 <a href="/#masala" className="hover:underline">
                   About Lata Special
                 </a>
