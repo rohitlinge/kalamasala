@@ -9,7 +9,6 @@ const W = {
   garlic: "https://en.wikipedia.org/wiki/Garlic",
   onion: "https://en.wikipedia.org/wiki/Onion",
   tomato: "https://en.wikipedia.org/wiki/Tomato",
-  hybrid: "https://en.wikipedia.org/wiki/Hybrid_(biology)",
   salt: "https://en.wikipedia.org/wiki/Salt",
   sugar: "https://en.wikipedia.org/wiki/Sugar",
   chili: "https://en.wikipedia.org/wiki/Chili_pepper",
@@ -90,8 +89,8 @@ export default function ButterChickenPost({ faqs = [] }: { faqs?: BlogFaq[] }) {
           1 <Wiki href={W.onion}>onion</Wiki>
         </li>
         <li>
-          About 5 <Wiki href={W.hybrid}>hybrid</Wiki> / salad{" "}
-          <Wiki href={W.tomato}>tomatoes</Wiki> (don&apos;t use desi tomatoes)
+          About 5 hybrid / salad <Wiki href={W.tomato}>tomatoes</Wiki> (don&apos;t use desi
+          tomatoes)
         </li>
         <li>
           <Wiki href={W.salt}>Salt</Wiki>, a little <Wiki href={W.sugar}>sugar</Wiki>
