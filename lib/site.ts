@@ -26,4 +26,6 @@ export const SEO_KEYWORDS = [
   "buy kala masala online Nagpur",
   "butter chicken recipe",
   "Lata Special recipes",
+  "saoji mutton Nagpur recipe",
+  "saoji mutton recipe",
 ];

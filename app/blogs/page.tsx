@@ -7,7 +7,7 @@ import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const title = "Blogs — Recipes & Kitchen Stories from Lata Special";
 const description =
-  "Homemade Indian recipes and kitchen stories from Lata Special, Nagpur. Start with our butter chicken recipe — soft chicken, makhani gravy, and cold-smoke flavour.";
+  "Homemade Indian recipes from Lata Special, Nagpur — butter chicken, Saoji mutton, masala tips, and kitchen stories written the way we cook at home.";
 
 export const metadata: Metadata = {
   title: { absolute: `${title} | ${SITE_NAME}` },
@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "Lata Special blog",
     "Indian chicken recipes",
     "butter chicken recipe",
+    "saoji mutton recipe",
+    "Nagpur saoji mutton",
     "homemade Indian recipes",
     "Nagpur recipes",
     "makhani gravy recipe",

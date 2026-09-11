@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import StoreShell from "@/components/StoreShell";
 import BlogFeaturedVideo from "@/components/blogs/BlogFeaturedVideo";
 import ButterChickenPost from "@/components/blogs/ButterChickenPost";
+import SaojiMuttonPost from "@/components/blogs/SaojiMuttonPost";
 import { JsonLd } from "@/lib/jsonld";
 import {
   absoluteAssetUrl,
@@ -15,6 +16,7 @@ import {
   butterChickenRecipeLd,
   getAllBlogSlugs,
   getBlog,
+  saojiMuttonRecipeLd,
 } from "@/lib/blogs";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -99,11 +101,17 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const faqLd = blogFaqLd(post);
+  const recipeLd =
+    slug === "butter-chicken-recipe"
+      ? butterChickenRecipeLd(post)
+      : slug === "saoji-mutton-nagpur-recipe"
+        ? saojiMuttonRecipeLd(post)
+        : null;
   const schemas = [
     blogWebPageLd(post),
     blogPostingLd(post),
     blogBreadcrumbLd(post),
-    ...(slug === "butter-chicken-recipe" ? [butterChickenRecipeLd(post)] : []),
+    ...(recipeLd ? [recipeLd] : []),
     ...(faqLd ? [faqLd] : []),
   ];
 
@@ -174,6 +182,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           <div className="mt-8 border-t border-[#d5d9d9] pt-6" itemProp="articleBody">
             {slug === "butter-chicken-recipe" ? <ButterChickenPost faqs={post.faqs} /> : null}
+            {slug === "saoji-mutton-nagpur-recipe" ? <SaojiMuttonPost faqs={post.faqs} /> : null}
           </div>
 
           <div className="mt-10 border-t border-[#d5d9d9] pt-4">

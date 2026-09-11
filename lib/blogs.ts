@@ -91,6 +91,69 @@ export const blogs: BlogPost[] = [
       contentUrl: "https://www.pinterest.com/pin/963700020283687293/",
     },
   },
+  {
+    slug: "saoji-mutton-nagpur-recipe",
+    title: "Best Saoji Mutton Nagpur Recipe | Lata Special",
+    seoTitle: "Best Saoji Mutton Nagpur Recipe at Home | Spicy Vidarbha Gravy | Lata Special",
+    shortTitle: "Saoji Mutton",
+    description:
+      "Best Saoji mutton Nagpur recipe from Lata Special. Pressure-cooked mutton, flame-roasted onions, dry-roasted spices, and homemade Kala Massala for true Vidarbha heat. Step-by-step spicy Saoji-style gravy with bhakri or rice.",
+    keywords: [
+      "saoji mutton recipe",
+      "best saoji mutton Nagpur recipe",
+      "Nagpur saoji mutton",
+      "saoji mutton curry",
+      "Vidarbha mutton recipe",
+      "homemade saoji gravy",
+      "Lata Special kala massala mutton",
+      "spicy Nagpur mutton",
+      "saoji style mutton at home",
+      "Maharashtrian saoji mutton",
+      "pressure cooker saoji mutton",
+      "dagad phool mutton recipe",
+    ],
+    publishedAt: "2026-09-11",
+    updatedAt: "2026-09-11",
+    author: "Lata Linge",
+    category: "Mutton Recipe",
+    readingMinutes: 14,
+    ogImage: OG_IMAGE,
+    ogImageAlt: "Best Saoji mutton Nagpur recipe — Lata Special Kala Massala",
+    faqs: [
+      {
+        question: "What makes Saoji mutton different from regular mutton curry?",
+        answer:
+          "Saoji-style Nagpur mutton is darker, spicier and more aromatic. Spices are dry-roasted separately, onions are often flame-roasted for smoke, and the gravy uses a bold roasted masala. Lata Special Kala Massala brings that Nagpuri Saoji-style punch at home.",
+      },
+      {
+        question: "Can I use Lata Special Kala Massala instead of packet Saoji masala?",
+        answer:
+          "Yes — that is what we recommend. For this recipe, finish the gravy with Lata Special Kala Massala instead of random shop Saoji packets. It is homemade in Nagpur for Nagpuri and Saoji-style gravies.",
+      },
+      {
+        question: "How many pressure cooker whistles for the mutton?",
+        answer:
+          "About six to seven whistles for half a kilogram of mutton, or up to seven–eight if the pieces are larger. Always check that the meat is soft before you build the gravy.",
+      },
+      {
+        question: "Why roast spices separately for Saoji mutton?",
+        answer:
+          "Small spices roast faster than coriander, coconut, chillies or poppy seeds. Roasting separately keeps everything fragrant and cooked through, which is important for Saoji-style flavour.",
+      },
+      {
+        question: "What should I serve with Saoji mutton?",
+        answer:
+          "Bhakri, poli, fulka or steaming hot rice. Keep lemon and a pinch of Kala Massala on the side if you want extra heat.",
+      },
+    ],
+    featuredVideo: {
+      embedSrc: "https://assets.pinterest.com/ext/embed.html?id=963700020283702181",
+      title: "Best Saoji Mutton Nagpur Recipe video — Lata Special",
+      width: 600,
+      height: 999,
+      contentUrl: "https://www.pinterest.com/pin/963700020283702181/",
+    },
+  },
 ];
 
 export function getBlog(slug: string): BlogPost | undefined {
@@ -241,6 +304,124 @@ export function butterChickenRecipeLd(post: BlogPost) {
   };
 }
 
+export function saojiMuttonRecipeLd(post: BlogPost) {
+  const url = blogUrl(post.slug);
+  const imageUrl = absoluteAssetUrl(post.ogImage);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "@id": `${url}#recipe`,
+    name: "Best Saoji Mutton Nagpur Recipe | Lata Special",
+    alternateName: [
+      "Saoji mutton curry",
+      "Nagpur Saoji mutton",
+      "Vidarbha Saoji mutton gravy",
+    ],
+    description: post.description,
+    image: [imageUrl],
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: `${SITE_URL}/owner`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteAssetUrl("/images/product/250g masala.png"),
+      },
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    prepTime: "PT30M",
+    cookTime: "PT50M",
+    totalTime: "PT80M",
+    recipeYield: ["4 servings", "4"],
+    recipeCategory: ["Main course", "Mutton", "Indian curry"],
+    recipeCuisine: ["Indian", "Maharashtrian", "Nagpuri", "Saoji", "Vidarbha"],
+    keywords: post.keywords.join(", "),
+    cookingMethod: "Pressure cooking and stovetop",
+    recipeIngredient: [
+      "½ kg mutton",
+      "2–3 tbsp oil (for cooker) + 3–4 tbsp oil (for gravy)",
+      "Bay leaf / tejpatta",
+      "Green chilli, cinnamon, cloves, black peppercorns, green cardamom",
+      "Chopped onion, ginger-garlic paste, turmeric, salt",
+      "2 medium whole onions (flame-roasted)",
+      "Star anise, nutmeg, black cardamom, fennel seeds, stone flower (dagad phool)",
+      "Coriander seeds, dry grated coconut, poppy seeds, dry red chillies",
+      "1 tbsp sorghum (jowar) flour",
+      "½ tsp chana dal + ½ tsp rice",
+      "1 cup coriander leaves, green chillies, ginger, garlic",
+      "Lata Special Kala Massala",
+      "Red chilli powder, turmeric",
+      "Optional whole garlic cloves and lemon juice",
+    ],
+    recipeInstructions: [
+      {
+        "@type": "HowToStep",
+        position: 1,
+        name: "Temper and pressure-cook mutton",
+        text: "Heat oil in a pressure cooker with bay leaf, chilli, cinnamon, cloves, peppercorns and cardamom. Add onion, ginger-garlic paste, turmeric and mutton. Mix 2–3 minutes, add salt and water, cook 6–7 whistles.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 2,
+        name: "Flame-roast onions",
+        text: "Roast two whole peeled onions on a low gas flame until soft, smoky and a spoon goes through easily.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 3,
+        name: "Dry-roast spices separately",
+        text: "Separately dry-roast whole spices, coriander seeds, coconut, poppy seeds and dry red chillies so each is cooked through and fragrant.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 4,
+        name: "Roast sorghum flour, dal and rice",
+        text: "Lightly roast sorghum flour, then chana dal with rice until lightly brown. Cool all roasted items.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 5,
+        name: "Grind fresh paste",
+        text: "Grind roasted spices with smoked onions, coriander leaves, green chillies, ginger and garlic to a fine paste.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 6,
+        name: "Build gravy with Kala Massala",
+        text: "Fry onion in oil, roast chilli powder and turmeric, add the paste and Lata Special Kala Massala. Add optional whole garlic, then cooked mutton and mix well.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 7,
+        name: "Adjust water and steam",
+        text: "Add water carefully for a classic thinner Saoji gravy, adjust salt, optional lemon, garnish with coriander, cover and steam 3–4 minutes.",
+      },
+    ],
+    video: post.featuredVideo
+      ? {
+          "@type": "VideoObject",
+          name: post.featuredVideo.title,
+          description: post.description,
+          thumbnailUrl: [imageUrl],
+          uploadDate: post.publishedAt,
+          contentUrl: post.featuredVideo.contentUrl ?? post.featuredVideo.embedSrc,
+          embedUrl: post.featuredVideo.embedSrc,
+          inLanguage: "en-IN",
+        }
+      : undefined,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    inLanguage: "en-IN",
+  };
+}
+
 export function blogPostingLd(post: BlogPost) {
   const url = blogUrl(post.slug);
   const imageUrl = absoluteAssetUrl(post.ogImage);
@@ -277,9 +458,9 @@ export function blogPostingLd(post: BlogPost) {
     timeRequired: `PT${post.readingMinutes}M`,
     isAccessibleForFree: true,
     about: [
-      { "@type": "Thing", name: "Butter chicken" },
-      { "@type": "Thing", name: "Makhani gravy" },
-      { "@type": "Thing", name: "Indian chicken recipe" },
+      { "@type": "Thing", name: post.shortTitle },
+      { "@type": "Thing", name: post.category },
+      { "@type": "Thing", name: "Indian recipe" },
     ],
     speakable: {
       "@type": "SpeakableSpecification",
