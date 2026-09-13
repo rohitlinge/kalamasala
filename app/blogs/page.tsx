@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     "Indian chicken recipes",
     "butter chicken recipe",
     "saoji mutton recipe",
+    "chicken tikka masala recipe",
     "Nagpur saoji mutton",
     "homemade Indian recipes",
     "Nagpur recipes",

@@ -28,4 +28,5 @@ export const SEO_KEYWORDS = [
   "Lata Special recipes",
   "saoji mutton Nagpur recipe",
   "saoji mutton recipe",
+  "chicken tikka masala recipe",
 ];

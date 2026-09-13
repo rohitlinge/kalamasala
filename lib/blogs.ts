@@ -154,6 +154,67 @@ export const blogs: BlogPost[] = [
       contentUrl: "https://www.pinterest.com/pin/963700020283702181/",
     },
   },
+  {
+    slug: "chicken-tikka-masala-recipe",
+    title: "Chicken Tikka Masala Recipe | Lata Special",
+    seoTitle: "Chicken Tikka Masala Recipe at Home | Mild Boneless Gravy | Lata Special",
+    shortTitle: "Chicken Tikka Masala",
+    description:
+      "Chicken tikka masala recipe from Lata Special — soft boneless chicken, mild onion-cashew gravy, dahi and tomato bhunao, butter finish with no cream. Easy murg handi lajeez-style curry at home.",
+    keywords: [
+      "chicken tikka masala recipe",
+      "chicken tikka masala at home",
+      "boneless chicken gravy recipe",
+      "murg handi lajeez",
+      "mild chicken curry recipe",
+      "chicken tikka gravy",
+      "homemade chicken tikka masala",
+      "Lata Special chicken tikka",
+      "onion cashew chicken gravy",
+      "butter finish chicken curry without cream",
+    ],
+    publishedAt: "2026-09-13",
+    updatedAt: "2026-09-13",
+    author: "Lata Linge",
+    category: "Chicken Recipe",
+    readingMinutes: 11,
+    ogImage: OG_IMAGE,
+    ogImageAlt: "Chicken tikka masala recipe — Lata Special mild boneless gravy",
+    faqs: [
+      {
+        question: "Why cook boneless chicken separately for chicken tikka masala?",
+        answer:
+          "Boneless breast does not add bone flavour to the gravy and overcooks quickly. Cook it separately to about 80–90%, finish the gravy on its own, then combine so the chicken stays soft.",
+      },
+      {
+        question: "How do I keep the gravy mild and not too spicy?",
+        answer:
+          "Use boiled onion-cashew paste, only a pinch of chilli and turmeric, and pull sweetness into the onion with ghee and a little sugar. This recipe is meant to be lajeez — balanced, not fiery.",
+      },
+      {
+        question: "Do I need cream for a creamy chicken tikka gravy?",
+        answer:
+          "No. Creaminess comes from boiled onion, a few cashews, proper bhunao, and a small cube of butter at the end. Technique matters more than cream.",
+      },
+      {
+        question: "Can vegetarians make this gravy?",
+        answer:
+          "Yes. Follow the same gravy and use paneer tikka instead of chicken. You can also use leftover mild malai or Afghani-style tikka in the finished gravy the next day.",
+      },
+      {
+        question: "Breast or boneless leg — which is better?",
+        answer:
+          "Breast works if you do not overcook it. Boneless leg is also fine and is often more forgiving. Pull the meat off the heat before it is fully done.",
+      },
+    ],
+    featuredVideo: {
+      embedSrc: "https://assets.pinterest.com/ext/embed.html?id=963700020283769676",
+      title: "Chicken Tikka Masala Recipe video — Lata Special",
+      width: 600,
+      height: 1167,
+      contentUrl: "https://www.pinterest.com/pin/963700020283769676/",
+    },
+  },
 ];
 
 export function getBlog(slug: string): BlogPost | undefined {
@@ -414,6 +475,119 @@ export function saojiMuttonRecipeLd(post: BlogPost) {
           contentUrl: post.featuredVideo.contentUrl ?? post.featuredVideo.embedSrc,
           embedUrl: post.featuredVideo.embedSrc,
           inLanguage: "en-IN",
+        }
+      : undefined,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    inLanguage: "en-IN",
+  };
+}
+
+export function chickenTikkaMasalaRecipeLd(post: BlogPost) {
+  const url = blogUrl(post.slug);
+  const imageUrl = absoluteAssetUrl(post.ogImage);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "@id": `${url}#recipe`,
+    name: "Chicken Tikka Masala Recipe | Lata Special",
+    alternateName: [
+      "Murg tikka lajeez",
+      "Murg handi lajeez",
+      "Mild boneless chicken gravy",
+    ],
+    description: post.description,
+    image: [imageUrl],
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: `${SITE_URL}/owner`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteAssetUrl("/images/product/250g masala.png"),
+      },
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    prepTime: "PT25M",
+    cookTime: "PT40M",
+    totalTime: "PT65M",
+    recipeYield: ["4 servings", "4"],
+    recipeCategory: ["Main course", "Chicken", "Indian curry"],
+    recipeCuisine: ["Indian", "Mughlai", "North Indian"],
+    keywords: post.keywords.join(", "),
+    cookingMethod: "Stovetop",
+    recipeIngredient: [
+      "1 kg boneless chicken breast (or boneless leg), cut small",
+      "Dahi (curd) for marinade; optional lemon",
+      "3 thick-sliced onions",
+      "4–5 cashews",
+      "Ghee, salt, water; ½ tsp sugar while boiling onions",
+      "Oil + ghee for gravy",
+      "2 tejpatta, black cardamom, green cardamom",
+      "Ginger-garlic paste",
+      "Coriander powder, pinch turmeric, pinch red chilli",
+      "About ½ cup dahi per 1 kg chicken",
+      "Fresh tomato paste from about 1½ tomatoes",
+      "Crushed black pepper",
+      "Coriander stems",
+      "Kasuri methi, pinch sugar to balance",
+      "Small cube of butter to finish",
+    ],
+    recipeInstructions: [
+      {
+        "@type": "HowToStep",
+        position: 1,
+        name: "Marinate chicken",
+        text: "Cut boneless chicken into small pieces and marinate in dahi (optional lemon) so it stays soft.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 2,
+        name: "Boil onion-cashew paste",
+        text: "Boil sliced onions and cashews with salt and ghee. Add ½ tsp sugar when half-done. Grind to a fine paste.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 3,
+        name: "Part-cook chicken",
+        text: "Cook marinated chicken separately to about 80–90% with light golden colour. Do not overcook breast.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 4,
+        name: "Build mild gravy base",
+        text: "Heat oil and ghee with whole spices, add ginger-garlic and onion-cashew paste. Mild powders only — remove raw ginger-garlic smell.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 5,
+        name: "Dahi, pepper, tomato bhunao",
+        text: "Add dahi, black pepper and tomato paste. Bhunao well with coriander stems. Add water only in the last few minutes.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 6,
+        name: "Combine and finish with butter",
+        text: "Add chicken, balance with a pinch of sugar and kasuri methi, finish with a small cube of butter. No cream needed.",
+      },
+    ],
+    video: post.featuredVideo
+      ? {
+          "@type": "VideoObject",
+          name: post.featuredVideo.title,
+          description: post.description,
+          thumbnailUrl: [imageUrl],
+          uploadDate: post.publishedAt,
+          contentUrl: post.featuredVideo.contentUrl ?? post.featuredVideo.embedSrc,
+          embedUrl: post.featuredVideo.embedSrc,
+          inLanguage: "hi-IN",
         }
       : undefined,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
