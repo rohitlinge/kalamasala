@@ -83,6 +83,9 @@ export const metadata: Metadata = {
   category: "food",
   verification: {
     google: "FMJZZ4wXEFPBVzIPfgy5wPw7W0wRYP7iH6q-kVQEjag",
+    other: {
+      "msvalidate.01": "31B4D7BF3AEB33DE6FD4A53DC7442AE6",
+    },
   },
 };
 
