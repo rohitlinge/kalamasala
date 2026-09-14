@@ -97,7 +97,7 @@ export const blogs: BlogPost[] = [
     seoTitle: "Best Saoji Mutton Nagpur Recipe at Home | Spicy Vidarbha Gravy | Lata Special",
     shortTitle: "Saoji Mutton",
     description:
-      "Best Saoji mutton Nagpur recipe from Lata Special. Pressure-cooked mutton, flame-roasted onions, dry-roasted spices, and homemade Kala Massala for true Vidarbha heat. Step-by-step spicy Saoji-style gravy with bhakri or rice.",
+      "Best Saoji mutton Nagpur recipe from Lata Special. Pressure-cooked mutton, flame-roasted onions, dry-roasted spices, and homemade Saoji Masala for true Vidarbha heat. Step-by-step spicy Saoji-style gravy with bhakri or rice.",
     keywords: [
       "saoji mutton recipe",
       "best saoji mutton Nagpur recipe",
@@ -105,7 +105,7 @@ export const blogs: BlogPost[] = [
       "saoji mutton curry",
       "Vidarbha mutton recipe",
       "homemade saoji gravy",
-      "Lata Special kala massala mutton",
+      "Lata Special Saoji Masala mutton",
       "spicy Nagpur mutton",
       "saoji style mutton at home",
       "Maharashtrian saoji mutton",
@@ -118,17 +118,17 @@ export const blogs: BlogPost[] = [
     category: "Mutton Recipe",
     readingMinutes: 14,
     ogImage: OG_IMAGE,
-    ogImageAlt: "Best Saoji mutton Nagpur recipe — Lata Special Kala Massala",
+    ogImageAlt: "Best Saoji mutton Nagpur recipe — Lata Special Saoji Masala",
     faqs: [
       {
         question: "What makes Saoji mutton different from regular mutton curry?",
         answer:
-          "Saoji-style Nagpur mutton is darker, spicier and more aromatic. Spices are dry-roasted separately, onions are often flame-roasted for smoke, and the gravy uses a bold roasted masala. Lata Special Kala Massala brings that Nagpuri Saoji-style punch at home.",
+          "Saoji-style Nagpur mutton is darker, spicier and more aromatic. Spices are dry-roasted separately, onions are often flame-roasted for smoke, and the gravy uses a bold roasted masala. Lata Special Saoji Masala brings that Nagpuri Saoji-style punch at home.",
       },
       {
-        question: "Can I use Lata Special Kala Massala instead of packet Saoji masala?",
+        question: "Why finish Saoji mutton with Lata Special Saoji Masala?",
         answer:
-          "Yes — that is what we recommend. For this recipe, finish the gravy with Lata Special Kala Massala instead of random shop Saoji packets. It is homemade in Nagpur for Nagpuri and Saoji-style gravies.",
+          "The fresh roasted paste gives body; Lata Special Saoji Masala adds the authentic Saoji Masala Nagpur punch. It is homemade in Nagpur for usal, bhaji, mutton, and gravies — better than random shop packets.",
       },
       {
         question: "How many pressure cooker whistles for the mutton?",
@@ -143,7 +143,7 @@ export const blogs: BlogPost[] = [
       {
         question: "What should I serve with Saoji mutton?",
         answer:
-          "Bhakri, poli, fulka or steaming hot rice. Keep lemon and a pinch of Kala Massala on the side if you want extra heat.",
+          "Bhakri, poli, fulka or steaming hot rice. Keep lemon and a pinch of Saoji Masala on the side if you want extra heat.",
       },
     ],
     featuredVideo: {
@@ -417,7 +417,7 @@ export function saojiMuttonRecipeLd(post: BlogPost) {
       "1 tbsp sorghum (jowar) flour",
       "½ tsp chana dal + ½ tsp rice",
       "1 cup coriander leaves, green chillies, ginger, garlic",
-      "Lata Special Kala Massala",
+      "Lata Special Saoji Masala",
       "Red chilli powder, turmeric",
       "Optional whole garlic cloves and lemon juice",
     ],
@@ -455,8 +455,8 @@ export function saojiMuttonRecipeLd(post: BlogPost) {
       {
         "@type": "HowToStep",
         position: 6,
-        name: "Build gravy with Kala Massala",
-        text: "Fry onion in oil, roast chilli powder and turmeric, add the paste and Lata Special Kala Massala. Add optional whole garlic, then cooked mutton and mix well.",
+        name: "Build gravy with Saoji Masala",
+        text: "Fry onion in oil, roast chilli powder and turmeric, add the paste and Lata Special Saoji Masala. Add optional whole garlic, then cooked mutton and mix well.",
       },
       {
         "@type": "HowToStep",

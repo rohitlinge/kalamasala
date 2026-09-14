@@ -124,7 +124,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
         amount: data.amount,
         currency: "INR",
         name: "Lata Special",
-        description: `Kala Massala · ${pack.weight} × ${orderQty}`,
+        description: `Saoji Masala · ${pack.weight} × ${orderQty}`,
         order_id: data.orderId,
         prefill: { name: form.name, contact: form.phone, email: form.email || undefined },
         theme: { color: "#ff9900" },
@@ -282,7 +282,7 @@ export default function OrderSection({ razorpayKey }: { razorpayKey: string }) {
             <img src={pack.image} alt="" className="h-16 w-16 object-cover" loading="lazy" decoding="async" />
             <div>
               <p className="text-[13px] font-medium">
-                Kala Massala · {pack.weight}
+                Saoji Masala · {pack.weight}
                 {orderQty > 1 ? ` × ${orderQty}` : ""}
               </p>
               <p className="text-[12px] text-[#565959]">{pack.note}</p>

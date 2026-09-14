@@ -6,7 +6,7 @@ export default function Process() {
       <div className="amz-card mx-auto max-w-[1500px] overflow-hidden">
         <img
           src="/images/product/A small process.png"
-          alt="A small process of making homemade Kala Massala"
+          alt="A small process of making homemade Saoji Masala"
           className="h-[180px] w-full object-cover md:h-[380px]"
           loading="lazy"
           decoding="async"
@@ -15,7 +15,7 @@ export default function Process() {
           <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">From the manufacturer</p>
           <h2 className="mt-1 text-[20px] font-medium md:text-[26px]">A small process. No shortcuts in it.</h2>
           <p className="mt-2 max-w-3xl text-[14px] text-[#565959]">
-            Kala Massala is not mixed from ready powders. It is built — spice by spice — so the coconut is dark, the
+            Saoji Masala is not mixed from ready powders. It is built — spice by spice — so the coconut is dark, the
             coriander is sweet, and the chilli never scorches the rest.
           </p>
           <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

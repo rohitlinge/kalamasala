@@ -1,6 +1,6 @@
 export const brand = {
   house: "Lata Special",
-  product: "Kala Massala",
+  product: "Saoji Masala",
   city: "Nagpur",
   state: "Maharashtra",
   deliveryDays: 6,
@@ -68,21 +68,21 @@ export const productPhotos = {
 } as const;
 
 export const gallery = [
-  { src: productPhotos.pack250, alt: "Lata Special Kala Massala 250 g packet" },
-  { src: productPhotos.pack500, alt: "Lata Special Kala Massala 500 g packet" },
-  { src: productPhotos.pack1kg, alt: "Lata Special Kala Massala 1 kg packet" },
-  { src: productPhotos.pack2kg, alt: "Lata Special Kala Massala 2 kg packet" },
-  { src: productPhotos.inside, alt: "What is inside Lata Special Kala Massala" },
-  { src: productPhotos.process, alt: "A small process of making homemade Kala Massala" },
-  { src: productPhotos.oil, alt: "Homemade Kala Massala with its natural oils" },
-  { src: productPhotos.packs, alt: "Lata Special Kala Massala packets" },
-  { src: productPhotos.pack, alt: "A packet of homemade Kala Massala" },
-  { src: productPhotos.openBag, alt: "Freshly packed Kala Massala in an open bag" },
-  { src: productPhotos.plate, alt: "Kala Massala on a plate" },
-  { src: productPhotos.texture, alt: "Close-up of homemade Kala Massala" },
-  { src: productPhotos.tin, alt: "Kala Massala packed from the kitchen tin" },
+  { src: productPhotos.pack250, alt: "Lata Special Saoji Masala 250 g packet" },
+  { src: productPhotos.pack500, alt: "Lata Special Saoji Masala 500 g packet" },
+  { src: productPhotos.pack1kg, alt: "Lata Special Saoji Masala 1 kg packet" },
+  { src: productPhotos.pack2kg, alt: "Lata Special Saoji Masala 2 kg packet" },
+  { src: productPhotos.inside, alt: "What is inside Lata Special Saoji Masala" },
+  { src: productPhotos.process, alt: "A small process of making homemade Saoji Masala" },
+  { src: productPhotos.oil, alt: "Homemade Saoji Masala with its natural oils" },
+  { src: productPhotos.packs, alt: "Lata Special Saoji Masala packets" },
+  { src: productPhotos.pack, alt: "A packet of homemade Saoji Masala" },
+  { src: productPhotos.openBag, alt: "Freshly packed Saoji Masala in an open bag" },
+  { src: productPhotos.plate, alt: "Saoji Masala on a plate" },
+  { src: productPhotos.texture, alt: "Close-up of homemade Saoji Masala" },
+  { src: productPhotos.tin, alt: "Saoji Masala packed from the kitchen tin" },
   { src: productPhotos.scale, alt: "500 g packet on the kitchen scale" },
-  { src: productPhotos.handPacks, alt: "Fresh packets of Lata Special Kala Massala" },
+  { src: productPhotos.handPacks, alt: "Fresh packets of Lata Special Saoji Masala" },
 ] as const;
 
 export const ingredients = [
@@ -173,7 +173,7 @@ export const processSteps = [
   {
     n: "04",
     title: "Cool fully",
-    body: "Hot spice ground too soon turns bitter and clumps. We wait. Oils settle. The colour goes from brown to the true kala — a deep, honest black-brown.",
+    body: "Hot spice ground too soon turns bitter and clumps. We wait. Oils settle. The colour goes from brown to a deep, honest Saoji roast — dark and full.",
   },
   {
     n: "05",
@@ -217,11 +217,11 @@ export const comparisons = [
 export const howToUse = {
   heading: "मसाले का उपयोग कैसे करें",
   intro:
-    "हमारा काला मसाला आलू-बैंगन, आलू की सब्जी, वड़ी की सब्जी, रसेदार सब्जी और ग्रेवी वाली सब्जियों में आसानी से इस्तेमाल किया जा सकता है।",
+    "हमारा साओजी मसाला आलू-बैंगन, आलू की सब्जी, वड़ी की सब्जी, रसेदार सब्जी और ग्रेवी वाली सब्जियों में आसानी से इस्तेमाल किया जा सकता है।",
   methods: [
     {
       title: "सूखी सब्जी के लिए",
-      body: "आलू-बैंगन, आलू या वड़ी की सब्जी बनाते समय सब्जी तैयार होने के अनुसार ऊपर से काला मसाला डालें और अच्छी तरह मिलाएँ।",
+      body: "आलू-बैंगन, आलू या वड़ी की सब्जी बनाते समय सब्जी तैयार होने के अनुसार ऊपर से साओजी मसाला डालें और अच्छी तरह मिलाएँ।",
       steps: [] as string[],
     },
     {
@@ -230,7 +230,7 @@ export const howToUse = {
       steps: [
         "सबसे पहले अदरक, लहसुन और थोड़ा प्याज भून लें।",
         "इसे पीसकर पेस्ट तैयार करें।",
-        "अब इस पेस्ट में आवश्यक मात्रा में काला मसाला डालें।",
+        "अब इस पेस्ट में आवश्यक मात्रा में साओजी मसाला डालें।",
         "कड़ाही में तेल गर्म करके इस मसाले के पेस्ट को अच्छी तरह भूनें।",
         "जब मसाले से तेल ऊपर आने लगे, तब समझें कि मसाला अच्छी तरह भुन गया है।",
         "अब अपनी पसंद के अनुसार तीखापन बढ़ाने के लिए मिर्च डालें।",
@@ -239,7 +239,7 @@ export const howToUse = {
     },
   ],
   tipTitle: "तीखापन कैसे रखें?",
-  tip: "काला मसाला डालने के बाद अपनी पसंद के अनुसार हरी मिर्च या लाल मिर्च कम-ज्यादा कर सकते हैं।",
+  tip: "साओजी मसाला डालने के बाद अपनी पसंद के अनुसार हरी मिर्च या लाल मिर्च कम-ज्यादा कर सकते हैं।",
 } as const;
 
 export const storageRules = [
@@ -273,9 +273,9 @@ export const owner = {
   name: "Lata Linge",
   photo: "/images/owner/Lata Linge.jpeg",
   city: "Nagpur",
-  bio: "Lata Linge has been roasting and grinding homemade Kala Massala in her Nagpur kitchen for about 9 years. More than 100 families already cook with her packets. She is now selling the same kitchen masala online so neighbours across Nagpur can order from home.",
+  bio: "Lata Linge has been roasting and grinding homemade Saoji Masala in her Nagpur kitchen for about 9 years. More than 100 families already cook with her packets. She is now selling the same kitchen Saoji Masala Nagpur online so neighbours across the city can order from home.",
   bioHi:
-    "लता लिंगे करीब 9 साल से अपने नागपुर के रसोईघर में काला मसाला भूनती और पीसती हैं। 100 से ज़्यादा घर पहले से इनका मसाला लेते हैं। अब वही घरेलू मसाला ऑनलाइन मिल रहा है।",
+    "लता लिंगे करीब 9 साल से अपने नागपुर के रसोईघर में साओजी मसाला भूनती और पीसती हैं। 100 से ज़्यादा घर पहले से इनका मसाला लेते हैं। अब वही घरेलू साओजी मसाला ऑनलाइन मिल रहा है।",
 } as const;
 
 export const reviews = [

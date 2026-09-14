@@ -4,8 +4,8 @@ import OrderSection from "@/components/OrderSection";
 import { razorpayKeyId } from "@/lib/env";
 
 export const metadata: Metadata = {
-  title: "Checkout — Buy Nagpur Masala Online",
-  description: "Pay for homemade Nagpur Kala Massala. Delivery in 6 days, Nagpur pincodes only.",
+  title: "Checkout — Buy Saoji Masala Online Nagpur",
+  description: "Pay for homemade Saoji Masala Nagpur. Delivery in 6 days, Nagpur pincodes only.",
   robots: { index: false, follow: true },
 };
 

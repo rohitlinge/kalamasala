@@ -33,7 +33,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="/#faq" className="hover:underline">
-                  Nagpur masala online FAQ
+                  Saoji Masala FAQ
                 </a>
               </li>
               <li>
@@ -114,7 +114,7 @@ export default function Footer() {
           kalamassala<span className="text-[#febd69]">.online</span>
         </a>
         <p className="mt-2 text-[12px] text-[#999]">
-          © {new Date().getFullYear()} Lata Special · Kala Massala · Nagpur, Maharashtra
+          © {new Date().getFullYear()} Lata Special · Saoji Masala · Nagpur, Maharashtra
         </p>
         <p className="mt-1 text-[12px] text-[#999]">GSTIN: 27BGEPL8932M1ZT</p>
         <p className="mt-1 text-[12px] text-[#999]">

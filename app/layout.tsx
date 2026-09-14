@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: OG_IMAGE,
-        alt: "Buy Nagpur masala online — Lata Special homemade Kala Massala",
+        alt: "Buy Saoji Masala online Nagpur — Lata Special homemade Saoji Masala",
       },
     ],
   },

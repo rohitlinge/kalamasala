@@ -2,7 +2,7 @@
  * Lata Special — paid orders → this Google Sheet
  *
  * Setup
- * 1. Google Drive → New → Google Sheets. Name it "Kala Massala orders".
+ * 1. Google Drive → New → Google Sheets. Name it "Saoji Masala orders".
  * 2. Rename the first tab to "Orders" (or leave Sheet1; the script uses the first tab).
  * 3. Extensions → Apps Script. Delete any default code. Paste this whole file. Save.
  * 4. Deploy → New deployment → Type: Web app.
@@ -79,7 +79,7 @@ function doPost(e) {
 }
 
 function doGet() {
-  return json_({ ok: true, service: "kala-massala-orders" });
+  return json_({ ok: true, service: "saoji-masala-orders" });
 }
 
 function json_(obj) {

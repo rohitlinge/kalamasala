@@ -13,13 +13,13 @@ export default function ProductShelf() {
             <a href="#product" className="mt-2 block">
               <img
                 src={p.image}
-                alt={`Lata Special Kala Massala ${p.weight}`}
+                alt={`Lata Special Saoji Masala ${p.weight}`}
                 className="h-28 w-full rounded-sm object-cover md:h-44"
                 loading="lazy"
                 decoding="async"
               />
             </a>
-            <p className="mt-2 text-[13px] font-medium md:text-[16px]">Kala Massala · {p.weight}</p>
+            <p className="mt-2 text-[13px] font-medium md:text-[16px]">Saoji Masala · {p.weight}</p>
             <p className="price mt-0.5 text-[18px] md:text-[21px]">{formatInr(p.price)}</p>
             <p className="hidden text-[12px] text-[#565959] md:block">{p.note}</p>
             <a href="#product" className="link mt-1 inline-block text-[12px] md:mt-3 md:text-[13px]">
@@ -32,14 +32,14 @@ export default function ProductShelf() {
           <a href="#ingredients" className="mt-2 block">
             <img
               src="/images/product/what inside kala masala mobile.png"
-              alt="What is inside homemade Kala Massala"
+              alt="What is inside homemade Saoji Masala"
               className="h-28 w-full rounded-sm object-cover md:hidden"
               loading="lazy"
               decoding="async"
             />
             <img
               src="/images/product/what inside in kala masala.png"
-              alt="What is inside homemade Kala Massala"
+              alt="What is inside homemade Saoji Masala"
               className="hidden h-44 w-full rounded-sm object-cover md:block"
               loading="lazy"
               decoding="async"

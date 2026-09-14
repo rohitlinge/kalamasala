@@ -9,13 +9,13 @@ export default function Storage() {
             <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">Important information</p>
             <h2 className="mt-1 text-[20px] font-medium md:text-[26px]">Masala is an oil. Treat it like one.</h2>
             <p className="mt-3 text-[14px] leading-6 text-[#565959]">
-              Homemade Kala Massala has no anti-caking dust to hide moisture. These six habits keep the packet honest
+              Homemade Saoji Masala has no anti-caking dust to hide moisture. These six habits keep the packet honest
               until the last spoon.
             </p>
             <div className="mt-4 overflow-hidden rounded-sm">
               <img
                 src="/images/product/Masala is an oil.webp"
-                alt="Homemade Kala Massala with its natural oils"
+                alt="Homemade Saoji Masala with its natural oils"
                 className="h-40 w-full object-cover md:h-52"
                 loading="lazy"
                 decoding="async"

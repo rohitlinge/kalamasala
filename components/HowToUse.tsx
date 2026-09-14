@@ -7,7 +7,7 @@ export default function HowToUse() {
         <div className="relative h-44 md:min-h-[280px] lg:min-h-full">
           <img
             src="/images/product/what inside masala..png"
-            alt="Homemade Kala Massala ready to cook"
+            alt="Homemade Saoji Masala ready to cook"
             className="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
             decoding="async"

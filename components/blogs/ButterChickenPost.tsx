@@ -296,10 +296,10 @@ export default function ButterChickenPost({ faqs = [] }: { faqs?: BlogFaq[] }) {
       <aside className="mt-8 rounded-sm border border-[#d5d9d9] bg-[#f7f8f8] p-4 text-[14px] leading-6 text-[#565959]">
         <p className="font-bold text-[#0f1111]">Kitchen tip from Lata Special</p>
         <p className="mt-1">
-          Pair this gravy with a pinch of homemade Kala Massala on the side for a Nagpuri kick —
+          Pair this gravy with a pinch of homemade Saoji Masala on the side for a Nagpuri kick —
           shop packs on{" "}
           <a href="/#product" className="text-link hover:text-link-hover hover:underline">
-            kalamassala.online
+            Saoji Masala
           </a>
           .
         </p>

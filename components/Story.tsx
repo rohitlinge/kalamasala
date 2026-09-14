@@ -6,18 +6,19 @@ export default function Story() {
           <div className="md:col-span-5">
             <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">From the brand</p>
             <h2 className="mt-2 text-[22px] font-medium leading-tight md:text-[32px]">
-              Nagpur masala online, with a true Nagpuri and Saoji taste.
+              Saoji Masala Nagpur — buy authentic homemade Saoji Masala online.
             </h2>
           </div>
           <div className="md:col-span-7">
             <p className="text-[14px] leading-6 text-[#0f1111]">
-              <strong>Lata Special Kala Massala</strong> is homemade Maharashtrian black masala from a Nagpur kitchen —
-              coconut toasted dark, sesame, coriander, stone flower, and pepper. Buy Nagpur masala online here: the same
-              Nagpuri taste used in usal, and the Saoji (Sawji) style heat people look for in gravies.
+              <strong>Lata Special Saoji Masala</strong> is homemade from a Nagpur kitchen —
+              coconut toasted dark, sesame, coriander, stone flower, and pepper. Buy Saoji Masala
+              online here: the same Saoji Masala Nagpur taste used in usal, bhaji, mutton, and
+              gravies.
             </p>
             <p className="mt-3 text-[14px] leading-6 text-[#565959]">
               We do not mill for warehouses. Each batch is small enough to smell as it cools. You will notice the colour
-              first — a true kala, not a dyed grey — then a nutty, warm finish. Packs ship only in Nagpur, in 6 days.
+              first — a deep, honest roast, not a dyed grey — then a nutty, warm finish. Packs ship only in Nagpur, in 6 days.
             </p>
             <div className="mt-6 grid grid-cols-3 gap-4 border-t border-[#d5d9d9] pt-5">
               {[

@@ -60,7 +60,7 @@ export default function Header() {
             <a href="/" className="min-w-0 shrink rounded-sm px-1 py-1 hover:outline hover:outline-1 hover:outline-white sm:px-2">
               <span className="block text-[10px] leading-none text-[#cccccc] sm:text-[11px]">Lata Special</span>
               <span className="block truncate text-[16px] font-bold leading-tight tracking-tight sm:text-[19px]">
-                kalamassala<span className="text-[#febd69]">.online</span>
+                Saoji<span className="text-[#febd69]"> Masala</span>
               </span>
             </a>
 

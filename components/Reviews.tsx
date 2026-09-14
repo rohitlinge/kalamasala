@@ -10,7 +10,7 @@ export default function Reviews({ showFirstProduct = false }: { showFirstProduct
         <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">Customer reviews</p>
         <h2 className="mt-1 text-[20px] font-medium md:text-[26px]">नागपुर की रसोइयों की बात</h2>
         <p className="mt-2 max-w-2xl text-[14px] text-[#565959]">
-          Homemade Kala Massala, in the words of women who already cook with it.
+          Homemade Saoji Masala, in the words of women who already cook with it.
         </p>
 
         <ul className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -30,13 +30,13 @@ export default function Reviews({ showFirstProduct = false }: { showFirstProduct
             <a href="/#product" className="mt-2 block">
               <img
                 src={first.image}
-                alt={`Lata Special Kala Massala ${first.weight}`}
+                alt={`Lata Special Saoji Masala ${first.weight}`}
                 className="h-40 w-full rounded-sm object-cover"
                 loading="lazy"
                 decoding="async"
               />
             </a>
-            <p className="mt-2 text-[16px] font-medium">Kala Massala · {first.weight}</p>
+            <p className="mt-2 text-[16px] font-medium">Saoji Masala · {first.weight}</p>
             <p className="price mt-0.5 text-[21px]">{formatInr(first.price)}</p>
             <p className="mt-1 text-[12px] text-[#565959]">{first.note}</p>
             <a href="/#product" className="btn-cart mt-3">

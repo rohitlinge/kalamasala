@@ -20,7 +20,7 @@ export default function CartView() {
       <div className="amz-card p-5 md:p-8">
         <h1 className="text-[22px] font-medium md:text-[28px]">Your Cart is empty</h1>
         <p className="mt-2 text-[14px] text-[#565959]">
-          Browse Lata Special Kala Massala and add a pack to get started.
+          Browse Lata Special Saoji Masala and add a pack to get started.
         </p>
         <a href="/#product" className="btn-cart mt-5">
           Continue shopping
@@ -57,7 +57,7 @@ export default function CartView() {
                 </a>
                 <div className="min-w-0 flex-1">
                   <a href="/#product" className="text-[15px] leading-snug hover:text-link-hover hover:underline sm:text-[18px]">
-                    Lata Special Kala Massala · {pack.weight}
+                    Lata Special Saoji Masala · {pack.weight}
                   </a>
                   <p className="mt-1 text-[16px] font-bold sm:hidden">{formatInr(pack.price * line.qty)}</p>
                   <p className="mt-1 text-[12px] font-bold text-[#007600]">In stock</p>

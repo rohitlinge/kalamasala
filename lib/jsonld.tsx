@@ -17,7 +17,7 @@ export function localBusinessLd() {
     telephone: SITE_PHONE,
     image: `${SITE_URL}/images/hero baneres/Dekstop hero image.png`,
     description:
-      "Homemade Nagpur Kala Massala with Nagpuri and Saoji-style taste. Buy masala online for Nagpur delivery.",
+      "Homemade Saoji Masala Nagpur with true Vidarbha heat. Buy Saoji Masala online for Nagpur delivery.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Nagpur",
@@ -51,10 +51,10 @@ export function productLd() {
     "@context": "https://schema.org",
     "@type": "Product",
     "@id": `${SITE_URL}/#product`,
-    name: "Lata Special Kala Massala",
+    name: "Lata Special Saoji Masala",
     image: packs.map((p) => `${SITE_URL}${encodeURI(p.image)}`),
     description:
-      "Buy Nagpur masala online. Homemade Kala Massala with Nagpuri and Saoji taste, slow-roasted in a Nagpur kitchen.",
+      "Buy Saoji Masala online Nagpur. Homemade Saoji Masala with Nagpuri and Vidarbha taste, slow-roasted in a Nagpur kitchen.",
     brand: { "@type": "Brand", name: "Lata Special" },
     category: "Spices",
     areaServed: "Nagpur, Maharashtra",
@@ -83,18 +83,18 @@ export function faqLd() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Can I buy Nagpur masala online?",
+        name: "Can I buy Saoji Masala online in Nagpur?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Lata Special Kala Massala is sold online at kalamassala.online. Delivery is Nagpur only (pincodes 440xxx and 441xxx), in 6 days.",
+          text: "Yes. Lata Special Saoji Masala is sold online at kalamassala.online. Delivery is Nagpur only (pincodes 440xxx and 441xxx), in 6 days.",
         },
       },
       {
         "@type": "Question",
-        name: "Is this Nagpuri or Saoji taste masala?",
+        name: "Is this authentic Saoji Masala Nagpur?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It is homemade Maharashtrian Kala Massala from a Nagpur kitchen. The roast is dark, nutty, and peppery — the Nagpuri and Saoji-style taste used in usal, bhaji, and gravies.",
+          text: "Yes. It is homemade Saoji Masala from a Nagpur kitchen. The roast is dark, nutty, and peppery — the Saoji Masala Nagpur taste used in usal, bhaji, mutton, and gravies.",
         },
       },
       {

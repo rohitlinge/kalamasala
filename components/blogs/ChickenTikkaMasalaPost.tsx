@@ -236,7 +236,7 @@ export default function ChickenTikkaMasalaPost({ faqs = [] }: { faqs?: BlogFaq[]
         <p className="mt-1">
           For a Nagpuri side kick with milder curries, keep{" "}
           <a href="/#product" className="text-link hover:text-link-hover hover:underline">
-            Lata Special Kala Massala
+            Lata Special Saoji Masala
           </a>{" "}
           on the table — a small pinch is enough. Nagpur delivery only.
         </p>

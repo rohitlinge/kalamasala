@@ -1,29 +1,32 @@
 export const SITE_URL = "https://kalamassala.online";
-export const SITE_NAME = "Lata Special Kala Massala";
+export const SITE_NAME = "Lata Special Saoji Masala";
 export const SITE_PHONE = "+918484911196";
 
 export const DEFAULT_TITLE =
-  "Buy Nagpur Masala Online | Nagpuri & Saoji Taste Kala Masala | Lata Special";
+  "Buy Saoji Masala Online Nagpur | Saoji Masala Nagpur | Lata Special";
 
 export const DEFAULT_DESCRIPTION =
-  "Buy homemade Nagpur masala online from Lata Special. Slow-roasted Kala Massala with true Nagpuri and Saoji-style taste. 250 g, 500 g, 1 kg and 2 kg packs. Delivery in 6 days, Nagpur only.";
+  "Buy homemade Saoji Masala online from Lata Special, Nagpur. Slow-roasted Saoji Masala Nagpur with true Vidarbha heat for usal, bhaji, mutton and gravies. 250 g, 500 g, 1 kg and 2 kg packs. Delivery in 6 days, Nagpur only.";
 
 export const OG_IMAGE = "/images/hero baneres/Dekstop hero image.png";
 
 export const SEO_KEYWORDS = [
-  "Nagpur masala online",
-  "buy Nagpur masala online",
-  "Nagpuri taste masala",
-  "Nagpuri masala",
+  "Saoji Masala",
+  "Saoji Masala Nagpur",
+  "buy Saoji Masala online",
+  "buy Saoji Masala Nagpur",
+  "homemade Saoji Masala",
   "Saoji masala buy online",
   "Sawji masala buy online",
   "Saoji taste masala",
-  "Kala masala Nagpur",
-  "Kala Massala",
-  "homemade kala masala",
-  "Maharashtrian black masala",
+  "Nagpur Saoji masala",
+  "Nagpur masala online",
+  "buy Nagpur masala online",
+  "Nagpuri masala",
+  "Nagpuri taste masala",
   "Lata Special",
-  "buy kala masala online Nagpur",
+  "Lata Special Saoji Masala",
+  "Vidarbha saoji masala",
   "butter chicken recipe",
   "Lata Special recipes",
   "saoji mutton Nagpur recipe",

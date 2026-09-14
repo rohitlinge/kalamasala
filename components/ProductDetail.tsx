@@ -41,7 +41,7 @@ export default function ProductDetail() {
             Home
           </a>{" "}
           › Grocery &amp; Gourmet › Masala ›{" "}
-          <span className="text-[#0f1111]">Kala Massala</span>
+          <span className="text-[#0f1111]">Saoji Masala</span>
         </p>
 
         <div className="mt-0 grid w-full min-w-0 gap-4 lg:grid-cols-[1fr_1.15fr_300px] lg:gap-6">
@@ -84,7 +84,7 @@ export default function ProductDetail() {
 
           <div className="order-2 lg:col-start-2 lg:row-start-1">
             <h2 className="text-[18px] font-medium leading-snug md:text-[24px]">
-              Lata Special Kala Massala — buy Nagpur homemade masala online ({pack.weight})
+              Lata Special Saoji Masala — buy Saoji Masala online Nagpur ({pack.weight})
             </h2>
             <a href="#masala" className="link mt-1 inline-block text-[13px] md:text-[14px]">
               Visit the Lata Special Store
@@ -193,7 +193,7 @@ export default function ProductDetail() {
           <div className="order-4 border-t border-[#d5d9d9] pt-4 lg:col-start-2 lg:row-start-2">
             <p className="text-[16px] font-bold">About this item</p>
             <ul className="mt-2 list-disc space-y-1.5 pl-5 text-[14px] leading-5 text-[#0f1111]">
-              <li>Homemade Maharashtrian kala massala — coconut, sesame, coriander, stone flower, pepper.</li>
+              <li>Homemade Saoji Masala Nagpur — coconut, sesame, coriander, stone flower, pepper.</li>
               <li>Each spice roasted separately on a low flame, then ground in a small lot.</li>
               <li>No starch, no anti-caking powder, no dye. Packed within a day of grinding.</li>
               <li>You order — we shop, roast, grind, and parcel within one week.</li>

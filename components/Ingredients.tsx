@@ -18,14 +18,14 @@ export default function Ingredients() {
         <div className="mt-5 overflow-hidden rounded-sm">
           <img
             src="/images/product/what inside kala masala mobile.png"
-            alt="What is inside homemade Kala Massala"
+            alt="What is inside homemade Saoji Masala"
             className="h-auto w-full object-contain md:hidden"
             loading="lazy"
             decoding="async"
           />
           <img
             src="/images/product/what inside in kala masala.png"
-            alt="What is inside homemade Kala Massala"
+            alt="What is inside homemade Saoji Masala"
             className="hidden h-[340px] w-full object-cover md:block"
             loading="lazy"
             decoding="async"

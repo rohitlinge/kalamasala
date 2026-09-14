@@ -11,8 +11,8 @@ type Props = {
 };
 
 export default function BlogMasalaAd({
-  headline = "Cook this with Lata Special Kala Massala",
-  note = "Nagpuri & Saoji-style heat in one homemade roast — ready for your mutton gravy.",
+  headline = "Cook this with Lata Special Saoji Masala",
+  note = "Authentic Saoji Masala Nagpur — homemade roast ready for your mutton, usal, and gravies.",
 }: Props) {
   const router = useRouter();
   const { addItem } = useCart();
@@ -33,7 +33,7 @@ export default function BlogMasalaAd({
         <a href="/#product" className="mx-auto shrink-0 sm:mx-0">
           <img
             src={pack.image}
-            alt={`Lata Special Kala Massala ${pack.weight}`}
+            alt={`Lata Special Saoji Masala ${pack.weight}`}
             className="h-28 w-28 object-contain sm:h-32 sm:w-32"
             loading="lazy"
             decoding="async"

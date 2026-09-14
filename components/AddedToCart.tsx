@@ -33,7 +33,7 @@ export default function AddedToCart() {
           <div>
             <p className="text-[16px] font-bold text-[#067d62]">Added to Cart</p>
             <p className="text-[13px] text-[#0f1111]">
-              Lata Special Kala Massala · {pack.weight} · {formatInr(pack.price)}
+              Lata Special Saoji Masala · {pack.weight} · {formatInr(pack.price)}
             </p>
             <p className="text-[12px] text-[#565959]">
               Cart subtotal ({count} {count === 1 ? "item" : "items"}): {formatInr(subtotal)}

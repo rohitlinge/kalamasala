@@ -4,7 +4,7 @@ import CartView from "@/components/CartView";
 
 export const metadata: Metadata = {
   title: "Shopping Cart",
-  description: "Your Lata Special Kala Massala cart. Nagpur delivery only.",
+  description: "Your Lata Special Saoji Masala cart. Nagpur delivery only.",
   robots: { index: false, follow: true },
 };
 

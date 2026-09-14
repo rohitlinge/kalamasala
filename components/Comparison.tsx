@@ -5,7 +5,7 @@ export default function Comparison() {
     <section id="compare" className="px-3 py-3 md:px-4">
       <div className="amz-card mx-auto max-w-[1500px] p-3 md:p-8">
         <p className="text-[12px] font-bold uppercase tracking-wide text-[#565959]">Compare with similar items</p>
-        <h2 className="mt-1 text-[20px] font-medium md:text-[26px]">Homemade massala, against the other kind.</h2>
+        <h2 className="mt-1 text-[20px] font-medium md:text-[26px]">Homemade Saoji Masala, against the other kind.</h2>
         <p className="mt-2 max-w-2xl text-[14px] text-[#565959]">
           Packet masala is built to look the same on every shelf, for years. Ours is built to taste like the week it
           was roasted.

@@ -64,7 +64,7 @@ export default function SaojiMuttonPost({ faqs = [] }: { faqs?: BlogFaq[] }) {
         This is the <Wiki href={W.maharashtrian}>Maharashtrian</Wiki> Saoji-style mutton curry we
         cook at home with Lata Special{" "}
         <a href="/#product" className="text-link hover:text-link-hover hover:underline">
-          Kala Massala
+          Saoji Masala
         </a>
         . Watch carefully, follow the steps, and you&apos;ll get that dark, oily, aromatic Nagpur
         gravy everyone asks for.
@@ -158,7 +158,7 @@ export default function SaojiMuttonPost({ faqs = [] }: { faqs?: BlogFaq[] }) {
         <li>
           Lata Special{" "}
           <a href="/#product" className="text-link hover:text-link-hover hover:underline">
-            Kala Massala
+            Saoji Masala
           </a>{" "}
           — this is the Saoji-style punch we use instead of buying random packet masala
         </li>
@@ -171,8 +171,8 @@ export default function SaojiMuttonPost({ faqs = [] }: { faqs?: BlogFaq[] }) {
       </ul>
 
       <BlogMasalaAd
-        headline="Skip the packet guesswork — use Lata Special Kala Massala"
-        note="For true Nagpur Saoji-style heat in this mutton, we cook with our homemade Kala Massala. Add a pack to cart and keep it ready before you start the gravy."
+        headline="Skip the packet guesswork — use Lata Special Saoji Masala"
+        note="For true Nagpur Saoji-style heat in this mutton, we cook with our homemade Saoji Masala. Add a pack to cart and keep it ready before you start the gravy."
       />
 
       <h2 className="!mt-8 text-[20px] font-bold text-[#0f1111] md:text-[22px]">
@@ -245,14 +245,13 @@ export default function SaojiMuttonPost({ faqs = [] }: { faqs?: BlogFaq[] }) {
         Grind to a fine paste / powder-paste. This green-aromatic mix is what gives the gravy body.
       </p>
       <p>
-        For the real Saoji-Nagpur punch in the finished gravy, we don&apos;t rely on random shop
-        &quot;Saoji masala&quot; packets. We finish with Lata Special Kala Massala — our homemade
-        Nagpuri roast that matches this kitchen style.
+        For the real Saoji Masala Nagpur punch in the finished gravy, finish with Lata Special Saoji
+        Masala — our homemade Nagpur roast. That is what gives this mutton its dark, spicy character.
       </p>
 
       <BlogMasalaAd
-        headline="This is where Kala Massala makes the gravy"
-        note="When the fresh paste is ready, stir in Lata Special Kala Massala for that dark Saoji-style Nagpur taste. Add to cart now so you don't pause mid-recipe."
+        headline="This is where Saoji Masala makes the gravy"
+        note="When the fresh paste is ready, stir in Lata Special Saoji Masala for that dark Saoji-style Nagpur taste. Add to cart now so you don't pause mid-recipe."
       />
 
       <h2 className="!mt-8 text-[20px] font-bold text-[#0f1111] md:text-[22px]">
@@ -266,7 +265,7 @@ export default function SaojiMuttonPost({ faqs = [] }: { faqs?: BlogFaq[] }) {
       <p>
         Add 1½ tsp red chilli powder (Saoji is meant to be a bit spicy) and ½ tsp turmeric. Roast
         briefly. Add the ground spice paste and mix — it&apos;s already roasted, so you don&apos;t
-        need a long bhunao. Now add Lata Special Kala Massala generously so the gravy gets that
+        need a long bhunao. Now add Lata Special Saoji Masala generously so the gravy gets that
         Nagpur Saoji character.
       </p>
       <p>
@@ -298,17 +297,17 @@ export default function SaojiMuttonPost({ faqs = [] }: { faqs?: BlogFaq[] }) {
       </h2>
       <p>
         Best with <Wiki href={W.bhakri}>bhakri</Wiki>, <Wiki href={W.roti}>poli / fulka</Wiki>, or
-        steaming hot rice. Keep Lata Special Kala Massala on the table if anyone wants an extra
+        steaming hot rice. Keep Lata Special Saoji Masala on the table if anyone wants an extra
         spicy pinch.
       </p>
 
       <aside className="mt-8 rounded-sm border border-[#d5d9d9] bg-[#f7f8f8] p-4 text-[14px] leading-6 text-[#565959]">
         <p className="font-bold text-[#0f1111]">Kitchen tip from Lata Special</p>
         <p className="mt-1">
-          Homemade Kala Massala is roasted for Nagpuri and Saoji-style gravies like this one. Shop
+          Homemade Saoji Masala is roasted for Nagpuri and Saoji-style gravies like this one. Shop
           packs on{" "}
           <a href="/#product" className="text-link hover:text-link-hover hover:underline">
-            kalamassala.online
+            Saoji Masala
           </a>{" "}
           — Nagpur delivery only.
         </p>

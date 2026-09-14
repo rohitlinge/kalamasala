@@ -6,9 +6,9 @@ import { JsonLd } from "@/lib/jsonld";
 import { owner } from "@/lib/content";
 import { SITE_URL } from "@/lib/site";
 
-const title = "Lata Linge — Homemade Nagpur Masala Kitchen";
+const title = "Lata Linge — Homemade Saoji Masala Nagpur Kitchen";
 const description =
-  "Meet Lata Linge, the Nagpur cook behind Lata Special. About 9 years of homemade Kala Massala with Nagpuri and Saoji-style taste. Buy her masala online for Nagpur delivery.";
+  "Meet Lata Linge, the Nagpur cook behind Lata Special Saoji Masala. About 9 years of homemade Saoji Masala Nagpur. Buy Saoji Masala online for Nagpur delivery.";
 
 export const metadata: Metadata = {
   title,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/owner`,
     type: "profile",
-    images: [{ url: owner.photo, alt: "Lata Linge, homemade Nagpur masala" }],
+    images: [{ url: owner.photo, alt: "Lata Linge, homemade Saoji Masala Nagpur" }],
   },
 };
 
@@ -37,7 +37,7 @@ export default function OwnerPage() {
       addressRegion: "Maharashtra",
       addressCountry: "IN",
     },
-    knowsAbout: ["Kala Massala", "Nagpuri masala", "Saoji masala", "Maharashtrian spices"],
+    knowsAbout: ["Saoji Masala", "Saoji Masala Nagpur", "Nagpuri masala", "Maharashtrian spices"],
     description,
   };
 
@@ -50,13 +50,13 @@ export default function OwnerPage() {
           <div className="mt-4 flex flex-col items-center text-center">
             <img
               src={owner.photo}
-              alt={`${owner.name}, homemade Nagpur Kala Massala`}
+              alt={`${owner.name}, homemade Nagpur Saoji Masala`}
               className="h-52 w-52 rounded-full object-cover object-top shadow-md md:h-64 md:w-64"
               loading="lazy"
               decoding="async"
             />
             <h1 className="mt-4 text-[26px] font-medium md:text-[32px]">{owner.name}</h1>
-            <p className="mt-1 text-[13px] text-[#565959]">Nagpur kitchen · Nagpuri &amp; Saoji-style Kala Massala</p>
+            <p className="mt-1 text-[13px] text-[#565959]">Nagpur kitchen · Homemade Saoji Masala Nagpur</p>
             <SocialIcons className="mt-4 justify-center" />
           </div>
           <p className="font-hindi mx-auto mt-6 max-w-xl text-center text-[16px] leading-7 text-[#0f1111]">{owner.bioHi}</p>

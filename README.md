@@ -1,6 +1,6 @@
-# Kala Massala
+# Saoji Masala
 
-Next.js storefront for Kala Massala, with Razorpay checkout and cash-on-delivery.
+Next.js storefront for Saoji Masala, with Razorpay checkout and cash-on-delivery.
 
 ## Setup
 
