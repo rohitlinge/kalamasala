@@ -32,4 +32,6 @@ export const SEO_KEYWORDS = [
   "saoji mutton Nagpur recipe",
   "saoji mutton recipe",
   "chicken tikka masala recipe",
+  "saoji masala recipe",
+  "homemade saoji masala",
 ];

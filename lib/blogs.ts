@@ -29,6 +29,69 @@ export type BlogPost = {
 
 export const blogs: BlogPost[] = [
   {
+    slug: "saoji-masala-recipe",
+    title: "Saoji Masala Recipe | Lata Special",
+    seoTitle: "Saoji Masala Recipe at Home | 18 Spices Slow Roast | Lata Special",
+    shortTitle: "Saoji Masala",
+    description:
+      "Easy homemade Saoji masala recipe from Lata Special, Nagpur. Slow-roast about 18 spices — coriander, poppy seeds, stone flower, jowar, wheat, rice and more — then cook turmeric, chilli, onion, garlic and ginger powder in oil. Step-by-step Vidarbha Saoji masala.",
+    keywords: [
+      "saoji masala recipe",
+      "homemade saoji masala",
+      "how to make saoji masala",
+      "Nagpur saoji masala recipe",
+      "saoji masala at home",
+      "Vidarbha saoji masala",
+      "18 spice saoji masala",
+      "dagad phool masala recipe",
+      "Lata Special Saoji Masala",
+      "Maharashtrian saoji masala",
+      "dry roast saoji masala",
+      "saoji gravy masala",
+    ],
+    publishedAt: "2026-09-14",
+    updatedAt: "2026-09-14",
+    author: "Lata Linge",
+    category: "Masala Recipe",
+    readingMinutes: 10,
+    ogImage: OG_IMAGE,
+    ogImageAlt: "Saoji masala recipe — Lata Special homemade Nagpur roast",
+    faqs: [
+      {
+        question: "How many spices go into homemade Saoji masala?",
+        answer:
+          "This recipe uses about 18 kinds of spices. Whole coriander, poppy seeds, stone flower, chana dal, jowar, wheat, rice, cumin, fennel, black pepper, star anise, black cardamom, cloves, cinnamon, nutmeg, green cardamom and salt are dry-roasted. Then turmeric, red chilli, onion powder, garlic powder and ginger powder are cooked in oil.",
+      },
+      {
+        question: "Why must I roast Saoji masala on a slow flame?",
+        answer:
+          "Slow flame is the whole secret. Fast heat burns spice and makes the masala bitter. Low heat gives a slightly dark colour and a deep smell — the taste Saoji gravy is known for.",
+      },
+      {
+        question: "Can I use a mixer instead of pounding the masala?",
+        answer:
+          "Yes. The old way is to pound the roast by hand. If you do not have a pounding stone, cool the spices fully and grind them in a mixer. Do not grind while they are hot.",
+      },
+      {
+        question: "What does Saoji gravy look like after this masala?",
+        answer:
+          "Classic Saoji gravy is a little dark, stays thin (not a thick korma), and tastes spicy. That is the Nagpur and Vidarbha style this masala is made for.",
+      },
+      {
+        question: "I don't want to roast 18 spices. What can I use instead?",
+        answer:
+          "Use Lata Special Saoji Masala — the same Nagpur kitchen roast, already packed. It works in usal, bhaji, mutton and gravies. Delivery is Nagpur only.",
+      },
+    ],
+    featuredVideo: {
+      embedSrc: "https://assets.pinterest.com/ext/embed.html?id=963700020283798871",
+      title: "Saoji Masala Recipe video — Lata Special",
+      width: 600,
+      height: 700,
+      contentUrl: "https://www.pinterest.com/pin/963700020283798871/",
+    },
+  },
+  {
     slug: "butter-chicken-recipe",
     title: "Butter Chicken Recipe | Lata Special",
     seoTitle: "Butter Chicken Recipe at Home | Soft Chicken & Makhani Gravy | Lata Special",
@@ -232,6 +295,139 @@ export function blogUrl(slug: string) {
 export function absoluteAssetUrl(path: string) {
   if (path.startsWith("http")) return path;
   return `${SITE_URL}${encodeURI(path.startsWith("/") ? path : `/${path}`)}`;
+}
+
+export function saojiMasalaRecipeLd(post: BlogPost) {
+  const url = blogUrl(post.slug);
+  const imageUrl = absoluteAssetUrl(post.ogImage);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "@id": `${url}#recipe`,
+    name: "Saoji Masala Recipe | Lata Special",
+    alternateName: [
+      "Homemade Saoji masala",
+      "Nagpur Saoji masala",
+      "Vidarbha Saoji spice mix",
+    ],
+    description: post.description,
+    image: [imageUrl],
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: `${SITE_URL}/owner`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteAssetUrl("/images/product/250g masala.png"),
+      },
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    prepTime: "PT15M",
+    cookTime: "PT45M",
+    totalTime: "PT60M",
+    recipeYield: ["1 homemade batch", "1"],
+    recipeCategory: ["Spice mix", "Masala", "Indian condiment"],
+    recipeCuisine: ["Indian", "Maharashtrian", "Nagpuri", "Saoji", "Vidarbha"],
+    keywords: post.keywords.join(", "),
+    cookingMethod: "Slow dry roast and oil roast",
+    recipeIngredient: [
+      "300 g whole coriander seeds",
+      "50 g poppy seeds (khuskhus)",
+      "Stone flower (dagad phool), a small handful",
+      "2–3 tbsp chana dal",
+      "2–3 tbsp sorghum (jowar)",
+      "2–3 tbsp wheat",
+      "2–3 tbsp rice",
+      "Cumin seeds",
+      "Fennel seeds",
+      "Black peppercorns",
+      "Star anise",
+      "Black cardamom",
+      "Cloves",
+      "Cinnamon",
+      "Nutmeg",
+      "Green cardamom",
+      "Salt",
+      "Oil for frying the powders",
+      "Dry turmeric (halak)",
+      "Red chilli powder",
+      "Onion powder",
+      "Garlic powder",
+      "Ginger powder",
+    ],
+    recipeInstructions: [
+      {
+        "@type": "HowToStep",
+        position: 1,
+        name: "Roast coriander on a slow flame",
+        text: "Roast 300 g whole coriander on a very low flame until it turns a little dark. Stir so it does not burn, then plate it.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 2,
+        name: "Roast poppy seeds",
+        text: "Roast 50 g poppy seeds on a slow flame until nutty. They burn quickly, so stay with the pan.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 3,
+        name: "Briefly roast stone flower",
+        text: "Roast stone flower (dagad phool) on a low flame, but not for long. Too much heat spoils its smell.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 4,
+        name: "Roast dal, jowar, wheat and rice",
+        text: "Roast about 2–3 tablespoons each of chana dal, jowar, wheat and rice together on a low flame until lightly cooked.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 5,
+        name: "Lightly roast cumin, fennel and pepper",
+        text: "Give cumin, fennel and black pepper only a short slow roast. Pepper turns harsh if cooked too long.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 6,
+        name: "Add remaining whole spices",
+        text: "Add star anise, black cardamom, cloves, cinnamon, nutmeg, green cardamom and salt one after another. Roast on a low flame until fragrant.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 7,
+        name: "Cook powders in oil",
+        text: "Heat oil. Roast dry turmeric, then red chilli until a little dark. Add onion powder, ginger powder and garlic powder. Cook on a low flame until the raw smell leaves.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 8,
+        name: "Cool and grind",
+        text: "Cool fully, then pound or grind in a mixer to a fine dark powder. Store airtight in a cool, dry place.",
+      },
+    ],
+    video: post.featuredVideo
+      ? {
+          "@type": "VideoObject",
+          name: post.featuredVideo.title,
+          description: post.description,
+          thumbnailUrl: [imageUrl],
+          uploadDate: post.publishedAt,
+          contentUrl: post.featuredVideo.contentUrl ?? post.featuredVideo.embedSrc,
+          embedUrl: post.featuredVideo.embedSrc,
+          inLanguage: "hi-IN",
+        }
+      : undefined,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    inLanguage: "en-IN",
+  };
 }
 
 export function butterChickenRecipeLd(post: BlogPost) {

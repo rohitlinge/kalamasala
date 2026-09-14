@@ -5,6 +5,7 @@ import StoreShell from "@/components/StoreShell";
 import BlogFeaturedVideo from "@/components/blogs/BlogFeaturedVideo";
 import ButterChickenPost from "@/components/blogs/ButterChickenPost";
 import ChickenTikkaMasalaPost from "@/components/blogs/ChickenTikkaMasalaPost";
+import SaojiMasalaPost from "@/components/blogs/SaojiMasalaPost";
 import SaojiMuttonPost from "@/components/blogs/SaojiMuttonPost";
 import { JsonLd } from "@/lib/jsonld";
 import {
@@ -18,6 +19,7 @@ import {
   chickenTikkaMasalaRecipeLd,
   getAllBlogSlugs,
   getBlog,
+  saojiMasalaRecipeLd,
   saojiMuttonRecipeLd,
 } from "@/lib/blogs";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -104,13 +106,15 @@ export default async function BlogPostPage({ params }: Props) {
 
   const faqLd = blogFaqLd(post);
   const recipeLd =
-    slug === "butter-chicken-recipe"
-      ? butterChickenRecipeLd(post)
-      : slug === "saoji-mutton-nagpur-recipe"
-        ? saojiMuttonRecipeLd(post)
-        : slug === "chicken-tikka-masala-recipe"
-          ? chickenTikkaMasalaRecipeLd(post)
-          : null;
+    slug === "saoji-masala-recipe"
+      ? saojiMasalaRecipeLd(post)
+      : slug === "butter-chicken-recipe"
+        ? butterChickenRecipeLd(post)
+        : slug === "saoji-mutton-nagpur-recipe"
+          ? saojiMuttonRecipeLd(post)
+          : slug === "chicken-tikka-masala-recipe"
+            ? chickenTikkaMasalaRecipeLd(post)
+            : null;
   const schemas = [
     blogWebPageLd(post),
     blogPostingLd(post),
@@ -185,6 +189,7 @@ export default async function BlogPostPage({ params }: Props) {
           ) : null}
 
           <div className="mt-8 border-t border-[#d5d9d9] pt-6" itemProp="articleBody">
+            {slug === "saoji-masala-recipe" ? <SaojiMasalaPost faqs={post.faqs} /> : null}
             {slug === "butter-chicken-recipe" ? <ButterChickenPost faqs={post.faqs} /> : null}
             {slug === "saoji-mutton-nagpur-recipe" ? <SaojiMuttonPost faqs={post.faqs} /> : null}
             {slug === "chicken-tikka-masala-recipe" ? (
