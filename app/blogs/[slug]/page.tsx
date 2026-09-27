@@ -7,6 +7,7 @@ import ButterChickenPost from "@/components/blogs/ButterChickenPost";
 import ChickenTikkaMasalaPost from "@/components/blogs/ChickenTikkaMasalaPost";
 import SaojiMasalaPost from "@/components/blogs/SaojiMasalaPost";
 import SaojiMuttonPost from "@/components/blogs/SaojiMuttonPost";
+import SaojiRestaurantsPost from "@/components/blogs/SaojiRestaurantsPost";
 import { JsonLd } from "@/lib/jsonld";
 import {
   absoluteAssetUrl,
@@ -21,6 +22,7 @@ import {
   getBlog,
   saojiMasalaRecipeLd,
   saojiMuttonRecipeLd,
+  saojiRestaurantsGuideLd,
 } from "@/lib/blogs";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -115,11 +117,13 @@ export default async function BlogPostPage({ params }: Props) {
           : slug === "chicken-tikka-masala-recipe"
             ? chickenTikkaMasalaRecipeLd(post)
             : null;
+  const guideLd = slug === "top-3-saoji-restaurants-bhojnalay-nagpur" ? saojiRestaurantsGuideLd(post) : null;
   const schemas = [
     blogWebPageLd(post),
     blogPostingLd(post),
     blogBreadcrumbLd(post),
     ...(recipeLd ? [recipeLd] : []),
+    ...(guideLd ? [guideLd] : []),
     ...(faqLd ? [faqLd] : []),
   ];
 
@@ -178,7 +182,9 @@ export default async function BlogPostPage({ params }: Props) {
 
           {post.featuredVideo ? (
             <div className="mt-6">
-              <h2 className="mb-3 text-[16px] font-bold text-[#0f1111]">Watch the recipe</h2>
+              <h2 className="mb-3 text-[16px] font-bold text-[#0f1111]">
+                {post.featuredVideo.heading ?? "Watch the recipe"}
+              </h2>
               <BlogFeaturedVideo
                 src={post.featuredVideo.embedSrc}
                 title={post.featuredVideo.title}
@@ -189,6 +195,9 @@ export default async function BlogPostPage({ params }: Props) {
           ) : null}
 
           <div className="mt-8 border-t border-[#d5d9d9] pt-6" itemProp="articleBody">
+            {slug === "top-3-saoji-restaurants-bhojnalay-nagpur" ? (
+              <SaojiRestaurantsPost faqs={post.faqs} />
+            ) : null}
             {slug === "saoji-masala-recipe" ? <SaojiMasalaPost faqs={post.faqs} /> : null}
             {slug === "butter-chicken-recipe" ? <ButterChickenPost faqs={post.faqs} /> : null}
             {slug === "saoji-mutton-nagpur-recipe" ? <SaojiMuttonPost faqs={post.faqs} /> : null}

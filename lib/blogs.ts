@@ -24,10 +24,74 @@ export type BlogPost = {
     width: number;
     height: number;
     contentUrl?: string;
+    heading?: string;
   };
 };
 
 export const blogs: BlogPost[] = [
+  {
+    slug: "top-3-saoji-restaurants-bhojnalay-nagpur",
+    title: "Top 3 Saoji Restaurants (Bhojnalay) in Nagpur | Lata Special",
+    seoTitle: "Top 3 Saoji Restaurants (Bhojnalay) in Nagpur | Golibar Chowk | Lata Special",
+    shortTitle: "Top 3 Saoji Bhojnalay",
+    description:
+      "Top 3 Saoji restaurants (bhojnalay) in Nagpur at Golibar Chowk — Ashok Saoji, Anand Saoji and Hotel Chaman Saoji. Prices, crowd, gravy and why each plate is famous. From Lata Special, Nagpur.",
+    keywords: [
+      "top 3 Saoji restaurants Nagpur",
+      "Saoji bhojnalay Nagpur",
+      "Golibar Chowk Saoji",
+      "Ashok Saoji Bhojnalay",
+      "Anand Saoji Nagpur",
+      "Hotel Chaman Saoji",
+      "best Saoji restaurant Nagpur",
+      "Nagpur Saoji food",
+      "Vidarbha Saoji bhojnalay",
+      "Saoji mutton Nagpur restaurant",
+      "Lata Special Saoji",
+    ],
+    publishedAt: "2026-09-15",
+    updatedAt: "2026-09-15",
+    author: "Lata Linge",
+    category: "Nagpur Guide",
+    readingMinutes: 8,
+    ogImage: OG_IMAGE,
+    ogImageAlt: "Top 3 Saoji restaurants bhojnalay in Nagpur — Golibar Chowk",
+    faqs: [
+      {
+        question: "Which are the top 3 Saoji bhojnalay in Nagpur?",
+        answer:
+          "Around Golibar Chowk, three names stand out: Ashok Saoji Bhojnalay, Anand Saoji Restaurant, and Hotel Chaman Saoji. All three are loved for real Nagpur Saoji taste.",
+      },
+      {
+        question: "How much does a Saoji plate cost at these places?",
+        answer:
+          "Prices change, but in this visit Ashok Saoji was about ₹200 a full plate and ₹100 half. Hotel Chaman Saoji was about ₹250 a plate and ₹200 half. Some special plates go higher.",
+      },
+      {
+        question: "Which Saoji restaurant is most trending in Nagpur?",
+        answer:
+          "Hotel Chaman Saoji is old and also trending now. Food bloggers come here because the gravy and every item feel unique, so demand stays high.",
+      },
+      {
+        question: "Is Anand Saoji worth it even if the place is small?",
+        answer:
+          "Yes. The space is small, but the taste is strong. At lunch the crowd is heavy, which is a good sign in a Nagpur bhojnalay.",
+      },
+      {
+        question: "Can I cook this Saoji taste at home?",
+        answer:
+          "Yes. Use Lata Special Saoji Masala — the 250 g pack is ₹200. It is homemade in Nagpur for usal, bhaji, mutton and gravies. Delivery is Nagpur only.",
+      },
+    ],
+    featuredVideo: {
+      embedSrc: "https://assets.pinterest.com/ext/embed.html?id=963700020283826803",
+      title: "Top 3 Saoji restaurants (bhojnalay) in Nagpur — Lata Special",
+      width: 600,
+      height: 850,
+      contentUrl: "https://www.pinterest.com/pin/963700020283826803/",
+      heading: "Watch the video",
+    },
+  },
   {
     slug: "saoji-masala-recipe",
     title: "Saoji Masala Recipe | Lata Special",
@@ -295,6 +359,62 @@ export function blogUrl(slug: string) {
 export function absoluteAssetUrl(path: string) {
   if (path.startsWith("http")) return path;
   return `${SITE_URL}${encodeURI(path.startsWith("/") ? path : `/${path}`)}`;
+}
+
+export function saojiRestaurantsGuideLd(post: BlogPost) {
+  const url = blogUrl(post.slug);
+  const imageUrl = absoluteAssetUrl(post.ogImage);
+  const places = [
+    {
+      name: "Ashok Saoji Bhojnalay",
+      description:
+        "One of Nagpur’s older Saoji bhojnalay at Golibar Chowk. Full plate about ₹200, half about ₹100. Known for strong non-veg and crisp cuts.",
+    },
+    {
+      name: "Anand Saoji Restaurant",
+      description:
+        "A small Saoji restaurant with strong taste. Lunch time is crowded. People come for flavour, not a big hall.",
+    },
+    {
+      name: "Hotel Chaman Saoji",
+      description:
+        "Old and now trending Saoji bhojnalay. Food bloggers film here. Full plate about ₹250, half about ₹200. Unique gravy; Hyderabadi chicken and homestyle plates too.",
+    },
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${url}#restaurants`,
+    name: post.title,
+    description: post.description,
+    image: [imageUrl],
+    numberOfItems: places.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement: places.map((place, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "FoodEstablishment",
+        name: place.name,
+        description: place.description,
+        servesCuisine: ["Saoji", "Maharashtrian", "Nagpuri"],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Nagpur",
+          addressRegion: "Maharashtra",
+          addressCountry: "IN",
+        },
+        areaServed: {
+          "@type": "City",
+          name: "Nagpur",
+        },
+      },
+    })),
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    inLanguage: "en-IN",
+  };
 }
 
 export function saojiMasalaRecipeLd(post: BlogPost) {
@@ -894,7 +1014,9 @@ export function blogWebPageLd(post: BlogPost) {
     name: post.seoTitle,
     description: post.description,
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
-    about: { "@id": `${url}#recipe` },
+    about: post.category.toLowerCase().includes("recipe")
+      ? { "@id": `${url}#recipe` }
+      : { "@type": "Thing", name: post.shortTitle },
     primaryImageOfPage: {
       "@type": "ImageObject",
       url: absoluteAssetUrl(post.ogImage),

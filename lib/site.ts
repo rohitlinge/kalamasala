@@ -34,4 +34,6 @@ export const SEO_KEYWORDS = [
   "chicken tikka masala recipe",
   "saoji masala recipe",
   "homemade saoji masala",
+  "Saoji restaurants Nagpur",
+  "Saoji bhojnalay Nagpur",
 ];

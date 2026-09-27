@@ -7,7 +7,7 @@ import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const title = "Blogs — Recipes & Kitchen Stories from Lata Special";
 const description =
-  "Recipes from Lata Special Saoji Masala, Nagpur — homemade Saoji masala, butter chicken, Saoji mutton, chicken tikka masala, and kitchen tips for cooking with Saoji Masala Nagpur.";
+  "Recipes and Nagpur kitchen stories from Lata Special Saoji Masala — top Saoji bhojnalay, homemade Saoji masala, butter chicken, Saoji mutton, chicken tikka masala, and tips for Saoji Masala Nagpur.";
 
 export const metadata: Metadata = {
   title: { absolute: `${title} | ${SITE_NAME}` },
@@ -25,6 +25,9 @@ export const metadata: Metadata = {
     "Nagpur recipes",
     "makhani gravy recipe",
     "Saoji Masala recipes",
+    "Saoji restaurants Nagpur",
+    "Saoji bhojnalay Nagpur",
+    "Golibar Chowk Saoji",
   ],
   alternates: { canonical: `${SITE_URL}/blogs` },
   robots: {

@@ -1,22 +1,24 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { packs } from "@/lib/content";
+import { packs, type PackId } from "@/lib/content";
 import { formatInr } from "@/lib/product";
 import { useCart } from "@/lib/cart";
 
 type Props = {
   headline?: string;
   note?: string;
+  packId?: PackId;
 };
 
 export default function BlogMasalaAd({
   headline = "Cook this with Lata Special Saoji Masala",
   note = "Authentic Saoji Masala Nagpur — homemade roast ready for your mutton, usal, and gravies.",
+  packId = "500",
 }: Props) {
   const router = useRouter();
   const { addItem } = useCart();
-  const pack = packs.find((p) => p.id === "500") ?? packs[0];
+  const pack = packs.find((p) => p.id === packId) ?? packs[0];
 
   function onAdd() {
     addItem(pack.id, 1);
