@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import StoreShell from "@/components/StoreShell";
 import BlogFeaturedVideo from "@/components/blogs/BlogFeaturedVideo";
 import ButterChickenPost from "@/components/blogs/ButterChickenPost";
+import ChickenBiryaniPost from "@/components/blogs/ChickenBiryaniPost";
 import ChickenTikkaMasalaPost from "@/components/blogs/ChickenTikkaMasalaPost";
 import SaojiMasalaPost from "@/components/blogs/SaojiMasalaPost";
 import SaojiMuttonPost from "@/components/blogs/SaojiMuttonPost";
@@ -17,6 +18,7 @@ import {
   blogUrl,
   blogWebPageLd,
   butterChickenRecipeLd,
+  chickenBiryaniRecipeLd,
   chickenTikkaMasalaRecipeLd,
   getAllBlogSlugs,
   getBlog,
@@ -116,7 +118,9 @@ export default async function BlogPostPage({ params }: Props) {
           ? saojiMuttonRecipeLd(post)
           : slug === "chicken-tikka-masala-recipe"
             ? chickenTikkaMasalaRecipeLd(post)
-            : null;
+            : slug === "chicken-biryani-recipe"
+              ? chickenBiryaniRecipeLd(post)
+              : null;
   const guideLd = slug === "top-3-saoji-restaurants-bhojnalay-nagpur" ? saojiRestaurantsGuideLd(post) : null;
   const schemas = [
     blogWebPageLd(post),
@@ -204,6 +208,7 @@ export default async function BlogPostPage({ params }: Props) {
             {slug === "chicken-tikka-masala-recipe" ? (
               <ChickenTikkaMasalaPost faqs={post.faqs} />
             ) : null}
+            {slug === "chicken-biryani-recipe" ? <ChickenBiryaniPost faqs={post.faqs} /> : null}
           </div>
 
           <div className="mt-10 border-t border-[#d5d9d9] pt-4">

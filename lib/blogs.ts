@@ -30,6 +30,69 @@ export type BlogPost = {
 
 export const blogs: BlogPost[] = [
   {
+    slug: "chicken-biryani-recipe",
+    title: "Chicken Biryani Recipe | 1 kg Dum | Lata Special",
+    seoTitle: "Chicken Biryani Recipe at Home | 1 kg Dum Biryani | Lata Special",
+    shortTitle: "Chicken Biryani",
+    description:
+      "Perfect 1 kg chicken dum biryani recipe from Lata Special. Same-weight rice and chicken, fresh garam masala, ghee-oil marinade, 50% and 70% rice layers, 20-minute dum. Step-by-step homemade chicken biryani.",
+    keywords: [
+      "chicken biryani recipe",
+      "1 kg chicken biryani",
+      "chicken dum biryani recipe",
+      "homemade chicken biryani",
+      "chicken biryani at home",
+      "basmati chicken biryani",
+      "dum biryani recipe",
+      "1 kilo chicken biryani",
+      "Lata Special chicken biryani",
+      "layered chicken biryani",
+      "birista chicken biryani",
+      "handi dum biryani",
+    ],
+    publishedAt: "2026-09-27",
+    updatedAt: "2026-09-27",
+    author: "Lata Linge",
+    category: "Chicken Recipe",
+    readingMinutes: 14,
+    ogImage: OG_IMAGE,
+    ogImageAlt: "1 kg chicken dum biryani recipe — Lata Special",
+    faqs: [
+      {
+        question: "How much rice do I use for 1 kg chicken biryani?",
+        answer:
+          "Use 1 kg long-grain basmati for the same weight as the chicken. If your family eats less rice, 750–800 g is also a good measure.",
+      },
+      {
+        question: "How long should I soak basmati rice?",
+        answer:
+          "Wash two to three times, then soak at least 30 minutes. Forty-five minutes is better for long-grain basmati so the rice stays long and shiny.",
+      },
+      {
+        question: "Why use a 2–3 kg handi for 1 kg biryani?",
+        answer:
+          "Marinade fills about half the pot and rice sits on top. A tight 1 kg handi leaves little room for steam. A 2–3 kg handi (about 2½ kg) lets dum circulate so both chicken and rice cook.",
+      },
+      {
+        question: "Should I add ghee in the chicken marinade?",
+        answer:
+          "Yes. Use the same amount of ghee as oil — 150 ml each for this 1 kg pot. The mix makes the masala shine and keeps the chicken juicy.",
+      },
+      {
+        question: "How do I cook the rice before dum?",
+        answer:
+          "Boil the first layer to about 50% (around 5 minutes) and the top layer to about 70% (around 15 minutes). The last 30% cooks on dum — 10 minutes high flame, then 10 minutes slow flame.",
+      },
+    ],
+    featuredVideo: {
+      embedSrc: "https://assets.pinterest.com/ext/embed.html?id=963700020284185393",
+      title: "Chicken Biryani Recipe video — 1 kg dum | Lata Special",
+      width: 345,
+      height: 714,
+      contentUrl: "https://www.pinterest.com/pin/963700020284185393/",
+    },
+  },
+  {
     slug: "top-3-saoji-restaurants-bhojnalay-nagpur",
     title: "Top 3 Saoji Restaurants (Bhojnalay) in Nagpur | Lata Special",
     seoTitle: "Top 3 Saoji Restaurants (Bhojnalay) in Nagpur | Golibar Chowk | Lata Special",
@@ -359,6 +422,126 @@ export function blogUrl(slug: string) {
 export function absoluteAssetUrl(path: string) {
   if (path.startsWith("http")) return path;
   return `${SITE_URL}${encodeURI(path.startsWith("/") ? path : `/${path}`)}`;
+}
+
+export function chickenBiryaniRecipeLd(post: BlogPost) {
+  const url = blogUrl(post.slug);
+  const imageUrl = absoluteAssetUrl(post.ogImage);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "@id": `${url}#recipe`,
+    name: "Chicken Biryani Recipe | 1 kg Dum | Lata Special",
+    alternateName: [
+      "1 kg chicken dum biryani",
+      "Homemade chicken biryani",
+      "Handi chicken biryani",
+    ],
+    description: post.description,
+    image: [imageUrl],
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: `${SITE_URL}/owner`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteAssetUrl("/images/product/250g masala.png"),
+      },
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    prepTime: "PT60M",
+    cookTime: "PT50M",
+    totalTime: "PT110M",
+    recipeYield: ["6 servings", "6"],
+    recipeCategory: ["Main course", "Chicken", "Rice", "Biryani"],
+    recipeCuisine: ["Indian", "Hyderabadi", "Mughlai"],
+    keywords: post.keywords.join(", "),
+    cookingMethod: "Dum cooking",
+    recipeIngredient: [
+      "1 kg long-grain basmati rice (or 750–800 g)",
+      "1 kg chicken, 30–40 g pieces",
+      "10 g green cardamom",
+      "2 cinnamon sticks",
+      "10–12 cloves",
+      "5–6 g shahjeera",
+      "1 piece javitri (mace)",
+      "Salt to taste",
+      "Less than ½ tbsp turmeric",
+      "1½ tbsp deggi chilli powder",
+      "1 tsp spicy chilli powder",
+      "50 g ginger-garlic paste",
+      "Half bunch mint + same coriander, chopped",
+      "5–6 green chillies",
+      "150 ml oil",
+      "150 ml ghee",
+      "200 g fried onion (birista)",
+      "300 g beaten dahi",
+      "Juice of 3–4 lemons",
+      "About ½ litre water for the marinade",
+      "About 5 litres water to boil rice",
+      "4–5 cardamom, 1 cinnamon, 1 javitri, 4–5 cloves, 5 g shahjeera for rice water",
+    ],
+    recipeInstructions: [
+      {
+        "@type": "HowToStep",
+        position: 1,
+        name: "Wash and soak rice",
+        text: "Wash basmati two to three times. Soak 30–45 minutes.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 2,
+        name: "Roast and grind garam masala",
+        text: "Lightly roast cardamom, cinnamon, cloves, shahjeera and javitri. Cool and grind slightly coarse.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 3,
+        name: "Marinate chicken",
+        text: "In a 2–3 kg handi, mix chicken with salt, turmeric, deggi and spicy chilli, ginger-garlic, mint, coriander, green chillies, oil, ghee, birista and the fresh masala. Rest 10 minutes.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 4,
+        name: "Add dahi, lemon and water",
+        text: "Mix in whisked dahi and lemon juice. Loosen with about ½ litre water so the marinade is medium, not thick.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 5,
+        name: "Parboil rice in two stages",
+        text: "Boil rice in 5 litres salted water with whole spices. Lift the first layer at about 50% (5 minutes). Cook the rest to about 70% (15 minutes).",
+      },
+      {
+        "@type": "HowToStep",
+        position: 6,
+        name: "Layer and dum",
+        text: "Layer 50% rice on the raw marinade, then 70% rice, birista and coriander. Seal and dum 10 minutes high flame plus 10 minutes slow flame.",
+      },
+    ],
+    video: post.featuredVideo
+      ? {
+          "@type": "VideoObject",
+          name: post.featuredVideo.title,
+          description: post.description,
+          thumbnailUrl: [imageUrl],
+          uploadDate: post.publishedAt,
+          contentUrl: post.featuredVideo.contentUrl ?? post.featuredVideo.embedSrc,
+          embedUrl: post.featuredVideo.embedSrc,
+          inLanguage: "hi-IN",
+        }
+      : undefined,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    inLanguage: "en-IN",
+  };
 }
 
 export function saojiRestaurantsGuideLd(post: BlogPost) {
