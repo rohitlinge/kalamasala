@@ -30,6 +30,69 @@ export type BlogPost = {
 
 export const blogs: BlogPost[] = [
   {
+    slug: "patodi-sabji-recipe",
+    title: "Patodi Sabji Recipe | Lata Special Saoji Masala",
+    seoTitle: "Patodi Sabji Recipe at Home | Besan Patodi with Saoji Masala | Lata Special",
+    shortTitle: "Patodi Sabji",
+    description:
+      "Easy Maharashtrian patodi sabji recipe from Lata Special. One glass besan, one glass cold water, garam masala and Lata Special Saoji Masala. Cook, cut strips, and finish in a rasedar gravy. Step-by-step Nagpur kitchen bhaji.",
+    keywords: [
+      "patodi sabji recipe",
+      "patodi recipe",
+      "Maharashtrian patodi",
+      "besan patodi sabzi",
+      "patodi rassa",
+      "patodi bhaji",
+      "Saoji Masala sabzi",
+      "Lata Special patodi",
+      "kala masala patodi",
+      "gharachi patodi",
+      "Marathi patodi recipe",
+      "besan gravy sabzi Nagpur",
+    ],
+    publishedAt: "2026-09-28",
+    updatedAt: "2026-09-28",
+    author: "Lata Linge",
+    category: "Vegetarian Recipe",
+    readingMinutes: 9,
+    ogImage: OG_IMAGE,
+    ogImageAlt: "Patodi sabji recipe with Lata Special Saoji Masala",
+    faqs: [
+      {
+        question: "What is the besan-to-water ratio for patodi?",
+        answer:
+          "Use one glass besan and one glass cold water. That 1:1 measure is the perfect proportion. Hot water can lump the mix.",
+      },
+      {
+        question: "Which masala goes in patodi sabji?",
+        answer:
+          "This recipe uses a little more than ½ tsp garam masala plus ¼ tsp Lata Special Saoji Masala in the batter, and more Saoji Masala in the kadhai gravy. It replaces gharacha kala masala.",
+      },
+      {
+        question: "Why cook the besan mix on a low flame?",
+        answer:
+          "Low flame and constant stirring keep the mix from sticking. When it thickens and leaves the pan, spread it, cool, and cut into patodi strips.",
+      },
+      {
+        question: "How do I make the sabji gravy?",
+        answer:
+          "Heat 3–4 tbsp oil, add tej patta, roast Lata Special Saoji Masala on a medium flame till the oil shows, add water, then slide in the patodi. Mix gently so the strips do not break.",
+      },
+      {
+        question: "Can I use Lata Special Saoji Masala in other sabzis too?",
+        answer:
+          "Yes. Use it in aloo-baingan, wadi sabzi, and any rasedar gravy. The 250 g pack is ₹200. Delivery is Nagpur only.",
+      },
+    ],
+    featuredVideo: {
+      embedSrc: "https://assets.pinterest.com/ext/embed.html?id=963700020284219946",
+      title: "Patodi Sabji Recipe video — Lata Special Saoji Masala",
+      width: 600,
+      height: 438,
+      contentUrl: "https://www.pinterest.com/pin/963700020284219946/",
+    },
+  },
+  {
     slug: "chicken-biryani-recipe",
     title: "Chicken Biryani Recipe | 1 kg Dum | Lata Special",
     seoTitle: "Chicken Biryani Recipe at Home | 1 kg Dum Biryani | Lata Special",
@@ -422,6 +485,96 @@ export function blogUrl(slug: string) {
 export function absoluteAssetUrl(path: string) {
   if (path.startsWith("http")) return path;
   return `${SITE_URL}${encodeURI(path.startsWith("/") ? path : `/${path}`)}`;
+}
+
+export function patodiSabjiRecipeLd(post: BlogPost) {
+  const url = blogUrl(post.slug);
+  const imageUrl = absoluteAssetUrl(post.ogImage);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "@id": `${url}#recipe`,
+    name: "Patodi Sabji Recipe | Lata Special Saoji Masala",
+    alternateName: [
+      "Maharashtrian patodi",
+      "Besan patodi sabzi",
+      "Patodi rassa",
+    ],
+    description: post.description,
+    image: [imageUrl],
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: `${SITE_URL}/owner`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteAssetUrl("/images/product/250g masala.png"),
+      },
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    prepTime: "PT15M",
+    cookTime: "PT25M",
+    totalTime: "PT40M",
+    recipeYield: ["4 servings", "4"],
+    recipeCategory: ["Main course", "Vegetarian", "Sabzi"],
+    recipeCuisine: ["Indian", "Maharashtrian", "Nagpuri"],
+    keywords: post.keywords.join(", "),
+    cookingMethod: "Stovetop",
+    recipeIngredient: [
+      "1 glass besan (gram flour)",
+      "1 glass cold water",
+      "Salt to taste",
+      "A little more than ½ tsp garam masala",
+      "¼ tsp Lata Special Saoji Masala (in the batter)",
+      "3–4 tbsp oil",
+      "2 tej patta (bay leaves)",
+      "Optional 1 chopped tomato",
+      "1–1½ tsp Lata Special Saoji Masala (for the gravy)",
+      "Water for gravy",
+    ],
+    recipeInstructions: [
+      {
+        "@type": "HowToStep",
+        position: 1,
+        name: "Mix besan with cold water and masala",
+        text: "Mix one glass besan with one glass cold water, salt, a little more than ½ tsp garam masala, and ¼ tsp Lata Special Saoji Masala until smooth.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 2,
+        name: "Cook the mix on a low flame",
+        text: "Cook on a low flame, stirring so it does not stick, until it thickens and leaves the pan. Spread on a greased plate, cool, and cut into strips.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 3,
+        name: "Make the sabji gravy",
+        text: "Heat 3–4 tbsp oil with tej patta. Roast Lata Special Saoji Masala on a medium flame till the oil shows. Add water, then the patodi. Mix gently and simmer.",
+      },
+    ],
+    video: post.featuredVideo
+      ? {
+          "@type": "VideoObject",
+          name: post.featuredVideo.title,
+          description: post.description,
+          thumbnailUrl: [imageUrl],
+          uploadDate: post.publishedAt,
+          contentUrl: post.featuredVideo.contentUrl ?? post.featuredVideo.embedSrc,
+          embedUrl: post.featuredVideo.embedSrc,
+          inLanguage: "mr-IN",
+        }
+      : undefined,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    inLanguage: "en-IN",
+  };
 }
 
 export function chickenBiryaniRecipeLd(post: BlogPost) {

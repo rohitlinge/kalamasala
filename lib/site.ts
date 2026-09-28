@@ -38,4 +38,6 @@ export const SEO_KEYWORDS = [
   "Saoji bhojnalay Nagpur",
   "chicken biryani recipe",
   "1 kg chicken dum biryani",
+  "patodi sabji recipe",
+  "Maharashtrian patodi",
 ];
