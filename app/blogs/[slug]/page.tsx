@@ -6,6 +6,7 @@ import BlogFeaturedVideo from "@/components/blogs/BlogFeaturedVideo";
 import ButterChickenPost from "@/components/blogs/ButterChickenPost";
 import ChickenBiryaniPost from "@/components/blogs/ChickenBiryaniPost";
 import ChickenTikkaMasalaPost from "@/components/blogs/ChickenTikkaMasalaPost";
+import GaramMasalaPost from "@/components/blogs/GaramMasalaPost";
 import PatodiSabjiPost from "@/components/blogs/PatodiSabjiPost";
 import SaojiMasalaPost from "@/components/blogs/SaojiMasalaPost";
 import SaojiMuttonPost from "@/components/blogs/SaojiMuttonPost";
@@ -21,6 +22,7 @@ import {
   butterChickenRecipeLd,
   chickenBiryaniRecipeLd,
   chickenTikkaMasalaRecipeLd,
+  garamMasalaRecipeLd,
   getAllBlogSlugs,
   getBlog,
   patodiSabjiRecipeLd,
@@ -124,7 +126,9 @@ export default async function BlogPostPage({ params }: Props) {
               ? chickenBiryaniRecipeLd(post)
               : slug === "patodi-sabji-recipe"
                 ? patodiSabjiRecipeLd(post)
-                : null;
+                : slug === "how-to-make-garam-masala-at-home"
+                  ? garamMasalaRecipeLd(post)
+                  : null;
   const guideLd = slug === "top-3-saoji-restaurants-bhojnalay-nagpur" ? saojiRestaurantsGuideLd(post) : null;
   const schemas = [
     blogWebPageLd(post),
@@ -214,6 +218,7 @@ export default async function BlogPostPage({ params }: Props) {
             ) : null}
             {slug === "chicken-biryani-recipe" ? <ChickenBiryaniPost faqs={post.faqs} /> : null}
             {slug === "patodi-sabji-recipe" ? <PatodiSabjiPost faqs={post.faqs} /> : null}
+            {slug === "how-to-make-garam-masala-at-home" ? <GaramMasalaPost faqs={post.faqs} /> : null}
           </div>
 
           <div className="mt-10 border-t border-[#d5d9d9] pt-4">

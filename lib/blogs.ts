@@ -30,6 +30,69 @@ export type BlogPost = {
 
 export const blogs: BlogPost[] = [
   {
+    slug: "how-to-make-garam-masala-at-home",
+    title: "How to Make Garam Masala at Home | Lata Special",
+    seoTitle: "How to Make Garam Masala at Home | Shahi Garam Masala Recipe | Lata Special",
+    shortTitle: "Homemade Garam Masala",
+    description:
+      "How to make shahi garam masala at home from Lata Special. Slow-roast shahi jeera, coriander, pepper, cardamom, stone flower and tej patta. Coarse restaurant-style garam masala — one teaspoon per kilo of sabzi. Better than shop packets.",
+    keywords: [
+      "how to make garam masala at home",
+      "homemade garam masala",
+      "shahi garam masala recipe",
+      "garam masala recipe",
+      "homemade shahi garam masala",
+      "garam masala ingredients",
+      "best garam masala at home",
+      "Lata Special garam masala",
+      "slow roast garam masala",
+      "restaurant style garam masala",
+      "garam masala vs shop masala",
+      "Indian garam masala recipe",
+    ],
+    publishedAt: "2026-10-02",
+    updatedAt: "2026-10-02",
+    author: "Lata Linge",
+    category: "Masala Recipe",
+    readingMinutes: 12,
+    ogImage: OG_IMAGE,
+    ogImageAlt: "How to make shahi garam masala at home — Lata Special",
+    faqs: [
+      {
+        question: "How is homemade garam masala better than shop masala?",
+        answer:
+          "Shop garam masala is often mostly ground coriander — little taste or aroma. Homemade shahi garam masala is slow-roasted whole spices, slightly coarse, with a deep colour and smell. One teaspoon per kilo of sabzi is enough.",
+      },
+      {
+        question: "How hot should the pan be?",
+        answer:
+          "Very low flame. If a drop of water vanishes at once, wait a minute. Perfect heat is a very light smoke. Spices should feel warm in the hand, not hot enough to burn.",
+      },
+      {
+        question: "Do I add salt to garam masala?",
+        answer:
+          "No. Never add salt to shahi garam masala or biryani masala. Salt belongs in the sabzi, measured separately.",
+      },
+      {
+        question: "Why add kasuri methi after roasting?",
+        answer:
+          "Kasuri methi burns in seconds in a pan. Mix two spoons into the hot roasted spices in a bowl so it toasts lightly from leftover heat.",
+      },
+      {
+        question: "How do I use this with Lata Special Saoji Masala?",
+        answer:
+          "Use Saoji Masala in the bhunao for Nagpur gravy (usal, patodi, mutton). Finish with one teaspoon of this homemade garam masala. The 250 g Saoji Masala pack is ₹200. Delivery is Nagpur only.",
+      },
+    ],
+    featuredVideo: {
+      embedSrc: "https://assets.pinterest.com/ext/embed.html?id=92957179804465323",
+      title: "How to make garam masala at home — Lata Special",
+      width: 600,
+      height: 1000,
+      contentUrl: "https://www.pinterest.com/pin/92957179804465323/",
+    },
+  },
+  {
     slug: "patodi-sabji-recipe",
     title: "Patodi Sabji Recipe | Lata Special Saoji Masala",
     seoTitle: "Patodi Sabji Recipe at Home | Besan Patodi with Saoji Masala | Lata Special",
@@ -485,6 +548,115 @@ export function blogUrl(slug: string) {
 export function absoluteAssetUrl(path: string) {
   if (path.startsWith("http")) return path;
   return `${SITE_URL}${encodeURI(path.startsWith("/") ? path : `/${path}`)}`;
+}
+
+export function garamMasalaRecipeLd(post: BlogPost) {
+  const url = blogUrl(post.slug);
+  const imageUrl = absoluteAssetUrl(post.ogImage);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "@id": `${url}#recipe`,
+    name: "How to Make Garam Masala at Home | Lata Special",
+    alternateName: [
+      "Shahi garam masala",
+      "Homemade garam masala",
+      "Restaurant-style garam masala",
+    ],
+    description: post.description,
+    image: [imageUrl],
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: `${SITE_URL}/owner`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteAssetUrl("/images/product/250g masala.png"),
+      },
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    prepTime: "PT10M",
+    cookTime: "PT20M",
+    totalTime: "PT30M",
+    recipeYield: ["1 homemade jar", "1"],
+    recipeCategory: ["Spice mix", "Masala", "Indian condiment"],
+    recipeCuisine: ["Indian"],
+    keywords: post.keywords.join(", "),
+    cookingMethod: "Slow dry roast",
+    recipeIngredient: [
+      "2–2½ tbsp shahi jeera",
+      "5–6 tbsp coriander seeds",
+      "3–4 tbsp black peppercorns",
+      "½ tsp cumin seeds",
+      "1 tbsp / 5–6 black cardamom",
+      "2 tbsp green cardamom",
+      "1 tsp fennel seeds",
+      "Less than ½ tsp cloves",
+      "3 small mace blades",
+      "4 star anise",
+      "3–4 cinnamon sticks",
+      "2 tbsp kasuri methi",
+      "10–12 tej patta",
+      "2–3 tbsp stone flower (dagad phool)",
+      "2 small pieces dried ginger (saunth)",
+      "¾ nutmeg",
+      "3 dry red chillies, seeds removed",
+    ],
+    recipeInstructions: [
+      {
+        "@type": "HowToStep",
+        position: 1,
+        name: "Warm the pan on a very low flame",
+        text: "Heat the pan about 30 seconds on a very low flame. If water vanishes at once, wait. Perfect heat is a very light smoke.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 2,
+        name: "Slow-roast the first spices",
+        text: "Add shahi jeera, coriander, pepper, a pinch of cumin, both cardamoms, fennel, cloves, mace, star anise and cinnamon. Stir about one minute. Remove when warm, not burning.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 3,
+        name: "Mix kasuri methi off the heat",
+        text: "Tip spices into a cold bowl. Mix in 2 tbsp kasuri methi while they are still hot.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 4,
+        name: "Roast leaves and remaining spices",
+        text: "In the wiped pan roast tej patta, stone flower, saunth, nutmeg and dry red chillies until bay leaves are papad-crisp. Pound saunth and cinnamon, then mix all.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 5,
+        name: "Cool and grind",
+        text: "Cool fully. Grind in small batches to a slightly coarse powder. No salt. Use 1 tsp per 1 kg sabzi. Store 1–2 months airtight.",
+      },
+    ],
+    video: post.featuredVideo
+      ? {
+          "@type": "VideoObject",
+          name: post.featuredVideo.title,
+          description: post.description,
+          thumbnailUrl: [imageUrl],
+          uploadDate: post.publishedAt,
+          contentUrl: post.featuredVideo.contentUrl ?? post.featuredVideo.embedSrc,
+          embedUrl: post.featuredVideo.embedSrc,
+          inLanguage: "hi-IN",
+        }
+      : undefined,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    inLanguage: "en-IN",
+  };
 }
 
 export function patodiSabjiRecipeLd(post: BlogPost) {

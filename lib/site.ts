@@ -40,4 +40,6 @@ export const SEO_KEYWORDS = [
   "1 kg chicken dum biryani",
   "patodi sabji recipe",
   "Maharashtrian patodi",
+  "how to make garam masala at home",
+  "homemade garam masala",
 ];
