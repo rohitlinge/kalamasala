@@ -1,8 +1,10 @@
+import type { ComponentType } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import StoreShell from "@/components/StoreShell";
 import BlogFeaturedVideo from "@/components/blogs/BlogFeaturedVideo";
+import { RelatedPosts } from "@/components/blogs/BlogParts";
 import ButterChickenPost from "@/components/blogs/ButterChickenPost";
 import ChickenBiryaniPost from "@/components/blogs/ChickenBiryaniPost";
 import ChickenTikkaMasalaPost from "@/components/blogs/ChickenTikkaMasalaPost";
@@ -11,6 +13,16 @@ import PatodiSabjiPost from "@/components/blogs/PatodiSabjiPost";
 import SaojiMasalaPost from "@/components/blogs/SaojiMasalaPost";
 import SaojiMuttonPost from "@/components/blogs/SaojiMuttonPost";
 import SaojiRestaurantsPost from "@/components/blogs/SaojiRestaurantsPost";
+import AlooBainganPost from "@/components/blogs/AlooBainganPost";
+import MasalaDifferencePost from "@/components/blogs/MasalaDifferencePost";
+import MatkiUsalPost from "@/components/blogs/MatkiUsalPost";
+import NagpurFoodPost from "@/components/blogs/NagpurFoodPost";
+import SambarVadiPost from "@/components/blogs/SambarVadiPost";
+import SaojiChickenPost from "@/components/blogs/SaojiChickenPost";
+import SaojiEggCurryPost from "@/components/blogs/SaojiEggCurryPost";
+import TarriPohaPost from "@/components/blogs/TarriPohaPost";
+import VangyacheBharitPost from "@/components/blogs/VangyacheBharitPost";
+import ZunkaPost from "@/components/blogs/ZunkaPost";
 import { JsonLd } from "@/lib/jsonld";
 import {
   absoluteAssetUrl,
@@ -24,15 +36,33 @@ import {
   chickenTikkaMasalaRecipeLd,
   garamMasalaRecipeLd,
   getAllBlogSlugs,
+  blogs,
   getBlog,
+  itemListLdFromData,
   patodiSabjiRecipeLd,
+  recipeLdFromData,
   saojiMasalaRecipeLd,
   saojiMuttonRecipeLd,
   saojiRestaurantsGuideLd,
+  type BlogFaq,
 } from "@/lib/blogs";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
+
+/** Body components for posts whose data lives in lib/blog-posts. */
+const POST_BODIES: Record<string, ComponentType<{ faqs?: BlogFaq[] }>> = {
+  "famous-food-of-nagpur": NagpurFoodPost,
+  "saoji-chicken-recipe": SaojiChickenPost,
+  "tarri-poha-recipe": TarriPohaPost,
+  "sambar-vadi-recipe": SambarVadiPost,
+  "saoji-egg-curry-recipe": SaojiEggCurryPost,
+  "saoji-masala-vs-kolhapuri-vs-garam-masala": MasalaDifferencePost,
+  "varhadi-vangyache-bharit-recipe": VangyacheBharitPost,
+  "matki-usal-recipe": MatkiUsalPost,
+  "aloo-baingan-sabji-recipe": AlooBainganPost,
+  "zunka-recipe": ZunkaPost,
+};
 
 export function generateStaticParams() {
   return getAllBlogSlugs().map((slug) => ({ slug }));
@@ -113,8 +143,9 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const faqLd = blogFaqLd(post);
-  const recipeLd =
-    slug === "saoji-masala-recipe"
+  const recipeLd = post.recipe
+    ? recipeLdFromData(post)
+    : slug === "saoji-masala-recipe"
       ? saojiMasalaRecipeLd(post)
       : slug === "butter-chicken-recipe"
         ? butterChickenRecipeLd(post)
@@ -129,7 +160,11 @@ export default async function BlogPostPage({ params }: Props) {
                 : slug === "how-to-make-garam-masala-at-home"
                   ? garamMasalaRecipeLd(post)
                   : null;
-  const guideLd = slug === "top-3-saoji-restaurants-bhojnalay-nagpur" ? saojiRestaurantsGuideLd(post) : null;
+  const guideLd =
+    slug === "top-3-saoji-restaurants-bhojnalay-nagpur"
+      ? saojiRestaurantsGuideLd(post)
+      : itemListLdFromData(post);
+  const PostBody = POST_BODIES[slug];
   const schemas = [
     blogWebPageLd(post),
     blogPostingLd(post),
@@ -219,6 +254,9 @@ export default async function BlogPostPage({ params }: Props) {
             {slug === "chicken-biryani-recipe" ? <ChickenBiryaniPost faqs={post.faqs} /> : null}
             {slug === "patodi-sabji-recipe" ? <PatodiSabjiPost faqs={post.faqs} /> : null}
             {slug === "how-to-make-garam-masala-at-home" ? <GaramMasalaPost faqs={post.faqs} /> : null}
+            {PostBody ? <PostBody faqs={post.faqs} /> : null}
+            {/* Older posts don't render their own related list — link them to newer posts here. */}
+            {PostBody ? null : <RelatedPosts slugs={relatedSlugs(post.slug, post.category)} />}
           </div>
 
           <div className="mt-10 border-t border-[#d5d9d9] pt-4">
@@ -233,6 +271,14 @@ export default async function BlogPostPage({ params }: Props) {
       </div>
     </StoreShell>
   );
+}
+
+/** Same-category posts first, then the newest others; never the post itself. */
+function relatedSlugs(slug: string, category: string, limit = 4) {
+  const others = blogs.filter((b) => b.slug !== slug);
+  const same = others.filter((b) => b.category === category);
+  const rest = others.filter((b) => b.category !== category);
+  return [...same, ...rest].slice(0, limit).map((b) => b.slug);
 }
 
 function formatDate(iso: string) {

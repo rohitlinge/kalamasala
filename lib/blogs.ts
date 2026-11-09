@@ -1,4 +1,5 @@
 import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
+import { newBlogPosts } from "@/lib/blog-posts";
 
 export type BlogFaq = { question: string; answer: string };
 
@@ -26,9 +27,29 @@ export type BlogPost = {
     contentUrl?: string;
     heading?: string;
   };
+  /** Structured recipe data — when set, Recipe JSON-LD is generated from it. */
+  recipe?: BlogRecipe;
+  /** Ranked or listed items (guides) — when set, ItemList JSON-LD is generated. */
+  listItems?: { name: string; description: string }[];
+};
+
+export type BlogRecipe = {
+  name: string;
+  alternateName: string[];
+  /** ISO 8601 durations, e.g. "PT15M". */
+  prepTime: string;
+  cookTime: string;
+  totalTime: string;
+  recipeYield: string[];
+  recipeCategory: string[];
+  recipeCuisine: string[];
+  cookingMethod: string;
+  ingredients: string[];
+  steps: { name: string; text: string }[];
 };
 
 export const blogs: BlogPost[] = [
+  ...newBlogPosts,
   {
     slug: "how-to-make-garam-masala-at-home",
     title: "How to Make Garam Masala at Home | Lata Special",
@@ -1420,6 +1441,80 @@ export function chickenTikkaMasalaRecipeLd(post: BlogPost) {
   };
 }
 
+/** Recipe JSON-LD built from `post.recipe` (used by posts that carry recipe data). */
+export function recipeLdFromData(post: BlogPost) {
+  const r = post.recipe;
+  if (!r) return null;
+  const url = blogUrl(post.slug);
+  const imageUrl = absoluteAssetUrl(post.ogImage);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "@id": `${url}#recipe`,
+    name: r.name,
+    alternateName: r.alternateName,
+    description: post.description,
+    image: [imageUrl],
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: `${SITE_URL}/owner`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteAssetUrl("/images/product/250g masala.png"),
+      },
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    prepTime: r.prepTime,
+    cookTime: r.cookTime,
+    totalTime: r.totalTime,
+    recipeYield: r.recipeYield,
+    recipeCategory: r.recipeCategory,
+    recipeCuisine: r.recipeCuisine,
+    keywords: post.keywords.join(", "),
+    cookingMethod: r.cookingMethod,
+    recipeIngredient: r.ingredients,
+    recipeInstructions: r.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+      url: `${url}#step-${i + 1}`,
+    })),
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    inLanguage: "en-IN",
+  };
+}
+
+/** ItemList JSON-LD built from `post.listItems` (used by guide posts). */
+export function itemListLdFromData(post: BlogPost) {
+  if (!post.listItems?.length) return null;
+  const url = blogUrl(post.slug);
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${url}#list`,
+    name: post.title,
+    description: post.description,
+    numberOfItems: post.listItems.length,
+    itemListElement: post.listItems.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      description: item.description,
+      url: `${url}#item-${i + 1}`,
+    })),
+  };
+}
+
 export function blogPostingLd(post: BlogPost) {
   const url = blogUrl(post.slug);
   const imageUrl = absoluteAssetUrl(post.ogImage);
@@ -1522,7 +1617,7 @@ export function blogWebPageLd(post: BlogPost) {
     name: post.seoTitle,
     description: post.description,
     isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
-    about: post.category.toLowerCase().includes("recipe")
+    about: post.category.toLowerCase().includes("recipe") || post.recipe
       ? { "@id": `${url}#recipe` }
       : { "@type": "Thing", name: post.shortTitle },
     primaryImageOfPage: {

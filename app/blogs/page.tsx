@@ -7,7 +7,7 @@ import { OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const title = "Blogs — Recipes & Kitchen Stories from Lata Special";
 const description =
-  "Recipes and Nagpur kitchen stories from Lata Special Saoji Masala — homemade garam masala, patodi sabji, chicken biryani, top Saoji bhojnalay, homemade Saoji masala, butter chicken, Saoji mutton, chicken tikka masala, and tips for Saoji Masala Nagpur.";
+  "Recipes and Nagpur kitchen stories from Lata Special Saoji Masala — famous food of Nagpur, Saoji chicken, tarri poha, sambar vadi, Saoji egg curry, Varhadi bharit, matki usal, aloo baingan, zunka, Saoji mutton, homemade Saoji and garam masala, and tips for Saoji Masala Nagpur.";
 
 export const metadata: Metadata = {
   title: { absolute: `${title} | ${SITE_NAME}` },
@@ -34,6 +34,16 @@ export const metadata: Metadata = {
     "Saoji restaurants Nagpur",
     "Saoji bhojnalay Nagpur",
     "Golibar Chowk Saoji",
+    "famous food of Nagpur",
+    "saoji chicken recipe",
+    "tarri poha recipe",
+    "sambar vadi recipe",
+    "saoji egg curry",
+    "saoji masala vs kolhapuri masala",
+    "varhadi bharit recipe",
+    "matki usal recipe",
+    "aloo baingan sabji",
+    "zunka recipe",
   ],
   alternates: { canonical: `${SITE_URL}/blogs` },
   robots: {
@@ -139,7 +149,7 @@ export default function BlogsPage() {
                   href={`/blogs/${post.slug}`}
                   className="mt-3 inline-block text-[13px] font-bold text-link hover:text-link-hover hover:underline"
                 >
-                  Read recipe →
+                  {post.recipe || post.category.toLowerCase().includes("recipe") ? "Read recipe →" : "Read guide →"}
                 </Link>
               </li>
             ))}
